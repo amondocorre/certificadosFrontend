@@ -1,0 +1,36 @@
+.MuiDrawer-root .MuiPaper-root {
+  background-color: #0A1929 !important;
+  color: white !important;
+}
+
+.MuiListItemButton-root {
+  padding: 12px 16px !important;
+  margin: 2px 8px !important;
+  border-radius: 4px !important;
+  transition: all 0.2s ease !important;
+}
+
+.MuiListItemButton-root:hover,
+.MuiListItemButton-root.Mui-selected {
+  background-color: #0088ff !important;
+}
+
+.MuiListItemIcon-root {
+  color: white !important;
+  min-width: 40px !important;
+}
+
+.MuiListItemText-primary {
+  font-size: 0.95rem !important;
+  font-weight: 400 !important;
+  color: white !important;
+}
+
+.MuiToolbar-root .MuiTypography-root {
+  color: white !important;
+  font-weight: 500 !important;
+}
+
+.MuiList-root {
+  padding-top: 8px !important;
+}
