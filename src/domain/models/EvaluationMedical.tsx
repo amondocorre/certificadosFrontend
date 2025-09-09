@@ -38,6 +38,16 @@ export interface EvaluationMedical{
   usa_lentes:                           string;
   cirugia:                              string;
   tipo_lentes:                          string;
+  campimetria:                          string;
+  colorimetria:                         string;
+  od_con_lentes:                        string;
+  od_sin_lentes:                        string;
+  od_correccion:                        string;
+  oi_con_lentes:                        string;
+  oi_sin_lentes:                        string;
+  oi_correccion:                        string;
+  vision_profunda:                      string;
+  dx_lampara_hendidura:                 string;
   // APARATO AUDITIVO
   oido_externo:                         string;
   oroscopia:                            string;
