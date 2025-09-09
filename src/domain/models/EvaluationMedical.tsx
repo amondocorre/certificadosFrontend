@@ -1,5 +1,7 @@
 export interface EvaluationMedical{
+  file?:                                File
   //Client Data
+  id_evaluacion_medica?:                string;
   foto:                                 string ;
   ap_paterno:                           string;
   ap_materno:                           string;

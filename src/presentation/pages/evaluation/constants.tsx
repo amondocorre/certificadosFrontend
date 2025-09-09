@@ -71,3 +71,11 @@ export const resultados =[
                 {label:' 	- APTO CON LIMITACIONES Y ADAPTACIONES TECNICO VEHICULAR.  ',value:'APTO CON LIMITACIONES Y ADAPTACIONES TECNICO VEHICULAR'},
               ] 
 
+// evaluacion psicologica
+
+export const escalasApreciacion =[
+                {label:' 	Adecuado  ',value:'adecuado'},
+                {label:' 	Medio  ',value:'medio'},
+                {label:' 	Inadecuado  ',value:'inadecuado'},
+                {label:' 	Observación  ',value:'observación'},
+]

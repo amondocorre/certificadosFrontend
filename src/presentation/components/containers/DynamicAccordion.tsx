@@ -25,16 +25,16 @@ const DynamicAccordion: React.FC<DynamicAccordionProps> = ({
 }) => {
   return (
     <Accordion defaultExpanded={defaultExpanded} sx={{'&.Mui-expanded': {marginTop:0.3,}}}>
-      <AccordionSummary  sx={{...sx,
+      <AccordionSummary  sx={{
       padding:0,minHeight: '25px',height:{xs:'20px', md:'30px', sm:'45px'},
       '&.Mui-expanded': {minHeight: '20px',height: {xs:'25px', md:'30px', sm:'45px'},},
       '& .MuiAccordionSummary-content': {
         margin: 0,
-        '&.Mui-expanded':{margin: 0,},},
+        '&.Mui-expanded':{margin: 0,},},...sx
       }} expandIcon={<ExpandMoreIcon sx={{color:'white', fontSize: {xs: '1,8rem',sm: '2.1rem',md: '2.2rem',},}} />}>
         {childrenTitle}
       </AccordionSummary> 
-      <AccordionDetails sx={{...sxBody,padding:0,paddingLeft:0.5}}>
+      <AccordionDetails sx={{padding:0,paddingLeft:0.5,...sxBody}}>
         {children}
       </AccordionDetails>
     </Accordion>
