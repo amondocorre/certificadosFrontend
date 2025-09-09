@@ -10,7 +10,7 @@ export class ExplorationViewModel {
   async create(exploration:Exploration):Promise<ExplorationResponse|ErrorResponse>{
     return await this.explorationUseCases.create.execute(exploration)
   }
-  async update(exploration:Exploration):Promise<ExplorationResponse|ErrorResponse>{
+  async search(exploration:Exploration):Promise<ExplorationResponse|ErrorResponse>{
     return await this.explorationUseCases.search.execute(exploration)
   }
 }

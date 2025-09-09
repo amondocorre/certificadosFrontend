@@ -6,7 +6,7 @@ import { apiRequestHandler } from "../../api/apiRequestHandler";
 export class ExplorationService{
   async create(exploration:Exploration):Promise<ExplorationResponse|ErrorResponse>{
     try {
-      const response = await apiRequestHandler.post<ExplorationResponse>('/exploration/create',exploration)
+      const response = await apiRequestHandler.post<ExplorationResponse>('/evaluation/exploration/create',exploration)
       return response.data
     } catch (error:any) {
       if(error.response){
@@ -20,7 +20,7 @@ export class ExplorationService{
     }
   }async search(exploration:Exploration):Promise<ExplorationResponse|ErrorResponse>{
     try {
-      const response = await apiRequestHandler.get<ExplorationResponse>('/exploration/search',{params: {q: exploration.descripcion,tipo: exploration.tipo}})
+      const response = await apiRequestHandler.get<ExplorationResponse>('/evaluation/exploration/search',{params: {q: exploration.descripcion,tipo: exploration.tipo}})
       return response.data
     } catch (error:any) {
       if(error.response){

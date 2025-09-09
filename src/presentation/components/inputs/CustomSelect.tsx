@@ -27,6 +27,7 @@ const CustomSelect: React.FC<CustomSelectProps> = ({control,name,label,options,i
             id={name}
             label={label}
             size="small"
+            value={field.value ?? ''}
             variant="outlined"
             startAdornment={icon ? <InputAdornment position="start">{icon}</InputAdornment> : null}
             displayEmpty

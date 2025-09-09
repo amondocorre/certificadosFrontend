@@ -26,6 +26,7 @@ import CalendarView from '../pages/calendar/CalendarView';
 import ResetPasswordView from '../pages/security/Security/ReserPasswordView';
 import ChangePasswordView from '../pages/security/Security/ChangePasswordView';
 import ErrorPage from '../components/ErrorPage';
+import MedicalView from '../pages/evaluation/medical/MedicalView';
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -38,6 +39,7 @@ export const router = createBrowserRouter([
         children: [
           { path: '', element: <DashboardView /> },
           { path: 'calendar', element: <CalendarView/> },
+          { path: 'evaluation-medical', element: <MedicalView/> },
           { path: 'reports/cierre-turno', element: <ReporteCiereTurnoView /> },
           { path: 'configurations/users', element: <UsersView /> },
           { path: 'configurations/acces', element: <MenuAccesView /> },
