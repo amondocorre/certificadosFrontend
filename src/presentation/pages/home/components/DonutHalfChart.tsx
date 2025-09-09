@@ -11,7 +11,7 @@ const DonutHalfChart = ({total,enUso,stock}:DonutProps) => {
     { name: 'Stock', value: stock },
   ];
 
-  const COLORS = ['#FF6384', '#f8bd0c'];
+  const COLORS = ['#FF6384', '#1a3e72'];
 
   return (
     <div style={{ width: '100%', maxWidth: 300,minHeight:100, height: '100%', position: 'relative' }}>

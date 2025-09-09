@@ -201,7 +201,7 @@ const ModalClient: React.FC<UserFormProps> = ({ open, onClose, createClient,upda
                     name="ap_paterno"
                     control={control}
                     label="Apellido Paterno"
-                    placeholder="Ingrese el apellido paterno"
+                    placeholder="Ingrese el Apellido Paterno"
                     disabled={!(stateUpdate || !client)}
                     icon={<MUIcons.AccountCircle/>}
                   />
@@ -215,7 +215,7 @@ const ModalClient: React.FC<UserFormProps> = ({ open, onClose, createClient,upda
                     name="ap_materno"
                     control={control}
                     label="Apellido Materno"
-                    placeholder="Ingrese el apellido materno"
+                    placeholder="Ingrese el Apellido Materno"
                     disabled={!(stateUpdate || !client)}
                     icon={<MUIcons.AccountCircle/>}
                   />
@@ -229,7 +229,7 @@ const ModalClient: React.FC<UserFormProps> = ({ open, onClose, createClient,upda
                     name="ci"
                     control={control}
                     label="Cédula de Identidad"
-                    placeholder="Ingrese el CI"
+                    placeholder="Ingrese el número de C.I."
                     disabled={!(stateUpdate || !client)}
                     icon={<MUIcons.Badge/>}
                   />

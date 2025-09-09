@@ -150,7 +150,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                     name="ap_paterno"
                     control={control}
                     label="Apellido Paterno"
-                    placeholder="Ingrese el apellido paterno"
+                    placeholder="Ingrese el Apellido Paterno"
                     disabled={!(stateUpdate || !client)}
                     icon={<MUIcons.AccountCircle/>}
                   />
@@ -160,7 +160,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                     name="ap_materno"
                     control={control}
                     label="Apellido Materno"
-                    placeholder="Ingrese el apellido materno"
+                    placeholder="Ingrese el Apellido Materno"
                     disabled={!(stateUpdate || !client)}
                     icon={<MUIcons.AccountCircle/>}
                   />
@@ -170,7 +170,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                     name="nombre"
                     control={control}
                     label="Nombres"
-                    placeholder="Ingrese el nombre"
+                    placeholder="Ingrese el/los nombres"
                     disabled={!(stateUpdate || !client)}
                     icon={<MUIcons.AccountCircle/>}
                   />
@@ -179,10 +179,10 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                   <CustomTextField
                     name="ci"
                     control={control}
-                    label="CI"
-                    placeholder="Ingrese el ci"
+                    label="Nro. C.I."
+                    placeholder="Ingrese el Nro. de C.I."
                     disabled={!(stateUpdate || !client)}
-                    icon={<MUIcons.AccountCircle/>}
+                    icon={<MUIcons.Badge/>}
                   />
                 </Grid>
                 <Grid size={{xs: 2,sm: 2}}>
@@ -203,7 +203,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                     options={sexos}
                     disabled={!(stateUpdate || !client)}
                     placeholder='Seleccione el sexo'
-                    icon={<MUIcons.AccountCircle/>}
+                    icon={<MUIcons.Wc/>}
                   />
                 </Grid>
                 <Grid size={{xs: 4,sm: 4}}>
@@ -232,77 +232,81 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                   <CustomTextField
                     name="antecendentes_rc"
                     control={control}
-                    label="Antecendentes relacionadas con la condución:"
-                    placeholder="Antecendentes relacionadas con la condución"
+                    label="Antecedentes relacionados con la conducción:"
+                    placeholder="Antecedentes relacionados con la conducción"
                     disabled={!(stateUpdate || !client)}
-                    icon={<MUIcons.AccountCircle/>}
+                    icon={<MUIcons.InsertDriveFile/>}
                   />
                 </Grid>
                 <Grid size={{xs: 6,sm: 6}}>
                   <CustomTextField
                     name="antecendentes_pp"
                     control={control}
-                    label="Antecendentes personales patológicos:"
+                    label="Antecedentes personales patológicos:"
                     placeholder="Antecendentes personales patológicos"
                     disabled={!(stateUpdate || !client)}
-                    icon={<MUIcons.AccountCircle/>}
+                    icon={<MUIcons.InsertDriveFile/>}
                   />
                 </Grid> 
                 <Grid size={{xs: 6,sm: 6}} >
-                  <StyledTitle sx={{ color: 'black'}}>Habítos:</StyledTitle>
-                  <Box display="flex" flexDirection="row" gap={2} mt={0} px={1}>
-                    <Box sx={{width:'50%'}}>
-                      <CustomSelect
-                        name="bebe"
-                        control={control}
-                        label="Bebe"
-                        options={habitos}
-                        disabled={!(stateUpdate || !client)}
-                        placeholder='Seleccione una opsión'
-                        icon={<MUIcons.Liquor/>}
-                      />
-                    </Box>
-                    <Box sx={{width:'50%'}}>
-                      <CustomSelect
-                        name="fuma"
-                        control={control}
-                        label="Fuma"
-                        options={habitos}
-                        disabled={!(stateUpdate || !client)}
-                        placeholder='Seleccione una opsión'
-                        icon={<MUIcons.SmokingRooms/>}
-                      />
-                    </Box>
-                  </Box>
+                   <Grid size={{xs: 8,sm: 12}} sx={{pb:1,border:'4px solid #bee4eeff'}}>
+                      <StyledTitle sx={{ color: 'black'}}>HÁBITOS:</StyledTitle>
+                      <Box display="flex" flexDirection="row" gap={2} mt={0} px={1}>
+                        <Box sx={{width:'50%'}}>
+                          <CustomSelect
+                            name="bebe"
+                            control={control}
+                            label="Bebe"
+                            options={habitos}
+                            disabled={!(stateUpdate || !client)}
+                            placeholder='Seleccione una opción'
+                            icon={<MUIcons.Liquor/>}
+                          />
+                        </Box>
+                        <Box sx={{width:'50%'}}>
+                          <CustomSelect
+                            name="fuma"
+                            control={control}
+                            label="Fuma"
+                            options={habitos}
+                            disabled={!(stateUpdate || !client)}
+                            placeholder='Seleccione una opción'
+                            icon={<MUIcons.SmokingRooms/>}
+                          />
+                        </Box>
+                      </Box>
+                    </Grid>      
                 </Grid> 
                 <Grid size={{xs: 6,sm: 6}} >
-                  <StyledTitle sx={{ color: 'black'}}>Vacunas:</StyledTitle>
-                  <Box display="flex" flexDirection="row" gap={2} mt={0}>
-                    <Box sx={{ width: '50%', display: 'flex', justifyContent: 'center'}}>
-                      <div >
-                        <CustomSwitchPerson
-                          name="f_amarilla"
-                          control={control}
-                          label="F. Amarilla"
-                          disabled={!(stateUpdate || !client)}
-                          icon={<MUIcons.Vaccines />}
-                          flexDirection='row'
-                        />
-                      </div>
-                    </Box>
-                    <Box sx={{ width: '50%', display: 'flex', justifyContent: 'center'}}>
-                      <div >
-                        <CustomSwitchPerson
-                          name="antitetanica"
-                          control={control}
-                          label="Antitetánica"
-                          disabled={!(stateUpdate || !client)}
-                          icon={<MUIcons.Vaccines/>}
-                          flexDirection='row'
-                        />
-                      </div>
-                    </Box>
-                  </Box>
+                  <Grid size={{xs: 8,sm: 12}} sx={{pb:1,border:'4px solid #bee4eeff'}}>
+                      <StyledTitle sx={{ color: 'black'}}>VACUNAS:</StyledTitle>
+                      <Box display="flex" flexDirection="row" gap={2} mt={0}>
+                        <Box sx={{ width: '50%', display: 'flex', justifyContent: 'center'}}>
+                          <div >
+                            <CustomSwitchPerson
+                              name="f_amarilla"
+                              control={control}
+                              label="F. Amarilla"
+                              disabled={!(stateUpdate || !client)}
+                              icon={<MUIcons.Vaccines />}
+                              flexDirection='row'
+                            />
+                          </div>
+                        </Box>
+                        <Box sx={{ width: '50%', display: 'flex', justifyContent: 'center'}}>
+                          <div >
+                            <CustomSwitchPerson
+                              name="antitetanica"
+                              control={control}
+                              label="Antitetánica"
+                              disabled={!(stateUpdate || !client)}
+                              icon={<MUIcons.Vaccines/>}
+                              flexDirection='row'
+                            />
+                          </div>
+                        </Box>
+                      </Box>
+                    </Grid>
                 </Grid> 
               </Grid> 
             </DynamicAccordion>
@@ -325,12 +329,12 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                     label="Grupo/Factor Sanguineo"
                     options={grupoSanguineos}
                     disabled={!(stateUpdate || !client)}
-                    placeholder='Seleccione una opsión'
+                    placeholder='Seleccione una opción'
                     icon={<MUIcons.Liquor/>}
                   />
                 </Grid>
                 <Grid size={{xs: 3,sm: 3}}></Grid>
-                <Grid size={{xs: 8,sm: 8}} sx={{pb:1,border:'1px solid #bee4eeff'}}>
+                <Grid size={{xs: 8,sm: 8}} sx={{pb:1,border:'4px solid #bee4eeff'}}>
                   <StyledTitle sx={{ color: 'black'}}>SIGNOS VITALES:</StyledTitle>
                   <Box display="flex" flexDirection="row" gap={2} mt={0} px={1}>
                     <Box sx={{width:'50%'}}>
@@ -381,7 +385,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                     </Box>
                   </Box>
                 </Grid> 
-                <Grid size={{xs: 4,sm: 4}} sx={{pb:1,border:'1px solid #bee4eeff'}}>
+                <Grid size={{xs: 4,sm: 4}} sx={{pb:1,border:'4px solid #bee4eeff'}}>
                   <StyledTitle sx={{ color: 'black'}}>SOMATOMETRIA:</StyledTitle>
                   <Box display="flex" flexDirection="column" gap={0.9} mt={0} px={1}>
                     <Box sx={{width:'100%'}}>

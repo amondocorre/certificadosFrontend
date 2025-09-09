@@ -19,7 +19,7 @@ export default function App() {
     description: 'Página principal del panel de control',
   };
   const BRANDING = React.useMemo(() => ({
-    title: dataConpany ? dataConpany.nombre : 'ALHECONS',
+    title: dataConpany ? dataConpany.nombre : 'Centro Médico',
     logo: dataConpany?.logo_empresa?<div className="custom-paper-style"><img src={dataConpany?.logo_empresa} alt="Logo" width={150} /></div>: undefined
   }), [dataConpany]);
   const normalizedSession = React.useMemo(() => {

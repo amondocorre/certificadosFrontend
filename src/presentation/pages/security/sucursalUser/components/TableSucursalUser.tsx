@@ -76,7 +76,7 @@ const TableSucursalUser = (Props: any) => {
   const customTheme = createTheme({
     palette: {
       primary: {
-        main: '#f8bd0c', 
+        main: '#1a3e72', 
       },
       secondary: {
         main: '#dc004e', 

@@ -11,7 +11,7 @@ import logoEmpresa from '../../../../assets/1_empresa.png'
  const customTheme = createTheme({
     palette: {
       primary: {
-        main: '#f8bd0c', 
+        main: '#1a3e72', 
       },
       secondary: {
         main: '#dc004e', 
@@ -143,13 +143,13 @@ export default function SignIn() {
               flexDirection: 'column',
               alignItems: 'center',
               width:{xs:'100%', sm:'100%',md:'100%'},
-              p:{xs:0, sm:2,md:2} ,border: {xs:'1px solid #f8bd0c', sm:'2px solid #f8bd0c',md:'2px solid #f8bd0c'},borderRadius: '4px',
+              p:{xs:0, sm:2,md:2} ,border: {xs:'1px solid #1a3e72', sm:'2px solid #1a3e72',md:'2px solid #1a3e72'},borderRadius: '4px',
             }}
           >
             <Box
               component="img"
               src={dataConpany?.logo_empresa || logoEmpresa}
-              alt="Alhecon"
+              alt="Centro Médico"
               sx={{
                 width: { xs: '70%', sm: '100%', md: '100%' },
                 maxWidth: 150,

@@ -1,28 +1,28 @@
 export const COLORS = {
   // Paleta principal en tonos azules adaptada para fondo oscuro profundo
   primary: {
-    main: '#F9C834',        // botones y colores principales del menu
-    light: '#F9C834',       // Azul más claro
-    dark: '#CB9A06',        // Azul profundo 1E3A8A
+    main: '#3B82F6',        // Azul vivo
+    light: '#60A5FA',       // Azul más claro
+    dark: '#1E3A8A',        // Azul profundo
     contrastText: '#ffffff'
   },
   secondary: {
-    main: '#CB9A06',        // Azul claro 0284C7
-    light: '#FBE08D',       // Azul muy claro
-    dark: '#CB9A06',        // Azul medio
+    main: '#0284C7',        // Azul claro
+    light: '#BAE6FD',       // Azul muy claro
+    dark: '#0284C7',        // Azul medio
     contrastText: '#ffffff'
   },
   accent: {
-    main: '#F9C834',        // Azul fuerte
-    light: '#FBE08D',       // Azul pastel
-    dark: '#CB9A06',        // Azul oscuro
+    main: '#0EA5E9',        // Azul fuerte
+    light: '#7DD3FC',       // Azul pastel
+    dark: '#0369A1',        // Azul oscuro
     contrastText: '#E0F2FE' // Claro sobre fondo oscuro
   },
   background: {
-    default: '#F8FAFC',     // Muy oscuro (más que #0F172A)
+    default: '#dc3545',     // Muy oscuro (más que #0F172A)
     paper: '#121826',       // Fondo de tarjetas
-    dark: '#FEF8E6',        // Casi negro para headers o footer
-    gradient: 'linear-gradient(90deg, #CB9A06 0%, #F9C834 50%, #FBE08D 100%)'
+    dark: '#010409',        // Casi negro para headers o footer
+    gradient: 'linear-gradient(90deg, #121826 0%, #1E3A8A 50%, #3B82F6 100%)'
   },
   grey: {
     50: '#0F172A',

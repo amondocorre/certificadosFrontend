@@ -2,7 +2,7 @@
 export const habitos = [
                   {label:'Nunca',value:'nunca'},
                   {label:'Ocacionalmente',value:'ocacional'},
-                  {label:'Uno o Más a la semana',value:'uno-o-mas'}
+                  {label:'Una o más a la semana',value:'uno-o-mas'}
                 ]
 export const sexos = [
                   {label:'Masculino',value:'M'},
