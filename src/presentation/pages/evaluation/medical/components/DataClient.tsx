@@ -562,6 +562,153 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                     />
                   </Grid>
                   <Grid size={{xs: 4,sm: 4}}></Grid>
+                  
+                  <Grid size={{xs: 6,sm: 6}}>
+                    <CustomTextField
+                      name="campimetria"
+                      control={control}
+                      label="Campimetria"
+                      placeholder="Ingrese el detalle"
+                      disabled={!(stateUpdate || !client)}
+                      icon={<MUIcons.AccountCircle/>}
+                    />
+                  </Grid>
+                  <Grid size={{xs: 6,sm: 6}}>
+                    <CustomTextField
+                      name="colorimetria"
+                      control={control}
+                      label="Colorimetria"
+                      placeholder="Ingrese el detalle"
+                      disabled={!(stateUpdate || !client)}
+                      icon={<MUIcons.AccountCircle/>}
+                    />
+                  </Grid>
+                  <Grid size={{xs: 12,sm:12}}>
+                    <Box
+                      sx={{
+                        display: 'grid',
+                        gridTemplateColumns: '10% 1fr 1fr 1fr',
+                        width: '100%',
+                        gap:0,
+                        margin: 'auto',
+                        //border: '1px solid #3b3a3aff',
+                        '& > *': {
+                          borderRight: '1px solid #3b3a3aff',
+                          borderBottom: '1px solid #3b3a3aff',
+                          p:0.5,
+                          paddingTop: 1,
+                          textAlign: 'center',
+                        },
+                        '& > :nth-of-type(-n+4)': {
+                          padding: 0, 
+                          borderTop: '1px solid #3b3a3aff',
+                        },
+                        '& > :nth-child(4n+1)': {
+                          borderLeft: '1px solid #3b3a3aff',
+                        },
+                      }}
+                    >
+                      <Box>
+                      </Box>
+                      <Box >
+                        <StyledTitle sx={{color:'black'}}>Con lentes</StyledTitle>
+                      </Box>
+                      <Box >
+                        <StyledTitle sx={{color:'black'}}>Sin lentes</StyledTitle>
+                      </Box>
+                      <Box >
+                        <StyledTitle sx={{color:'black'}}>Corrección</StyledTitle>
+                      </Box>
+                      <div >
+                        <StyledTitle sx={{color:'black',mt:1}}>OD</StyledTitle>
+                      </div>
+                      <div>
+                        <CustomTextField
+                          name="vision_profunda"
+                          control={control}
+                          label="Visión Profunda"
+                          placeholder="Ingrese el detalle"
+                          disabled={!(stateUpdate || !client)}
+                          icon={<MUIcons.AccountCircle/>}
+                        />
+                      </div>
+                      <div>
+                        <CustomTextField
+                          name="vision_profunda"
+                          control={control}
+                          label="Visión Profunda"
+                          placeholder="Ingrese el detalle"
+                          disabled={!(stateUpdate || !client)}
+                          icon={<MUIcons.AccountCircle/>}
+                        />
+                      </div>
+                      <div>
+                        <CustomTextField
+                          name="vision_profunda"
+                          control={control}
+                          label="Visión Profunda"
+                          placeholder="Ingrese el detalle"
+                          disabled={!(stateUpdate || !client)}
+                          icon={<MUIcons.AccountCircle/>}
+                        />
+                      </div>
+                      <div>
+                        <StyledTitle sx={{color:'black'}}>OI</StyledTitle>
+                      </div>
+                      <div>
+                        <CustomTextField
+                          name="vision_profunda"
+                          control={control}
+                          label="Visión Profunda"
+                          placeholder="Ingrese el detalle"
+                          disabled={!(stateUpdate || !client)}
+                          icon={<MUIcons.AccountCircle/>}
+                        />
+                      </div>
+                      <div>
+                        <CustomTextField
+                          name="vision_profunda"
+                          control={control}
+                          label="Visión Profunda"
+                          placeholder="Ingrese el detalle"
+                          disabled={!(stateUpdate || !client)}
+                          icon={<MUIcons.AccountCircle/>}
+                        />
+                      </div>
+                      <div >
+                        <CustomTextField
+                          name="vision_profunda"
+                          control={control}
+                          label="Visión Profunda"
+                          placeholder="Ingrese el detalle"
+                          disabled={!(stateUpdate || !client)}
+                          icon={<MUIcons.AccountCircle/>}
+                        />
+                      </div>
+                    </Box>
+                  </Grid>
+
+                  <Grid size={{xs: 6,sm: 6}}>
+                    <CustomTextField
+                      name="vision_profunda"
+                      control={control}
+                      label="Visión Profunda"
+                      placeholder="Ingrese el detalle"
+                      disabled={!(stateUpdate || !client)}
+                      icon={<MUIcons.AccountCircle/>}
+                    />
+                  </Grid>
+                  <Grid size={{xs: 6,sm: 6}}>
+                    <CustomTextField
+                      name="vision_profunda"
+                      control={control}
+                      label="Dx Lampara Hendidura"
+                      placeholder="Ingrese el detalle"
+                      disabled={!(stateUpdate || !client)}
+                      icon={<MUIcons.AccountCircle/>}
+                    />
+                  </Grid>
+
                   <Grid size={{xs: 12,sm: 12}}>
                     <StyledTitle sx={{color:'black'}}>APARATO AUDITIVO </StyledTitle>
                   </Grid>
