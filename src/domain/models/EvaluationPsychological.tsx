@@ -5,31 +5,24 @@ export interface EvaluationPsychological{
   ap_paterno:                         string;
   ap_materno:                         string;
   nombre:                             string;
+  edad:                                 string;
   ci:                                 string;
   lugar_nacimiento:                   string;
   fecha_nacimiento:                   string;
-  ocupacion:                          string;
+  profecion:                          string;
+  fecha_examen:                       string;
   domicilio:                          string;
   numero_domicilio:                   string;
   zona:                               string;
   telefono:                           string;
-  // B) HISTORIA MEDICA
-  historia_medica:                    string;
-  // C) HISTORIA FAMILIAR
+  // B) HISTORIA FAMILIAR
   historia_familiar:                  string;
-  // D) EXAMEN O EVALUACION PSICOLOGICA DE MADUREZ
-  // 1. ESCALAS DE APRECIACION DEL ESTRES - EAE
-  niveles_estres:                     string;
-  estrategias_afrontamiento:          string;
-  vulnerabilidad_emocional:           string;
-  //2. BATERIA DE CONDUCTORES - BC 
-  atencion_sostenida_selectiva:       string;
-  capacidad_reaccion:                 string;
-  control_impulso:                    string;
-  actidud_norma_autoridad:            string;
-  estabilidad_emocional:              string;
-  //E) RESULTADOS Y RECOMENDACIONES 
-  resultado_recomendacion:            string;
-  //F) OBSERVACIONES 
+  // E) EXAMEN PSICOLOGICO
+  coordinacion_visomotora:            string;
+  personalidad:                       string;
+  atencion_cognitiva:                 string;
+  reaccion_estres_riego:              string;   
+  //resultado_recomendacion:            string;
+  // OBSERVACIONES 
   observacion:                        string;
 }
