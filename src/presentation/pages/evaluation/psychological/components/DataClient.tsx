@@ -5,7 +5,6 @@ import * as yup from 'yup';
 import {Grid,Box,} from '@mui/material';
 import * as MUIcons from '@mui/icons-material';
 import CustomTextField from '../../../../components/inputs/CustomTextField';
-import { StyledTitle } from '../../../../components/text/StyledTitle';
 import ScrollableBox from '../../../../components/containers/ScrollableBox';
 import ContainerButtons from '../../../../components/containers/ContainerButtons';
 import ActionButton from '../../../../components/buttons/ActionButton';
@@ -14,12 +13,14 @@ import { formatDate } from '../../../../utils/dateUtils';
 import { Button } from '../../../../../domain/models/ButtonModel';
 import CustomImageUpload from '../../../../components/inputs/CustomImageUpload';
 import CustomSelect from '../../../../components/inputs/CustomSelect';
-import { escalasApreciacion} from '../../constants';
+import { escalasPsicologica, escalasPsicologicav2} from '../../constants';
 import DynamicAccordion from '../../../../components/containers/DynamicAccordion';
 import { StyledHeaderSecondary } from '../../../../components/text/StyledHeader';
 import { AlertError } from '../../../../components/alerts';
 import { Exploration } from '../../../../../domain/models/Evaluation';
 import CustomTextArea from '../../../../components/inputs/CustomTextArea';
+import CustomImageOrCameraUpload from '../../../../components/inputs/CustomImageOrCameraUpload';
+import CustomUploadOrCamera from '../../../../components/inputs/CustomUploadOrCamera';
 const validationSchema = yup.object().shape({
   nombres: yup.string().required('El nombre es obligatorio').min(3, 'El nombre no puede tener menos de 3 caracteres'),
   ap_paterno: yup.string().required('El apellido paterno es obligatorio').min(3, 'El apellido paterno no puede tener menos de 3 caracteres'),
@@ -110,7 +111,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
             >
               <Grid container columnSpacing={1} rowSpacing={2} sx={{px:1,pb:1}}>
                 <Grid size={{xs: 12,sm: 12}}>
-                  <CustomImageUpload
+                  <CustomUploadOrCamera
                     defaultValue={client?.foto?client?.foto:''}
                     name="foto"
                     control={control}
@@ -148,17 +149,28 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                     icon={<MUIcons.AccountCircle/>}
                   />
                 </Grid>
-                <Grid size={{xs: 3,sm: 3}}>
+                <Grid size={{xs: 1.2,sm: 1.2}}>
+                  <CustomTextField
+                    name="edad"
+                    control={control}
+                    label="Edad"
+                    placeholder="Ingrese la edad"
+                    disabled={!(stateUpdate || !client)}
+                    //icon={<MUIcons.AccountCircle/>}
+                  />
+                </Grid>
+                <Grid size={{xs: 1.8,sm: 1.8}}>
                   <CustomTextField
                     name="ci"
                     control={control}
                     label="CI"
                     placeholder="Ingrese el ci"
                     disabled={!(stateUpdate || !client)}
-                    icon={<MUIcons.AccountCircle/>}
+                    //icon={<MUIcons.AccountCircle/>}
                   />
                 </Grid>
-                <Grid size={{xs: 4,sm: 4}}>
+
+                <Grid size={{xs: 3,sm: 3}}>
                   <CustomTextField
                     name="lugar_nacimiento"
                     control={control}
@@ -168,7 +180,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                     icon={<MUIcons.LocationOn/>}
                   />
                 </Grid>
-                <Grid size={{xs: 4,sm: 4}}>
+                <Grid size={{xs: 3,sm: 3}}>
                   <CustomDatePicker
                     name="fecha_nacimiento" 
                     control={control} 
@@ -177,14 +189,23 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                     icon={<MUIcons.CalendarMonth />} 
                   />
                 </Grid>
-                <Grid size={{xs: 4,sm: 4}}>
+                <Grid size={{xs: 3,sm: 3}}>
                   <CustomTextField
-                    name="ocupacion"
+                    name="profeccion"
                     control={control}
-                    label="Ocupacion"
+                    label="Profecion"
                     placeholder="Ingrese la Ocupacion"
                     disabled={!(stateUpdate || !client)}
                     icon={<MUIcons.Work/>}
+                  />
+                </Grid>
+                <Grid size={{xs: 3,sm: 3}}>
+                  <CustomDatePicker
+                    name="fecha_examen" 
+                    control={control} 
+                    label="Fecha Examen" 
+                    disabled={!(stateUpdate || !client)}
+                    icon={<MUIcons.CalendarMonth />} 
                   />
                 </Grid>
                 <Grid size={{xs: 4,sm: 4}}>
@@ -230,37 +251,12 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
               </Grid>
             </DynamicAccordion>
             <DynamicAccordion
-              key={'histoari-medica'}
-              sx={{background:' #247bc2ff',mb:1}}
-              defaultExpanded={false}
-              childrenTitle={
-                <StyledHeaderSecondary sx={{ mb: 0,fontSize:{xs:'1.0em', sm:'1.1em',md:'1.3em',color:'white'}}}>
-                {'B) HISTORIA MEDICA:'}
-              </StyledHeaderSecondary>
-              }
-            >
-              <Grid container spacing={1}  sx={{paddingY:2,px:1}}>
-                <Grid size={{xs: 12,sm: 12}}>
-                  <CustomTextArea
-                    name="historia_medica"
-                    control={control}
-                    label="Historia médica :"
-                    placeholder="Ingrese la historia médica"
-                    disabled={!(stateUpdate || !client)}
-                    icon={<MUIcons.History/>}
-                    rows={0}
-                    minRows={2}
-                  />
-                </Grid> 
-              </Grid> 
-            </DynamicAccordion>
-            <DynamicAccordion
               key={'historia-familiar'}
               sx={{background:' #1fcbe9ff',mb:1}}
               defaultExpanded={false}
               childrenTitle={
                 <StyledHeaderSecondary sx={{ mb: 0,fontSize:{xs:'1.0em', sm:'1.1em',md:'1.3em',color:'white'}}}>
-                {'C) HISTORIA FAMILIAR'}
+                {'B) HISTORIA FAMILIAR'}
               </StyledHeaderSecondary>
               }
             >
@@ -278,157 +274,63 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                   />
                 </Grid>
               </Grid> 
-            </DynamicAccordion>
+            </DynamicAccordion>          
             <DynamicAccordion
               key={'examen-psicologica'}
               sx={{background:' #35e09fff',mb:1}}
-              sxBody={{p:0,pl:1,borderLeft:'4px solid #35e09fff'}}
               defaultExpanded={false}
               childrenTitle={
                 <StyledHeaderSecondary sx={{ mb: 0,fontSize:{xs:'1.0em', sm:'1.1em',md:'1.3em',color:'white'}}}>
-                {'D) EXAMEN O EVALUACION PSICOLOGICA DE MADUREZ.'}
+                {'C) EXAMEN PSICOLOGICO'}
               </StyledHeaderSecondary>
               }
             >
-              <DynamicAccordion
-                key={'EAE'}
-                sx={{background:' #7ae0b9ff',my:1}}
-                defaultExpanded={false}
-                childrenTitle={
-                  <StyledHeaderSecondary sx={{ mb: 0,fontSize:{xs:'1.0em', sm:'1.1em',md:'1.3em',color:'white'}}}>
-                  {'1. ESCALAS DE APRECIACION DEL ESTRES - EAE'}
-                </StyledHeaderSecondary>
-                }
-              >
-                <Grid container columnSpacing={1} rowSpacing={2} sx={{paddingY:2,px:1}}>
-                  <Grid size={{xs: 6,sm: 6}}>
-                    <CustomSelect
-                      name="niveles_estres"
-                      control={control}
-                      label="Detectar niveles de estrés percibido ante diversas situalciones cotidianas y de riesgo."
-                      options={escalasApreciacion}
-                      placeholder="Seleccione una opcion"
-                      disabled={!(stateUpdate || !client)}
-                      icon={<MUIcons.Timeline/>}
-                    />
-                  </Grid>
-                  <Grid size={{xs: 6,sm: 6}}>
-                    <CustomSelect
-                      name="estrategias_afrontamiento"
-                      control={control}
-                      label="Evaluar las estrategias de afrontamientoutilizadas."
-                      options={escalasApreciacion}
-                      placeholder="Seleccione una opcion"
-                      disabled={!(stateUpdate || !client)}
-                      icon={<MUIcons.Timeline/>}
-                    />
-                  </Grid>
-                  <Grid size={{xs: 6,sm: 6}}>
-                    <CustomSelect
-                      name="vulnerabilidad_emocional"
-                      control={control}
-                      label="Identificar vulderabilidades emocionales que podrían comprometer la toma de decisiones al volante."
-                      options={escalasApreciacion}
-                      placeholder="Seleccione una opcion"
-                      disabled={!(stateUpdate || !client)}
-                      icon={<MUIcons.Timeline/>}
-                    />
-                  </Grid>
-                </Grid>
-              </DynamicAccordion>
-              <DynamicAccordion
-                key={'BC'}
-                sx={{background:' #7ae0b9ff',mb:1}}
-                defaultExpanded={false}
-                childrenTitle={
-                  <StyledHeaderSecondary sx={{ mb: 0,fontSize:{xs:'1.0em', sm:'1.1em',md:'1.3em',color:'white'}}}>
-                  {'2. BATERIA DE CONDUCTORES - BC'}
-                </StyledHeaderSecondary>
-                }
-              >
-                <Grid container columnSpacing={1} rowSpacing={2} sx={{paddingY:2,px:1}}>
-                  <Grid size={{xs: 4,sm: 4}}>
-                    <CustomSelect
-                      name="atencion_sostenida_selectiva"
-                      control={control}
-                      label="Atencion sostenda y selectiva."
-                      options={escalasApreciacion}
-                      placeholder="Seleccione una opcion"
-                      disabled={!(stateUpdate || !client)}
-                      icon={<MUIcons.AccountCircle/>}
-                    />
-                  </Grid>
-                  <Grid size={{xs: 4,sm: 4}}>
-                    <CustomSelect
-                      name="capacidad_reaccion"
-                      control={control}
-                      label="Capacidad de reacción"
-                      options={escalasApreciacion}
-                      placeholder="Seleccione una opsion"
-                      disabled={!(stateUpdate || !client)}
-                      icon={<MUIcons.AccountCircle/>}
-                    />
-                  </Grid>
-                  <Grid size={{xs: 4,sm: 4}}>
-                    <CustomSelect
-                      name="control_impulso"
-                      control={control}
-                      label="Control de impulsos"
-                      options={escalasApreciacion}
-                      placeholder="Seleccione una opsion"
-                      disabled={!(stateUpdate || !client)}
-                      icon={<MUIcons.AccountCircle/>}
-                    />
-                  </Grid>
-                  <Grid size={{xs: 4,sm: 4}}>
-                    <CustomSelect
-                      name="actidud_norma_autoridad"
-                      control={control}
-                      label="Actitudes hacia la norma y la autoridad"
-                      options={escalasApreciacion}
-                      placeholder="Seleccione una opsion"
-                      disabled={!(stateUpdate || !client)}
-                      icon={<MUIcons.AccountCircle/>}
-                    />
-                  </Grid>
-                  <Grid size={{xs: 4,sm: 4}}>
-                    <CustomSelect
-                      name="estabilidad_emocional"
-                      control={control}
-                      label="Estabilidad Emocional"
-                      options={escalasApreciacion}
-                      placeholder="Seleccione una opsion"
-                      disabled={!(stateUpdate || !client)}
-                      icon={<MUIcons.AccountCircle/>}
-                    />
-                  </Grid>
-                </Grid>
-              </DynamicAccordion>
-            </DynamicAccordion>
-            <DynamicAccordion
-              key={'resultado-recomendacion'}
-              sx={{background:' #247bc2ff',mb:1}}
-              defaultExpanded={false}
-              childrenTitle={
-                <StyledHeaderSecondary sx={{ mb: 0,fontSize:{xs:'1.0em', sm:'1.1em',md:'1.3em',color:'white'}}}>
-                {'E) RESULTADOS Y RECOMENDACIONES:'}
-              </StyledHeaderSecondary>
-              }
-            >
-              <Grid container spacing={1}  sx={{paddingY:2,px:1}}>
-                <Grid size={{xs: 12,sm: 12}}>
-                  <CustomTextArea
-                    name="resultado_recomendacion"
+              <Grid container columnSpacing={1} rowSpacing={2} sx={{paddingY:2,px:1}}>
+                <Grid size={{xs: 6,sm: 6}}>
+                  <CustomSelect
+                    name="coordinacion_visomotora"
                     control={control}
-                    label="Historia médica :"
-                    placeholder="Ingrese los resultados"
+                    label="Coordinacion Visomotora"
+                    options={escalasPsicologica}
+                    placeholder="Seleccione una opcion"
                     disabled={!(stateUpdate || !client)}
                     icon={<MUIcons.AccountCircle/>}
-                    rows={0}
-                    minRows={2}
                   />
-                </Grid> 
-              </Grid> 
+                </Grid>
+                <Grid size={{xs: 6,sm: 6}}>
+                  <CustomSelect
+                    name="personalidad"
+                    control={control}
+                    label="Personalidad"
+                    options={escalasPsicologica}
+                    placeholder="Seleccione una opsion"
+                    disabled={!(stateUpdate || !client)}
+                    icon={<MUIcons.AccountCircle/>}
+                  />
+                </Grid>
+                <Grid size={{xs: 6,sm: 6}}>
+                  <CustomSelect
+                    name="atencion_cognitiva"
+                    control={control}
+                    label="Atencion, concentracion, memoria y atencion"
+                    options={escalasPsicologica}
+                    placeholder="Seleccione una opsion"
+                    disabled={!(stateUpdate || !client)}
+                    icon={<MUIcons.AccountCircle/>}
+                  />
+                </Grid>
+                <Grid size={{xs: 6,sm: 6}}>
+                  <CustomSelect
+                    name="reaccion_estres_riego"
+                    control={control}
+                    label="Prueba de reacción ante situaciones de estrés y riego"
+                    options={escalasPsicologicav2}
+                    placeholder="Seleccione una opsion"
+                    disabled={!(stateUpdate || !client)}
+                    icon={<MUIcons.AccountCircle/>}
+                  />
+                </Grid>
+              </Grid>
             </DynamicAccordion>
             <DynamicAccordion
               key={'observacion'}

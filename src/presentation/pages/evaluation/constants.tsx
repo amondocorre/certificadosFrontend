@@ -73,7 +73,12 @@ export const resultados =[
 
 // evaluacion psicologica
 
-export const escalasApreciacion =[
+export const escalasPsicologicav2 =[
+                {label:' 	Adecuado  ',value:'adecuado'},
+                {label:' 	Inadecuado  ',value:'inadecuado'},
+                {label:' 	Observación  ',value:'observación'},
+]
+export const escalasPsicologica =[
                 {label:' 	Adecuado  ',value:'adecuado'},
                 {label:' 	Medio  ',value:'medio'},
                 {label:' 	Inadecuado  ',value:'inadecuado'},

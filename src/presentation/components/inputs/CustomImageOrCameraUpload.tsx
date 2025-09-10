@@ -68,7 +68,7 @@ const CustomImageOrCameraUpload: React.FC<CustomImageOrCameraUploadProps> = ({
       reader.readAsDataURL(file);
     }
   }, []);
-
+ 
   const handleRemoveImage = useCallback((field: any) => {
     field.onChange(defaultValue || null);
     setPreviewImage(defaultValue || null);

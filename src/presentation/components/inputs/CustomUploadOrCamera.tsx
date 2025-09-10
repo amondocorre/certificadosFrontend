@@ -1,11 +1,13 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 import {FormControl,FormHelperText,IconButton,Box,Typography,Dialog,DialogTitle,DialogContent,Button,createTheme, SxProps, Theme,} from '@mui/material';
 import { Controller } from 'react-hook-form';
 import { Delete as DeleteIcon, CloudUpload as UploadIcon } from '@mui/icons-material';
 import { ThemeProvider } from '@emotion/react';
 import ModalViewImage from '../modal/ModalViewImage';
+import {CameraAlt as CameraIcon,Close as CloseIcon} from '@mui/icons-material';
+import CustomCamera from './CustomCamera';
 
-interface CustomImageUploadProps {
+interface CustomUploadOrCameraProps {
   name: string;
   control: any;
   label?: string;
@@ -27,9 +29,10 @@ const theme = createTheme({
   },
 });
 
-const CustomImageUpload: React.FC<CustomImageUploadProps> = ({ name, control, label = 'Subir Imagen', disabled = false, defaultValue = null,acceptTypes = 'image/*',sx }) => {
+const CustomUploadOrCamera: React.FC<CustomUploadOrCameraProps> = ({ name, control, label = 'Subir Imagen', disabled = false, defaultValue = null,acceptTypes = 'image/*',sx }) => {
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [openModal, setOpenModal] = useState(false);
+  const [showCamera, setShowCamera] = useState(false);
   const errorMessage = control._formState.errors[name]?.message as string | undefined;
   useEffect(() => {
     if (defaultValue) {
@@ -59,7 +62,12 @@ const CustomImageUpload: React.FC<CustomImageUploadProps> = ({ name, control, la
   const handleCloseModal = useCallback(() => {
     setOpenModal(false);
   }, [setOpenModal]);
-
+  const openCamera = useCallback(() => {
+    setShowCamera(true);
+  },[])
+  const handleCloseCamera = useCallback(() => {
+    setShowCamera(false);
+  },[])
   const handleRemoveImage = useCallback((field: any) => {
     field.onChange(defaultValue ? defaultValue : null);
     setPreviewImage(defaultValue ? defaultValue : null);
@@ -86,6 +94,15 @@ const CustomImageUpload: React.FC<CustomImageUploadProps> = ({ name, control, la
                   <UploadIcon />
                 </IconButton>
               </label>
+              {/*<IconButton color="primary" disabled={disabled} onClick={openCamera}>
+                  <CameraIcon />
+              </IconButton>
+              <CustomCamera 
+                control={control}
+                name={name}
+                open={showCamera}
+                handleClose={handleCloseCamera}
+              ></CustomCamera>*/}
               {previewImage && (
                 <Box sx={{ position: 'relative', display: 'inline-block'}}>
                   <Button
@@ -143,26 +160,9 @@ const CustomImageUpload: React.FC<CustomImageUploadProps> = ({ name, control, la
             src={String(previewImage)}
             key={'pre-view'}
         />
-        {/*<Dialog open={openModal} onClose={handleCloseModal} maxWidth="sm" fullWidth>
-          <DialogTitle sx={{ p: 0, pl: 2, pt: 1 }}>{name}</DialogTitle>
-          <DialogContent sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            {previewImage && (
-              <img
-                src={previewImage}
-                alt="Vista previa"
-                style={{ maxWidth: '100%', maxHeight: '80vh'}}
-              />
-            )}
-          </DialogContent>
-          <Box sx={{ pr: 2, pb: 2, display: 'flex', justifyContent: 'flex-end' }}>
-            <Button onClick={handleCloseModal} color="primary" >
-              Cerrar
-            </Button>
-          </Box>
-        </Dialog>*/}
       </FormControl>
     </ThemeProvider>
   );
 };
 
-export default CustomImageUpload;
+export default CustomUploadOrCamera;

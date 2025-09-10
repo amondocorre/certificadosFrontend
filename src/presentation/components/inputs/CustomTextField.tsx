@@ -38,9 +38,9 @@ const CustomTextField: React.FC<CustomTextFieldProps> = ({name,control,label,ico
               field.onChange(event); onChange?.(event.target.value, field.name);
             }}
             InputProps={{
-              startAdornment: icon && (
-                <InputAdornment position="start" sx={{ color: 'action.active ', mr: 1, display: 'flex', alignItems: 'center' }}>
-                  {icon}
+              startAdornment: (
+                <InputAdornment position="start">
+                  {icon || null}
                 </InputAdornment>
               ),
               sx: {...sx, height: height?height:undefined},
