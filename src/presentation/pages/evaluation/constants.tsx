@@ -79,3 +79,20 @@ export const escalasApreciacion =[
                 {label:' 	Inadecuado  ',value:'inadecuado'},
                 {label:' 	Observación  ',value:'observación'},
 ]
+
+//VALORES DE LA VISTA
+export const medicionOcular = [
+  { label: '20/200', value: '20/200' },
+  { label: '20/160', value: '20/160' },
+  { label: '20/125', value: '20/125' },
+  { label: '20/100', value: '20/100' },
+  { label: '20/80', value: '20/80' },
+  { label: '20/63', value: '20/63' },
+  { label: '20/50', value: '20/50' },
+  { label: '20/40', value: '20/40' },
+  { label: '20/32', value: '20/32' },
+  { label: '20/25', value: '20/25' },
+  { label: '20/20', value: '20/20' },
+  { label: '20/16', value: '20/16' },
+  
+];

@@ -100,7 +100,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
           <ScrollableBox sx={{paddingTop:0}}>
             <DynamicAccordion
               key={'dotos-personales'}
-              sx={{background:' #74b3e7ff',mb:1}}
+              sx={{background:' #192f4a',mb:1}}
               defaultExpanded={false}
               childrenTitle={
                 <StyledHeaderSecondary sx={{ mb: 0,fontSize:{xs:'1.0em', sm:'1.1em',md:'1.3em',color:'white'}}}>
@@ -123,7 +123,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                     name="ap_paterno"
                     control={control}
                     label="Apellido Paterno"
-                    placeholder="Ingrese el apellido paterno"
+                    placeholder="Ingrese el Apellido Paterno"
                     disabled={!(stateUpdate || !client)}
                     icon={<MUIcons.AccountCircle/>}
                   />
@@ -133,7 +133,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                     name="ap_materno"
                     control={control}
                     label="Apellido Materno"
-                    placeholder="Ingrese el apellido materno"
+                    placeholder="Ingrese el Apellido Materno"
                     disabled={!(stateUpdate || !client)}
                     icon={<MUIcons.AccountCircle/>}
                   />
@@ -143,7 +143,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                     name="nombre"
                     control={control}
                     label="Nombres"
-                    placeholder="Ingrese el nombre"
+                    placeholder="Ingrese el/los nombre(s)"
                     disabled={!(stateUpdate || !client)}
                     icon={<MUIcons.AccountCircle/>}
                   />
@@ -152,8 +152,8 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                   <CustomTextField
                     name="ci"
                     control={control}
-                    label="CI"
-                    placeholder="Ingrese el ci"
+                    label="Nro. de C.I."
+                    placeholder="Ingrese el Nro. de C.I."
                     disabled={!(stateUpdate || !client)}
                     icon={<MUIcons.AccountCircle/>}
                   />
@@ -163,7 +163,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                     name="lugar_nacimiento"
                     control={control}
                     label="Lugar de Nacimiento"
-                    placeholder="Ingrese lugar de nacimieno"
+                    placeholder="Ingrese lugar de nacimiento"
                     disabled={!(stateUpdate || !client)}
                     icon={<MUIcons.LocationOn/>}
                   />
@@ -181,8 +181,8 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                   <CustomTextField
                     name="ocupacion"
                     control={control}
-                    label="Ocupacion"
-                    placeholder="Ingrese la Ocupacion"
+                    label="Ocupación"
+                    placeholder="Ingrese la Ocupación"
                     disabled={!(stateUpdate || !client)}
                     icon={<MUIcons.Work/>}
                   />
@@ -221,9 +221,9 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                   <CustomTextField
                     name="telefono"
                     control={control}
-                    label="Telefono"
+                    label="Teléfono"
                     disabled={!(stateUpdate || !client)}
-                    placeholder='ingrese el N° de telefono'
+                    placeholder='ingrese el N° de teléfono'
                     icon={<MUIcons.Phone/>}
                   />
                 </Grid>
@@ -231,11 +231,11 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
             </DynamicAccordion>
             <DynamicAccordion
               key={'histoari-medica'}
-              sx={{background:' #247bc2ff',mb:1}}
+              sx={{background:' #003366',mb:1}}
               defaultExpanded={false}
               childrenTitle={
                 <StyledHeaderSecondary sx={{ mb: 0,fontSize:{xs:'1.0em', sm:'1.1em',md:'1.3em',color:'white'}}}>
-                {'B) HISTORIA MEDICA:'}
+                {'B) HISTORIA MEDICO:'}
               </StyledHeaderSecondary>
               }
             >
@@ -244,8 +244,8 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                   <CustomTextArea
                     name="historia_medica"
                     control={control}
-                    label="Historia médica :"
-                    placeholder="Ingrese la historia médica"
+                    label="Historia medico :"
+                    placeholder="Ingrese la historia medico"
                     disabled={!(stateUpdate || !client)}
                     icon={<MUIcons.History/>}
                     rows={0}
@@ -256,7 +256,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
             </DynamicAccordion>
             <DynamicAccordion
               key={'historia-familiar'}
-              sx={{background:' #1fcbe9ff',mb:1}}
+              sx={{background:' #005691',mb:1}}
               defaultExpanded={false}
               childrenTitle={
                 <StyledHeaderSecondary sx={{ mb: 0,fontSize:{xs:'1.0em', sm:'1.1em',md:'1.3em',color:'white'}}}>
@@ -281,7 +281,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
             </DynamicAccordion>
             <DynamicAccordion
               key={'examen-psicologica'}
-              sx={{background:' #35e09fff',mb:1}}
+              sx={{background:' #0077b6',mb:1}}
               sxBody={{p:0,pl:1,borderLeft:'4px solid #35e09fff'}}
               defaultExpanded={false}
               childrenTitle={
@@ -292,7 +292,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
             >
               <DynamicAccordion
                 key={'EAE'}
-                sx={{background:' #7ae0b9ff',my:1}}
+                sx={{background:' #add8e6',my:1}}
                 defaultExpanded={false}
                 childrenTitle={
                   <StyledHeaderSecondary sx={{ mb: 0,fontSize:{xs:'1.0em', sm:'1.1em',md:'1.3em',color:'white'}}}>
@@ -301,13 +301,13 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                 }
               >
                 <Grid container columnSpacing={1} rowSpacing={2} sx={{paddingY:2,px:1}}>
-                  <Grid size={{xs: 6,sm: 6}}>
+                  <Grid size={{xs: 6,sm: 12}}>
                     <CustomSelect
                       name="niveles_estres"
                       control={control}
-                      label="Detectar niveles de estrés percibido ante diversas situalciones cotidianas y de riesgo."
+                      label="Detectar niveles de estrés percibido ante diversas situaciones cotidianas y de riesgo."
                       options={escalasApreciacion}
-                      placeholder="Seleccione una opcion"
+                      placeholder="Seleccione una opción"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.Timeline/>}
                     />
@@ -316,9 +316,9 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                     <CustomSelect
                       name="estrategias_afrontamiento"
                       control={control}
-                      label="Evaluar las estrategias de afrontamientoutilizadas."
+                      label="Evaluar las estrategias de afrontamiento utilizadas."
                       options={escalasApreciacion}
-                      placeholder="Seleccione una opcion"
+                      placeholder="Seleccione una opción"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.Timeline/>}
                     />
@@ -329,7 +329,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                       control={control}
                       label="Identificar vulderabilidades emocionales que podrían comprometer la toma de decisiones al volante."
                       options={escalasApreciacion}
-                      placeholder="Seleccione una opcion"
+                      placeholder="Seleccione una opción"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.Timeline/>}
                     />
@@ -338,7 +338,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
               </DynamicAccordion>
               <DynamicAccordion
                 key={'BC'}
-                sx={{background:' #7ae0b9ff',mb:1}}
+                sx={{background:' #add8e6',mb:1}}
                 defaultExpanded={false}
                 childrenTitle={
                   <StyledHeaderSecondary sx={{ mb: 0,fontSize:{xs:'1.0em', sm:'1.1em',md:'1.3em',color:'white'}}}>
@@ -353,7 +353,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                       control={control}
                       label="Atencion sostenda y selectiva."
                       options={escalasApreciacion}
-                      placeholder="Seleccione una opcion"
+                      placeholder="Seleccione una opción"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.AccountCircle/>}
                     />
@@ -364,7 +364,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                       control={control}
                       label="Capacidad de reacción"
                       options={escalasApreciacion}
-                      placeholder="Seleccione una opsion"
+                      placeholder="Seleccione una opción"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.AccountCircle/>}
                     />
@@ -375,7 +375,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                       control={control}
                       label="Control de impulsos"
                       options={escalasApreciacion}
-                      placeholder="Seleccione una opsion"
+                      placeholder="Seleccione una opción"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.AccountCircle/>}
                     />
@@ -386,7 +386,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                       control={control}
                       label="Actitudes hacia la norma y la autoridad"
                       options={escalasApreciacion}
-                      placeholder="Seleccione una opsion"
+                      placeholder="Seleccione una opción"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.AccountCircle/>}
                     />
@@ -397,7 +397,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                       control={control}
                       label="Estabilidad Emocional"
                       options={escalasApreciacion}
-                      placeholder="Seleccione una opsion"
+                      placeholder="Seleccione una opción"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.AccountCircle/>}
                     />
@@ -407,7 +407,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
             </DynamicAccordion>
             <DynamicAccordion
               key={'resultado-recomendacion'}
-              sx={{background:' #247bc2ff',mb:1}}
+              sx={{background:' #0077b6',mb:1}}
               defaultExpanded={false}
               childrenTitle={
                 <StyledHeaderSecondary sx={{ mb: 0,fontSize:{xs:'1.0em', sm:'1.1em',md:'1.3em',color:'white'}}}>
@@ -432,7 +432,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
             </DynamicAccordion>
             <DynamicAccordion
               key={'observacion'}
-              sx={{background:' #1fcbe9ff'}}
+              sx={{background:' #289dc7'}}
               defaultExpanded={false}
               childrenTitle={
                 <StyledHeaderSecondary sx={{ mb: 0,fontSize:{xs:'1.0em', sm:'1.1em',md:'1.3em',color:'white'}}}>

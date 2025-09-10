@@ -14,7 +14,7 @@ import { formatDate } from '../../../../utils/dateUtils';
 import { Button } from '../../../../../domain/models/ButtonModel';
 import CustomImageUpload from '../../../../components/inputs/CustomImageUpload';
 import CustomSelect from '../../../../components/inputs/CustomSelect';
-import { grupoSanguineos, habitos, presionActerial, presionCardiaca, presionRespiratoria, resultados, sexos, temperaturas, tipoLentes } from '../../constants';
+import { grupoSanguineos, habitos, presionActerial, presionCardiaca, presionRespiratoria, resultados, sexos, temperaturas, tipoLentes, medicionOcular } from '../../constants';
 import DynamicAccordion from '../../../../components/containers/DynamicAccordion';
 import { StyledHeaderSecondary } from '../../../../components/text/StyledHeader';
 import CustomSwitch from '../../../../components/inputs/CustomSwitch';
@@ -126,7 +126,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
           <ScrollableBox sx={{paddingTop:0}}>
             <DynamicAccordion
               key={'dotos-cliente'}
-              sx={{background:' #74b3e7ff',mb:1}}
+              sx={{background:' #154a75',mb:1}}
               defaultExpanded={false}
               childrenTitle={
                 <StyledHeaderSecondary sx={{ mb: 0,fontSize:{xs:'1.0em', sm:'1.1em',md:'1.3em',color:'white'}}}>
@@ -219,7 +219,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
             </DynamicAccordion>
             <DynamicAccordion
               key={'amtecedentes'}
-              sx={{background:' #247bc2ff',mb:1}}
+              sx={{background:' #1b629b',mb:1}}
               defaultExpanded={false}
               childrenTitle={
                 <StyledHeaderSecondary sx={{ mb: 0,fontSize:{xs:'1.0em', sm:'1.1em',md:'1.3em',color:'white'}}}>
@@ -312,7 +312,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
             </DynamicAccordion>
             <DynamicAccordion
               key={'examen-clinico'}
-              sx={{background:' #1fcbe9ff',mb:1}}
+              sx={{background:' #217ac1',mb:1}}
               defaultExpanded={false}
               childrenTitle={
                 <StyledHeaderSecondary sx={{ mb: 0,fontSize:{xs:'1.0em', sm:'1.1em',md:'1.3em',color:'white'}}}>
@@ -352,7 +352,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                       <CustomSelect
                         name="presion_arterial"
                         control={control}
-                        label="Presion Arterial"
+                        label="Presión Arterial"
                         options={presionActerial}
                         placeholder="Ingrese un valor"
                         disabled={!(stateUpdate || !client)}
@@ -393,7 +393,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                         name="talla"
                         control={control}
                         label="Talla"
-                        placeholder="Ingrese la talla"
+                        placeholder="Ingrese la talla en mts."
                         type='number'
                         disabled={!(stateUpdate || !client)}
                         icon={<MUIcons.AccountCircle/>}
@@ -404,7 +404,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                         name="peso"
                         control={control}
                         label="Peso"
-                        placeholder="Ingrese el peso"
+                        placeholder="Ingrese el peso en Kg."
                         type='number'
                         disabled={!(stateUpdate || !client)}
                         icon={<MUIcons.AccountCircle/>}
@@ -416,7 +416,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
             </DynamicAccordion>
             <DynamicAccordion
               key={'examen-fisico'}
-              sx={{background:' #35e09fff'}}
+              sx={{background:' #2ba1ff'}}
               defaultExpanded={false}
               childrenTitle={
                 <StyledHeaderSecondary sx={{ mb: 0,fontSize:{xs:'1.0em', sm:'1.1em',md:'1.3em',color:'white'}}}>
@@ -426,7 +426,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
             >
               <DynamicAccordion
                 key={'examen-fisico-1'}
-                sx={{background:' #7ae0b9ff',my:1}}
+                sx={{background:' #2aa0ff',my:1}}
                 defaultExpanded={false}
                 childrenTitle={
                   <StyledHeaderSecondary sx={{ mb: 0,fontSize:{xs:'1.0em', sm:'1.1em',md:'1.3em',color:'white'}}}>
@@ -487,13 +487,13 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                     </Box>
                   </Grid>
                   <Grid size={{xs: 12,sm: 12}}>
-                    <StyledTitle sx={{color:'black'}}>EVALUACION OCTAMOOGICA </StyledTitle>
+                    <StyledTitle sx={{color:'black'}}>EVALUACIÓN OFTALMOLÓGICA </StyledTitle>
                   </Grid>
                   <Grid size={{xs: 4,sm: 4}}>
                     <CustomTextField
                       name="ex_general_ojos"
                       control={control}
-                      label="Examen general de hojos"
+                      label="Examen general de ojos"
                       placeholder="Ingrese el detalle"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.AccountCircle/>}
@@ -513,23 +513,24 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                     <CustomTextField
                       name="reflejo_luminoso_corneal"
                       control={control}
-                      label="Reflejo luminoso corneal"
+                      label="Reflejo Luminoso corneal"
                       placeholder="Ingrese el detalle"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.AccountCircle/>}
                     />
                   </Grid>
-                  <Grid size={{xs: 4,sm: 4}}>
+                  <Grid size={{xs: 4,sm: 8}}>
                     <CustomSwitchPerson
                       name="estrabismo"
                       control={control}
-                      label="Estabismo"
+                      label="Estrabitismo"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.Vaccines />}
                       flexDirection='row'
                     />
                   </Grid>
-                  <Grid size={{xs: 4,sm: 4}}>
+                  <Grid size={{xs: 4,sm: 4}}></Grid>
+                  <Grid size={{xs: 4,sm: 2}}>
                     <CustomSwitchPerson
                       name="usa_lentes"
                       control={control}
@@ -540,17 +541,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                       onChange={handleChangeSwitchPerson}
                     />
                   </Grid>
-                  <Grid size={{xs: 4,sm: 4}}>
-                    <CustomSwitchPerson
-                      name="cirugia"
-                      control={control}
-                      label="Cirugia"
-                      disabled={!(stateUpdate || !client)}
-                      icon={<MUIcons.Vaccines />}
-                      flexDirection='row'
-                    />
-                  </Grid>
-                  <Grid size={{xs: 4,sm: 4}}></Grid>
+                  <Grid size={{xs: 4,sm: 1}}></Grid>
                   <Grid size={{xs: 4,sm: 4}}>
                     <CustomSelect
                       name="tipo_lentes"
@@ -561,13 +552,28 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                       icon={<MUIcons.Vaccines />}
                     />
                   </Grid>
-                  <Grid size={{xs: 4,sm: 4}}></Grid>
+                  
+                  <Grid size={{xs: 4,sm: 8}}>
+                    <CustomSwitchPerson
+                      name="cirugia"
+                      control={control}
+                      label="Cirugia"
+                      disabled={!(stateUpdate || !client)}
+                      icon={<MUIcons.Vaccines />}
+                      flexDirection='row'
+                    />
+                  </Grid>
+                  
+                  <Grid size={{xs: 12,sm: 12}}>
+                    <StyledTitle sx={{color:'black'}}>AGUDEZA VISUAL </StyledTitle>
+                  </Grid>
+                  
                   
                   <Grid size={{xs: 6,sm: 6}}>
                     <CustomTextField
                       name="campimetria"
                       control={control}
-                      label="Campimetria"
+                      label="Campimetría"
                       placeholder="Ingrese el detalle"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.AccountCircle/>}
@@ -577,7 +583,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                     <CustomTextField
                       name="colorimetria"
                       control={control}
-                      label="Colorimetria"
+                      label="Colometría"
                       placeholder="Ingrese el detalle"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.AccountCircle/>}
@@ -611,75 +617,87 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                       <Box>
                       </Box>
                       <Box >
-                        <StyledTitle sx={{color:'black'}}>Con lentes</StyledTitle>
+                        <StyledTitle sx={{color:'black'}}>CON LENTES</StyledTitle>
                       </Box>
                       <Box >
-                        <StyledTitle sx={{color:'black'}}>Sin lentes</StyledTitle>
+                        <StyledTitle sx={{color:'black'}}>SIN LENTES</StyledTitle>
                       </Box>
                       <Box >
-                        <StyledTitle sx={{color:'black'}}>Corrección</StyledTitle>
+                        <StyledTitle sx={{color:'black'}}>CORRECCIÓN</StyledTitle>
                       </Box>
                       <div >
-                        <StyledTitle sx={{color:'black',mt:1}}>OD</StyledTitle>
+                        <StyledTitle sx={{color:'black',mt:1}}>O.D.</StyledTitle>
+                      </div>
+                      <div>
+                        <Box sx={{width:'100%'}}>
+                          <CustomSelect
+                            name=""
+                            control={control}
+                            label=""
+                            options={medicionOcular}
+                            placeholder="Seleccione una medida"
+                            disabled={!(stateUpdate || !client)}
+                            icon={<MUIcons.AccountCircle/>}
+                          />
+                        </Box>
+                      </div>
+                      <div>
+                        <Box sx={{width:'100%'}}>
+                          <CustomSelect
+                            name=""
+                            control={control}
+                            label=""
+                            options={medicionOcular}
+                            placeholder="Seleccione una medida"
+                            disabled={!(stateUpdate || !client)}
+                            icon={<MUIcons.AccountCircle/>}
+                          />
+                        </Box>
                       </div>
                       <div>
                         <CustomTextField
-                          name="vision_profunda"
+                          name=""
                           control={control}
-                          label="Visión Profunda"
+                          label=""
                           placeholder="Ingrese el detalle"
                           disabled={!(stateUpdate || !client)}
                           icon={<MUIcons.AccountCircle/>}
                         />
                       </div>
                       <div>
-                        <CustomTextField
-                          name="vision_profunda"
-                          control={control}
-                          label="Visión Profunda"
-                          placeholder="Ingrese el detalle"
-                          disabled={!(stateUpdate || !client)}
-                          icon={<MUIcons.AccountCircle/>}
-                        />
+                        <StyledTitle sx={{color:'black'}}>O.I.</StyledTitle>
                       </div>
                       <div>
-                        <CustomTextField
-                          name="vision_profunda"
-                          control={control}
-                          label="Visión Profunda"
-                          placeholder="Ingrese el detalle"
-                          disabled={!(stateUpdate || !client)}
-                          icon={<MUIcons.AccountCircle/>}
-                        />
+                        <Box sx={{width:'100%'}}>
+                          <CustomSelect
+                            name=""
+                            control={control}
+                            label=""
+                            options={medicionOcular}
+                            placeholder="Seleccione una medida"
+                            disabled={!(stateUpdate || !client)}
+                            icon={<MUIcons.AccountCircle/>}
+                          />
+                        </Box>
                       </div>
                       <div>
-                        <StyledTitle sx={{color:'black'}}>OI</StyledTitle>
-                      </div>
-                      <div>
-                        <CustomTextField
-                          name="vision_profunda"
-                          control={control}
-                          label="Visión Profunda"
-                          placeholder="Ingrese el detalle"
-                          disabled={!(stateUpdate || !client)}
-                          icon={<MUIcons.AccountCircle/>}
-                        />
-                      </div>
-                      <div>
-                        <CustomTextField
-                          name="vision_profunda"
-                          control={control}
-                          label="Visión Profunda"
-                          placeholder="Ingrese el detalle"
-                          disabled={!(stateUpdate || !client)}
-                          icon={<MUIcons.AccountCircle/>}
-                        />
+                        <Box sx={{width:'100%'}}>
+                          <CustomSelect
+                            name=""
+                            control={control}
+                            label=""
+                            options={medicionOcular}
+                            placeholder="Seleccione una medida"
+                            disabled={!(stateUpdate || !client)}
+                            icon={<MUIcons.AccountCircle/>}
+                          />
+                        </Box>
                       </div>
                       <div >
                         <CustomTextField
                           name="vision_profunda"
                           control={control}
-                          label="Visión Profunda"
+                          label=""
                           placeholder="Ingrese el detalle"
                           disabled={!(stateUpdate || !client)}
                           icon={<MUIcons.AccountCircle/>}
@@ -687,7 +705,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                       </div>
                     </Box>
                   </Grid>
-
+                                        
                   <Grid size={{xs: 6,sm: 6}}>
                     <CustomTextField
                       name="vision_profunda"
@@ -702,7 +720,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                     <CustomTextField
                       name="vision_profunda"
                       control={control}
-                      label="Dx Lampara Hendidura"
+                      label="Dx Lampara Hendiduras"
                       placeholder="Ingrese el detalle"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.AccountCircle/>}
@@ -720,7 +738,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                         valueOption='descripcion'
                         name="oido_externo"
                         control={control}
-                        label="Oido externo"
+                        label="Examen de oído externo"
                         placeholder="Ingrese un detalle"
                         handleChange={()=>{}}
                         disabled={!(stateUpdate || !client)}
@@ -733,7 +751,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                     <CustomTextField
                       name="oroscopia"
                       control={control}
-                      label="Oroscopia"
+                      label="Otoscopia"
                       placeholder="Ingrese el detalle"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.AccountCircle/>}
@@ -753,7 +771,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                     <CustomTextField
                       name="t_rinne"
                       control={control}
-                      label="T. Rimme"
+                      label="T. Rinne"
                       placeholder="Ingrese el detalle"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.AccountCircle/>}
@@ -763,7 +781,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
               </DynamicAccordion>
               <DynamicAccordion
                 key={'examen-fisico-2'}
-                sx={{background:' #7ae0b9ff',mb:1}}
+                sx={{background:' #2aa0ff',mb:1}}
                 defaultExpanded={false}
                 childrenTitle={
                   <StyledHeaderSecondary sx={{ mb: 0,fontSize:{xs:'1.0em', sm:'1.1em',md:'1.3em',color:'white'}}}>
@@ -780,7 +798,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                         valueOption='descripcion'
                         name="torax"
                         control={control}
-                        label="Exoloración de torax"
+                        label="Exoloración de tórax"
                         placeholder="Ingrese un detalle"
                         handleChange={()=>{}}
                         disabled={!(stateUpdate || !client)}
@@ -797,7 +815,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                         valueOption='descripcion'
                         name="cardiopolmunar"
                         control={control}
-                        label="Exploración cardiopolmunar"
+                        label="Exploración del área cardiopulmonar"
                         placeholder="Ingrese un detalle"
                         handleChange={()=>{}}
                         disabled={!(stateUpdate || !client)}
@@ -810,7 +828,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
               </DynamicAccordion>
               <DynamicAccordion
                 key={'examen-fisico-3'}
-                sx={{background:' #7ae0b9ff',mb:1}}
+                sx={{background:' #2aa0ff',mb:1}}
                 defaultExpanded={false}
                 childrenTitle={
                   <StyledHeaderSecondary sx={{ mb: 0,fontSize:{xs:'1.0em', sm:'1.1em',md:'1.3em',color:'white'}}}>
@@ -827,7 +845,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                         valueOption='descripcion'
                         name="abdomen"
                         control={control}
-                        label="Exploracion de abdomen"
+                        label="Exploración de abdomen"
                         placeholder="Ingrese un detalle"
                         handleChange={()=>{}}
                         disabled={!(stateUpdate || !client)}
@@ -840,17 +858,17 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
               </DynamicAccordion>
               <DynamicAccordion
                 key={'examen-fisico-4'}
-                sx={{background:' #7ae0b9ff',mb:1}}
+                sx={{background:' #2aa0ff',mb:1}}
                 defaultExpanded={false}
                 childrenTitle={
                   <StyledHeaderSecondary sx={{ mb: 0,fontSize:{xs:'1.0em', sm:'1.1em',md:'1.3em',color:'white'}}}>
-                  {'4. EXPLORACION DEL APARATO LOCONMOTOR'}
+                  {'4. EXPLORACION DEL APARATO LOCOMOTOR'}
                 </StyledHeaderSecondary>
                 }
               >
                 <Grid container spacing={1}  sx={{paddingY:2}}>
                   <Grid size={{xs: 12,sm: 12}}>
-                    <StyledTitle sx={{color:'black'}}>Miembros Superiores</StyledTitle>
+                    <StyledTitle sx={{color:'black'}}>MIEMBROS SUPERIORES</StyledTitle>
                   </Grid>
                   <Grid size={{xs: 4,sm: 4}}>
                     <CustomTextField
@@ -866,7 +884,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                     <CustomTextField
                       name="s_tono_moscular"
                       control={control}
-                      label="Tono Moscular"
+                      label="Tono muscular"
                       placeholder="Ingrese el detalle"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.AccountCircle/>}
@@ -876,14 +894,14 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                     <CustomTextField
                       name="s_fuerza_moscular"
                       control={control}
-                      label="Fuerza Moscular"
+                      label="Fuerza muscular"
                       placeholder="Ingrese el detalle"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.AccountCircle/>}
                     />
                   </Grid>
                   <Grid size={{xs: 12,sm: 12}}>
-                    <StyledTitle sx={{color:'black'}}>Miembros Inferiores </StyledTitle>
+                    <StyledTitle sx={{color:'black'}}>MIEMBROS INFERIORIES </StyledTitle>
                   </Grid>
                   <Grid size={{xs: 4,sm: 4}}>
                     <CustomTextField
@@ -899,7 +917,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                     <CustomTextField
                       name="i_tono_moscular"
                       control={control}
-                      label="Tono moscular"
+                      label="Tono muscular"
                       placeholder="Ingrese el detalle"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.AccountCircle/>}
@@ -909,7 +927,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                     <CustomTextField
                       name="i_fuerza_moscular"
                       control={control}
-                      label="Fuerza Moscular"
+                      label="Fuerza muscular"
                       placeholder="Ingrese el detalle"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.AccountCircle/>}
@@ -919,7 +937,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
               </DynamicAccordion>
               <DynamicAccordion
                 key={'examen-fisico-5'}
-                sx={{background:' #7ae0b9ff'}}
+                sx={{background:' #2aa0ff'}}
                 defaultExpanded={false}
                 childrenTitle={
                   <StyledHeaderSecondary sx={{ mb: 0,fontSize:{xs:'1.0em', sm:'1.1em',md:'1.3em',color:'white'}}}>
@@ -932,7 +950,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                     <CustomTextField
                       name="cordinacion_marcha"
                       control={control}
-                      label="Cordinacion y Marcha"
+                      label="Cordinación y Marcha"
                       placeholder="Ingrese el detalle"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.AccountCircle/>}
@@ -955,7 +973,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                     <CustomTextField
                       name="talon_rodilla"
                       control={control}
-                      label="Talon-Rodilla"
+                      label="Prueba Talón-Rodilla"
                       placeholder="Ingrese el detalle"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.AccountCircle/>}
@@ -965,7 +983,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                     <CustomTextField
                       name="dedo_nariz"
                       control={control}
-                      label="Dedo-Nariz"
+                      label="Prueba Dedo-Nariz"
                       placeholder="Ingrese el detalle"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.AccountCircle/>}
@@ -979,7 +997,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                     <CustomTextField
                       name="romberg"
                       control={control}
-                      label="Romberg"
+                      label="Prueba Romberg"
                       placeholder="Ingrese el detalle"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.AccountCircle/>}
@@ -989,7 +1007,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                     <CustomTextField
                       name="motoras_sensetivas_diagnosticadas"
                       control={control}
-                      label="Motoras sensetivas diagnosticadas"
+                      label="Fallas motoras sensitivas diagnosticadas"
                       placeholder="Ingrese el detalle"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.AccountCircle/>}
@@ -997,10 +1015,10 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                   </Grid>
                   
                   <Grid size={{xs: 12,sm: 12}}>
-                    <StyledTitle sx={{color:'black'}}>RESULTADO DE EVALUACIÓN</StyledTitle>
+                    <StyledTitle sx={{color:'black'}}>RESULTADOS DE EVALUACIÓN</StyledTitle>
                   </Grid>
                   <Grid size={{xs: 4,sm: 4}}></Grid>
-                  <Grid size={{xs: 4,sm: 4}}>
+                  <Grid size={{xs: 4,sm: 12}}>
                     <CustomSwitchPerson
                       name="requiere_evaluacion_especialidad"
                       control={control}
@@ -1010,48 +1028,49 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                       flexDirection='row'
                     />
                   </Grid>
-                  <Grid size={{xs: 4,sm: 4}}></Grid>
-                  <Grid size={{xs: 6,sm: 6}}>
+                  <Grid size={{xs: 1,sm: 12}}></Grid>
+                  <Grid size={{xs: 4,sm: 8}}>
                     <CustomTextField
                       name="motivo_referencia_especialidad"
                       control={control}
-                      label="Motivo de la referencia de la especialidad"
+                      label="Motivo de referencia a especialidad"
                       placeholder="Ingrese el detalle"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.AccountCircle/>}
                     />
                   </Grid>
-                  <Grid size={{xs: 6,sm: 6}}>
+                  <Grid size={{xs: 1,sm: 12}}></Grid>
+                  <Grid size={{xs: 6,sm: 8}}>
                     <CustomTextField
                       name="evaluacion_especialidad"
                       control={control}
-                      label="Resultado de la evaluación de la especialidad"
+                      label="Resultado de la evaluación de especialidad"
                       placeholder="Ingrese el detalle"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.AccountCircle/>}
                     />
                   </Grid>
                   <Grid size={{xs: 4,sm: 4}}></Grid>
-                  <Grid size={{xs: 4,sm: 4}}>
+                  <Grid size={{xs: 4,sm: 8}}>
                     <CustomSwitchPerson
                       name="requiere_evaluacion_psicosensometria"
                       control={control}
-                      label="Requiere evaluación psicosensometria"
+                      label="Requiere evaluación psicosensométrica"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.Vaccines />}
                       flexDirection='row'
                     />
                   </Grid>
                   <Grid size={{xs: 4,sm: 4}}></Grid>
-                  <Grid size={{xs: 12,sm: 12}}>
+                  <Grid size={{xs: 4,sm: 12}}>
                     <Box display={'flex'} sx={{flexDirection:'column',alignItems:'start'}}>
                       <Box display={'flex'} sx={{width:'100%',flexDirection:'column',alignItems:'center'}}>
                         <StyledTitle sx={{color:'black'}}>RESULTADO FINAL DE CETIFICACION MEDICA:</StyledTitle>
                       </Box>
                       <StyledTitle sx={{color:'black',mt:0}}><strong>OBSERVACIONES:</strong>EN ESTE ACAPITE SE DEBE INCORPORAR SI EL POSTULANTE ES:</StyledTitle>
                       <StyledHeaderSecondary sx={{color:'black',mt:0}}>- APTO PARA CONDUCIR VEHICULOS.</StyledHeaderSecondary>
-                      <StyledHeaderSecondary sx={{color:'black',mt:0}}>- NO ES APRO PARA CONSUCIR VEHICULOS INDICAR LOS MOTIVOS.</StyledHeaderSecondary>
-                      <StyledHeaderSecondary sx={{color:'black',mt:0}}>- APTO CON LIMITACIONES Y ADAPTACIONES TECNICO VEHICULAR.</StyledHeaderSecondary>
+                      <StyledHeaderSecondary sx={{color:'black',mt:0}}>- NO ES APTO PARA CONDUCIR VEHICULOS INDICAR LOS MOTIVOS.</StyledHeaderSecondary>
+                      <StyledHeaderSecondary sx={{color:'black',mt:0}}>- APTO CON LIMITACIONES Y ADAPTACIONES TECNICO VEHICULARES.</StyledHeaderSecondary>
                       <Box display={'flex'} flexDirection={'column'}  gap={1} sx={{width:'100%',alignItems:'start'}}>
                         <StyledHeaderSecondary sx={{color:'black',mt:0}}>Indicar en base a la conclución de la evaluación si es apto, no apto, apto con restricciones y adaptaciones tecnicas.</StyledHeaderSecondary>
                         <CustomSelect
