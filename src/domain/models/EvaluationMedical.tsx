@@ -1,3 +1,9 @@
+export interface MedicalResponse{
+  status:string;
+  message?:string;
+  data:EvaluationMedical[] |[]|EvaluationMedical;
+} 
+
 export interface EvaluationMedical{
   file?:                                File
   //Client Data
@@ -9,7 +15,7 @@ export interface EvaluationMedical{
   ci:                                   string;
   edad:                                 number;
   sexo:                                 string
-  fecha:                                string
+  fecha_evaluacion:                     string
   //I. ANTECENDENTES
   antecendentes_rc:                     string;
   antecendentes_pp:                     string;
@@ -60,11 +66,11 @@ export interface EvaluationMedical{
   abdomen:                              string;
   //4. EXPLORACION DEL APARATO LOCONMOTOR
   s_trofismo:                           string;
-  s_tono_moscular:                      string;
-  s_fuerza_moscular:                    string;
+  s_tono_muscular:                      string;
+  s_fuerza_muscular:                    string;
   i_trofismo:                           string;
-  i_tono_moscular:                      string;
-  i_fuerza_moscular:                    string;
+  i_tono_muscular:                      string;
+  i_fuerza_muscular:                    string;
   //5. SISTEMA NEUROLOGICO
   cordinacion_marcha:                   string;
   reflejos_osteotendinosos:             string;

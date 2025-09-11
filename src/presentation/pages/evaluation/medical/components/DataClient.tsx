@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect} from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
 import {Grid,Box,} from '@mui/material';
 import * as MUIcons from '@mui/icons-material';
 import CustomTextField from '../../../../components/inputs/CustomTextField';
@@ -17,53 +16,56 @@ import CustomSelect from '../../../../components/inputs/CustomSelect';
 import { grupoSanguineos, habitos, presionActerial, presionCardiaca, presionRespiratoria, resultados, sexos, temperaturas, tipoLentes } from '../../constants';
 import DynamicAccordion from '../../../../components/containers/DynamicAccordion';
 import { StyledHeaderSecondary } from '../../../../components/text/StyledHeader';
-import CustomSwitch from '../../../../components/inputs/CustomSwitch';
 import CustomSwitchPerson from '../../../../components/inputs/CustomSwitchPeson';
 import CustomAutocompletePerson from '../../../../components/inputs/CustomAutocompletePerson';
 import { AlertError } from '../../../../components/alerts';
 import { Exploration } from '../../../../../domain/models/Evaluation';
-const validationSchema = yup.object().shape({
-  nombres: yup.string().required('El nombre es obligatorio').min(3, 'El nombre no puede tener menos de 3 caracteres'),
-  ap_paterno: yup.string().required('El apellido paterno es obligatorio').min(3, 'El apellido paterno no puede tener menos de 3 caracteres'),
-  ap_materno: yup.string().nullable(),
-  ci:yup.string().required('El ci es obligatorio'),
-  es_empresa:yup.string().required(''),
-  telefono: yup.string().required('El teléfono es obligatorio'),
-  //fechaNacimiento: yup.string().required('La fecha nacimiento es obligatorio'),
-  direccion: yup.string().required('La dirección es obligatoria'),
-  direccion_gps: yup.string().required('La dirección GPS es obligatoria'),
-  foto_ciA: yup.string().required('se requiere una fotografia'),
-  foto_ciB: yup.string().required('se requiere una fotografia'),
-});
+import { EvaluationMedical } from '../../../../../domain/models/EvaluationMedical';
+import { validationMedical, validationMedicalBasic } from '../../formConfig/validationSchema';
+import { defaultValuesMedical } from '../../formConfig/defaultValues';
 interface UserFormProps {
-  createClient: (data: any) => void;
-  updateClient: (data: any) => void;
+  createMedical: (data:EvaluationMedical) => void;
+  updateMedical: (data:EvaluationMedical) => void;
   getExploration:(exploration:Exploration)=>Promise<Exploration[]>
   createExploration:(exploration:Exploration)=>void;
   client?: any;
   buttons:Button[];
 }
-const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExploration,createExploration,buttons,client}) => {
+const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getExploration,createExploration,buttons,client}) => {
   const btnUpdate = buttons.filter((button: Button) => button.nombre === 'update' && button.tipo === 'table');
   const stateUpdate = !(btnUpdate?.length===0)
-  const { handleSubmit, control, formState: { errors }, reset, setValue,getValues } = useForm<any>({
-    resolver: yupResolver(validationSchema),
-    defaultValues: {...{
-      es_empresa:    '0',
-      nombres:      '',
-      ap_paterno:    '',
-      ap_materno:    '',
-      ci:           '',
-      correo:      '',  
-      telefono:     '',
-      fecha: null,
-      direccion_gps: '',
-      direccion:    '',
-      foto_ciA:      '',
-      foto_ciB:      '',
-    },
-  }
+  const btnCreate = buttons.filter((button: Button) => button.nombre === 'create' && button.tipo === 'header');
+  const stateCreate =  !(btnCreate?.length===0)
+  const { control, formState: { errors },setError,clearErrors, reset, setValue, getValues } = useForm<any>({
+    resolver: yupResolver(validationMedical),
+    defaultValues:defaultValuesMedical,mode: 'onChange',
   });
+  const validateWithSchema = async (schema: any, caso: string, tipo: string) => {
+    if (schema === validationMedicalBasic) {
+      const basicFields = Object.keys(validationMedicalBasic.fields);
+      Object.keys(errors).forEach((key) => {
+        if (!basicFields.includes(key)) {
+          clearErrors(key);
+        }
+      });
+    }
+    try {
+      const values = getValues();
+      const validated = await schema.validate(values, { abortEarly: false });
+      tipo === 'create' ? handleCreate(validated, caso) : handleUpdate(validated, caso);
+    } catch (err: any) {
+      if (err.inner) {
+        err.inner.forEach((validationError: any) => {
+          setError(validationError.path, {
+            type: 'manual',
+            message: validationError.message,
+          });
+        });
+      }
+    }
+  };
+
+
   useEffect(() => {
     reset();
     if (client) {
@@ -92,26 +94,21 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
       await  createExploration(data);
     }
   }, []);
-  const handleCreate = useCallback(async () => {
+  const handleCreate = useCallback(async (data:any,tipo:string) => {
     const foto = document.getElementById('image-upload-foto') as HTMLInputElement;
-    let file = foto.files?.[0];
-    await handleSubmit((data: any) => {
+    let file = foto.files?.[0];  
     data.file = file;
-    data.fecha = formatDate(data.fecha);
-    createClient(data)})();
+    data.fecha_evaluacion = String(formatDate(data.fecha_evaluacion));
+    console.log('data',data)
+    createMedical(data)
   }, []);
-  const handleUpdate = useCallback(async () => {
+  const handleUpdate = useCallback(async (data:any,tipo:string) => {
     const foto = document.getElementById('image-upload-foto') as HTMLInputElement;
     let file = foto.files?.[0];
-    await handleSubmit((data: any) =>{
-      data.file = file;
-      data.fecha = formatDate(data.fecha);
-      updateClient(data)})();
+    data.file = file;
+    data.fecha_evaluacion = String(formatDate(data.fecha_evaluacion));      
+    updateMedical(data);
   }, []);
-  const actionHandlers:any = {
-    handleCreate: handleCreate,
-    handleUpdate: handleUpdate,
-  };
   const handleChangeSwitchPerson = (event: React.ChangeEvent<HTMLInputElement>, buttonId: string) => {
       if (event.target.checked) {
           if(buttonId=='usa_lentes')setValue('tipo_lentes','')
@@ -120,17 +117,16 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
       }
   }
   return (
-    
-      <Box sx={{paddingY:0}}>
+      <Box sx={{padding:0}}>
         <form >
-          <ScrollableBox sx={{paddingTop:0}}>
+          <ScrollableBox sx={{paddingTop:0,px:0.5,maxHeight: 'calc(80vh - 60px)'}}>
             <DynamicAccordion
-              key={'dotos-cliente'}
+              key={'dotos-personales'}
               sx={{background:' #74b3e7ff',mb:1}}
               defaultExpanded={false}
               childrenTitle={
                 <StyledHeaderSecondary sx={{ mb: 0,fontSize:{xs:'1.0em', sm:'1.1em',md:'1.3em',color:'white'}}}>
-                {'Datos del Cliente'}
+                {'Datos Personales: '} {client? String(client?.nombre_completo):''}
               </StyledHeaderSecondary>
               }
             >
@@ -190,6 +186,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                     name="edad"
                     control={control}
                     label="Edad"
+                    type='number'
                     placeholder="Ingrese la edad"
                     disabled={!(stateUpdate || !client)}
                     icon={<MUIcons.AccountCircle/>}
@@ -208,11 +205,11 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                 </Grid>
                 <Grid size={{xs: 4,sm: 4}}>
                   <CustomDatePicker
-                    name="fecha" 
+                    name="fecha_evaluacion" 
                     control={control} 
                     label="Fecha Examen" 
                     disabled={!(stateUpdate || !client)}
-                    // icon={<CalendarMonthIcon />} 
+                    icon={<MUIcons.CalendarMonth />} 
                   />
                 </Grid>
               </Grid>
@@ -599,7 +596,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                           padding: 0, 
                           borderTop: '1px solid #3b3a3aff',
                         },
-                        '& > :nth-child(4n+1)': {
+                        '& > :nth-of-type(4n+1)': {
                           borderLeft: '1px solid #3b3a3aff',
                         },
                       }}
@@ -620,9 +617,9 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                       </div>
                       <div>
                         <CustomTextField
-                          name="vision_profunda"
+                          name="od_con_lentes"
                           control={control}
-                          label="Visión Profunda"
+                          label=""
                           placeholder="Ingrese el detalle"
                           disabled={!(stateUpdate || !client)}
                           icon={<MUIcons.AccountCircle/>}
@@ -630,9 +627,9 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                       </div>
                       <div>
                         <CustomTextField
-                          name="vision_profunda"
+                          name="od_sin_lentes"
                           control={control}
-                          label="Visión Profunda"
+                          label=""
                           placeholder="Ingrese el detalle"
                           disabled={!(stateUpdate || !client)}
                           icon={<MUIcons.AccountCircle/>}
@@ -640,9 +637,9 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                       </div>
                       <div>
                         <CustomTextField
-                          name="vision_profunda"
+                          name="od_correccion"
                           control={control}
-                          label="Visión Profunda"
+                          label=""
                           placeholder="Ingrese el detalle"
                           disabled={!(stateUpdate || !client)}
                           icon={<MUIcons.AccountCircle/>}
@@ -653,9 +650,9 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                       </div>
                       <div>
                         <CustomTextField
-                          name="vision_profunda"
+                          name="oi_con_lentes"
                           control={control}
-                          label="Visión Profunda"
+                          label=""
                           placeholder="Ingrese el detalle"
                           disabled={!(stateUpdate || !client)}
                           icon={<MUIcons.AccountCircle/>}
@@ -663,7 +660,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                       </div>
                       <div>
                         <CustomTextField
-                          name="vision_profunda"
+                          name="oi_sin_lentes"
                           control={control}
                           label="Visión Profunda"
                           placeholder="Ingrese el detalle"
@@ -673,9 +670,9 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                       </div>
                       <div >
                         <CustomTextField
-                          name="vision_profunda"
+                          name="oi_correccion"
                           control={control}
-                          label="Visión Profunda"
+                          label=""
                           placeholder="Ingrese el detalle"
                           disabled={!(stateUpdate || !client)}
                           icon={<MUIcons.AccountCircle/>}
@@ -860,9 +857,9 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                   </Grid>
                   <Grid size={{xs: 4,sm: 4}}>
                     <CustomTextField
-                      name="s_tono_moscular"
+                      name="s_tono_muscular"
                       control={control}
-                      label="Tono Moscular"
+                      label="Tono Muscular"
                       placeholder="Ingrese el detalle"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.AccountCircle/>}
@@ -870,9 +867,9 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                   </Grid>
                   <Grid size={{xs: 4,sm: 4}}>
                     <CustomTextField
-                      name="s_fuerza_moscular"
+                      name="s_fuerza_muscular"
                       control={control}
-                      label="Fuerza Moscular"
+                      label="Fuerza Muscular"
                       placeholder="Ingrese el detalle"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.AccountCircle/>}
@@ -893,9 +890,9 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                   </Grid>
                   <Grid size={{xs: 4,sm: 4}}>
                     <CustomTextField
-                      name="i_tono_moscular"
+                      name="i_tono_muscular"
                       control={control}
-                      label="Tono moscular"
+                      label="Tono muscular"
                       placeholder="Ingrese el detalle"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.AccountCircle/>}
@@ -903,9 +900,9 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                   </Grid>
                   <Grid size={{xs: 4,sm: 4}}>
                     <CustomTextField
-                      name="i_fuerza_moscular"
+                      name="i_fuerza_muscular"
                       control={control}
-                      label="Fuerza Moscular"
+                      label="Fuerza Muscular"
                       placeholder="Ingrese el detalle"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.AccountCircle/>}
@@ -995,8 +992,8 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                   <Grid size={{xs: 12,sm: 12}}>
                     <StyledTitle sx={{color:'black'}}>RESULTADO DE EVALUACIÓN</StyledTitle>
                   </Grid>
-                  <Grid size={{xs: 4,sm: 4}}></Grid>
-                  <Grid size={{xs: 4,sm: 4}}>
+                  <Grid size={{xs: 3,sm: 3}}></Grid>
+                  <Grid size={{xs: 6,sm: 6}}>
                     <CustomSwitchPerson
                       name="requiere_evaluacion_especialidad"
                       control={control}
@@ -1006,7 +1003,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                       flexDirection='row'
                     />
                   </Grid>
-                  <Grid size={{xs: 4,sm: 4}}></Grid>
+                  <Grid size={{xs: 3,sm: 3}}></Grid>
                   <Grid size={{xs: 6,sm: 6}}>
                     <CustomTextField
                       name="motivo_referencia_especialidad"
@@ -1027,8 +1024,8 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                       icon={<MUIcons.AccountCircle/>}
                     />
                   </Grid>
-                  <Grid size={{xs: 4,sm: 4}}></Grid>
-                  <Grid size={{xs: 4,sm: 4}}>
+                  <Grid size={{xs: 3,sm: 3}}></Grid>
+                  <Grid size={{xs: 6,sm: 6}}>
                     <CustomSwitchPerson
                       name="requiere_evaluacion_psicosensometria"
                       control={control}
@@ -1038,7 +1035,7 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
                       flexDirection='row'
                     />
                   </Grid>
-                  <Grid size={{xs: 4,sm: 4}}></Grid>
+                  <Grid size={{xs: 3,sm: 3}}></Grid>
                   <Grid size={{xs: 12,sm: 12}}>
                     <Box display={'flex'} sx={{flexDirection:'column',alignItems:'start'}}>
                       <Box display={'flex'} sx={{width:'100%',flexDirection:'column',alignItems:'center'}}>
@@ -1074,48 +1071,48 @@ const DataClient: React.FC<UserFormProps> = ({ createClient,updateClient,getExpl
               </DynamicAccordion>
             </DynamicAccordion>
           </ScrollableBox>
-          <ContainerButtons>
-            {buttons.filter((button: Button) => (client?.id_status === '1' && button.nombre !== 'activate') || 
-                                                  (client?.id_status === '0' && button.nombre !== 'update' && button.nombre !== 'deleted') || 
-                                                  (client?.id_status !== '1' && client?.id_status !== '0'))
-                                                  .map((button: any,index:number) => {
-                if (client?.id_cliente && button?.tipo === 'table') {
-                  const IconComponent = MUIcons[button.icono as keyof typeof MUIcons] || MUIcons.Label;
-                  return (
-                    <ActionButton
-                      key={`header-button-${button.id || index}`}
-                      type={button?.nombre}
-                      icon={<IconComponent/>}
-                      onClick={() => {
-                        if (button.onclick && typeof actionHandlers[button.onclick] === 'function') {
-                          actionHandlers[button.onclick](); 
-                        } else if (typeof button.onclick === 'function') {
-                          button.onclick();
-                        }
-                      }}
-                      disabled={false} 
-                    />
-                  );
-                } else if (!client?.id_cliente && button?.tipo === 'header' && button?.nombre === 'create') {
-                  return (
-                    <ActionButton
-                      key={`table-button-${button.id || index}`}
-                      type={button?.nombre}
-                      icon={<MUIcons.SaveAs/>}
-                      onClick={ () => {
-                        if (button.onclick && typeof actionHandlers[button.onclick] === 'function') {
-                          actionHandlers[button.onclick](); 
-                        } else if (typeof button.onclick === 'function') {
-                          button.onclick();
-                        }
-                      }}
-                      disabled={false} 
-                    />
-                  );
-                }
-                return null; 
-              })
-              }
+          <ContainerButtons sx={{justifyContent:'center'}}>
+            {stateUpdate && client && 
+            <>
+              <ActionButton
+                key={`button-update-1`}
+                type={'update'}
+                label='Guardar 1.'
+                icon={<MUIcons.Save/>}
+                onClick={() => validateWithSchema(validationMedicalBasic, '1','update')}
+                disabled={false} 
+              />
+              <ActionButton
+                key={`button-update-2`}
+                type={'update'}
+                label='Guardar 2.'
+                icon={<MUIcons.Save/>}
+                onClick={() => validateWithSchema(validationMedical, '2','update')}
+                disabled={false} 
+              />
+            </>
+            }
+            {stateCreate && !client &&
+            <>
+              <ActionButton
+                key={`button-create-1`}
+                type={'create'}
+                label='Guardar 1'
+                icon={<MUIcons.Save/>}
+                onClick={() => validateWithSchema(validationMedicalBasic, '1','create')}
+                disabled={false} 
+              />
+              <ActionButton
+                key={`button-create-2`}
+                type={'create'}
+                label='Guardar 2'
+                icon={<MUIcons.Save/>}
+                onClick={() => validateWithSchema(validationMedical, '1','create')}
+                //onClick={() => {handleCreate('2')}}
+                disabled={false} 
+              />
+            </>
+            }
           </ContainerButtons>
         </form>
       </Box>

@@ -96,28 +96,32 @@ const CustomSwitchPerson: React.FC<CustomSwitchProps> = ({ name, control, label,
   const errorMessage = control._formState.errors[name]?.message as string | undefined;
 
   return (
-    <FormControl fullWidth error={!!control._formState.errors[name]} disabled={disabled} sx={{ display: 'flex', flexDirection: flexDirection, alignItems: 'center' }}>
-      {label && (
-        <Box display="flex" alignItems="center" gap={1} m={0} sx={{ m: '0 !important',pr:flexDirection==='row'?'5px':undefined}}>
-          {icon && <Icon>{icon}</Icon>}
-          <Typography variant="subtitle1">{label}</Typography>
-        </Box>
-      )}
-      <Controller
-        name={name}
-        control={control}
-        render={({ field }) => (
-          <LabeledSwitch
-            {...field}
-            checked={field.value ?? false}
-            onChange={(event) => {
-              field.onChange(event.target.checked);
-              onChange?.(event, name);
-            }}
-            disabled={disabled}
-          />
+    <FormControl fullWidth error={!!control._formState.errors[name]} disabled={disabled} sx={{ display: 'flex', alignItems: 'center' }}>
+      <div style={{display: 'flex',flexDirection: flexDirection}}>
+        {label && (
+          <Box display="flex" alignItems="center" gap={1} m={0} sx={{ m: '0 !important',pr:flexDirection==='row'?'5px':undefined}}>
+            {icon && <Icon>{icon}</Icon>}
+            <Typography variant="subtitle1">{label}</Typography>
+          </Box>
         )}
-      />
+        <Controller
+          name={name}
+          control={control}
+          render={({ field }) => (
+            <LabeledSwitch
+              {...field}
+              checked={field.value == 1}
+              //checked={field.value ?? false}
+              onChange={(event) => {
+                const value = event.target.checked ? 1 : 0;
+                field.onChange(value);
+                onChange?.(event, name);
+              }}
+              disabled={disabled}
+            />
+          )}
+        />
+      </div>
       {errorMessage && <FormHelperText>{errorMessage}</FormHelperText>}
     </FormControl>
   );
