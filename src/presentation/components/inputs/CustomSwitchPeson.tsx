@@ -2,9 +2,8 @@ import React from 'react';
 import { FormControl, FormHelperText, Typography, Box, Icon, Switch } from '@mui/material';
 import { Controller } from 'react-hook-form';
 import { styled } from '@mui/material/styles';
-import { Opacity } from '@mui/icons-material';
 
-const LabeledSwitch = styled(Switch)(({ theme }) => ({
+const LabeledSwitch = styled(Switch)(({  }) => ({
   width: 80,
   height: 40,
   padding: 0,

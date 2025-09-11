@@ -99,14 +99,15 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
     let file = foto.files?.[0];  
     data.file = file;
     data.fecha_evaluacion = String(formatDate(data.fecha_evaluacion));
-    console.log('data',data)
+    data.id_estado_evaluacion = tipo==='1'?1:2;
     createMedical(data)
   }, []);
   const handleUpdate = useCallback(async (data:any,tipo:string) => {
     const foto = document.getElementById('image-upload-foto') as HTMLInputElement;
     let file = foto.files?.[0];
     data.file = file;
-    data.fecha_evaluacion = String(formatDate(data.fecha_evaluacion));      
+    data.fecha_evaluacion = String(formatDate(data.fecha_evaluacion));  
+    data.id_estado_evaluacion = tipo==='1'?1:2;    
     updateMedical(data);
   }, []);
   const handleChangeSwitchPerson = (event: React.ChangeEvent<HTMLInputElement>, buttonId: string) => {
@@ -1072,7 +1073,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
             </DynamicAccordion>
           </ScrollableBox>
           <ContainerButtons sx={{justifyContent:'center'}}>
-            {stateUpdate && client && 
+            {stateUpdate && client && client?.id_estado_evaluacion==1 &&
             <>
               <ActionButton
                 key={`button-update-1`}

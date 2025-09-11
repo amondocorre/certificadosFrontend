@@ -78,7 +78,7 @@ const CustomAutocompletePerson: React.FC<CustomAutocompleteProps> = ({control,na
                   label={label}
                   placeholder={placeholder}
                   onFocus={() => {
-                    console.log('Autocomplete recibió el foco');
+                   
                   }}
                   variant="outlined"
                   size="small"

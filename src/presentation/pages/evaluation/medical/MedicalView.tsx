@@ -4,7 +4,7 @@ import { useOutletContext } from 'react-router-dom';
 import HeaderPage from '../../../components/containers/HeaderPage';
 import { userContainer } from '../../../../di/userContainer';
 import * as MUIcons from '@mui/icons-material';
-import {Typography,Grid, Box,styled, Tooltip,} from '@mui/material';
+import {Typography,Grid, Box, Tooltip,} from '@mui/material';
 import { Loading } from '../../../components/Loading';
 import { AlertConfirm, AlertError, AlertSave } from '../../../components/alerts';
 import { Button } from '../../../../domain/models/ButtonModel';
@@ -26,11 +26,9 @@ const MedicalView: React.FC = memo(() => {
   const ExplorationViewModel = ExplorationContainer.resolve('explorationViewModel');
   const MedicalViewModel = MedicalContainer.resolve('medicalViewModel');
   const [loading, setLoading] = useState(false)
-  const [buttonsHeader , setButtonsHeader ] = useState<any>([])
   const [buttons , setButtons] = useState<Button[]>([])
-  const [buttonsTable , setButtonsTable ] = useState<any>([])
   const [selectClient, setSelectClient] = useState<any>(null)
-  const { control,setValue,getValues} = useForm();
+  const { control,setValue} = useForm();
   useEffect(()=>{
     if(currentMenuItem){
       getButtuns(currentMenuItem?.id_menu_acceso);
@@ -72,45 +70,14 @@ const MedicalView: React.FC = memo(() => {
     }
     setLoading(false)
   },[])
-  const actionHandlers:any = {
-    handleCreate: handleCreate,
-    handleUpdate: handleUpdate,
-  };
   const getButtuns = async (idAcces:number) => {
     setLoading(true)
     try {
       const response = await UserViewModel.getButtunsAccess(idAcces);
       if ('buttons' in response) {
-        var btnHeader:any = [];
-        var btnTable:any= [];
         setButtons(response!.buttons);
-        response!.buttons.forEach((button:any) => {
-          const IconComponent = MUIcons[button.icono as keyof typeof MUIcons] || MUIcons.Label;
-          if (!IconComponent) {
-            console.warn(`Icono "${button.icono}" no encontrado en MUIcons.`);
-          }
-          const newButton = {
-            title: button.descripcion,
-            tooltip: button.tooltip,
-            icon: <IconComponent />,
-            onClick:  () => {
-              if (button.onclick && typeof actionHandlers[button.onclick] === 'function') {
-                actionHandlers[button.onclick](); 
-              } else if (typeof button.onclick === 'function') {
-                button.onclick();
-              }
-            }
-          }
-          if(button!.tipo ==='header'){
-            btnHeader.push(newButton);
-          }else{
-            btnTable.push(newButton);
-          }
-        });
-        setButtonsHeader(btnHeader);
-        setButtonsTable(btnTable)
       } else {
-
+        setButtons([]);
       }
     } catch (error) {
 
