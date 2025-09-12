@@ -51,8 +51,8 @@ const CustomAutocompletePerson: React.FC<CustomAutocompleteProps> = ({control,na
               inputValue={inputValue}
               onInputChange={(_, newInput) => {
                 setInputValue(newInput);
-                field.onChange(newInput); // Actualiza el valor con texto libre
-                handleChange?.(newInput);
+                field.onChange(newInput); 
+                //onChange?.(newInput);
               }}
               onChange={(_, newValue) => {
                 const valueToSet = typeof newValue === 'string'
@@ -78,7 +78,7 @@ const CustomAutocompletePerson: React.FC<CustomAutocompleteProps> = ({control,na
                   label={label}
                   placeholder={placeholder}
                   onFocus={() => {
-                    console.log('Autocomplete recibió el foco');
+                   
                   }}
                   variant="outlined"
                   size="small"

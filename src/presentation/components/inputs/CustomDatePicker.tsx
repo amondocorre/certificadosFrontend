@@ -51,7 +51,7 @@ const CustomDatePicker: React.FC<CustomDatePickerProps> = ({ control, name,sx, l
                 minDate={minDate}
                 maxDate={maxDate}
                 onChange={(date) => {
-                  field.onChange(date);
+                  field.onChange(date); 
                   if (onChange) {
                     onChange(date);
                   }
@@ -60,6 +60,7 @@ const CustomDatePicker: React.FC<CustomDatePickerProps> = ({ control, name,sx, l
                   textField: {
                     variant: 'outlined',
                     size: 'small',
+                    error: !!control._formState.errors[name],
                     InputProps: {
                       sx:{...sx},
                       startAdornment: icon && (

@@ -34,6 +34,7 @@ const CustomTextField: React.FC<CustomTextFieldProps> = ({name,control,label,ico
             size={'small'}
             placeholder={placeholder}
             value={field.value || ''}
+            error={!!control._formState.errors[name]}
             onChange={(event) => {
               field.onChange(event); onChange?.(event.target.value, field.name);
             }}
