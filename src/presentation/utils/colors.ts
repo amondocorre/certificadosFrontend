@@ -1,5 +1,6 @@
 export const COLORS = {
   // Paleta principal en tonos azules adaptada para fondo oscuro profundo
+  //
   primary: {
     main: '#3B82F6',        // Azul vivo
     light: '#60A5FA',       // Azul más claro
