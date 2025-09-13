@@ -13,9 +13,10 @@ interface CustomAutocompleteProps {
   placeholder?: string;
   disabled?: boolean;
   handleChange?: (data: any) => void;
+  uppercase?: boolean;
 }
 
-const CustomAutocompletePerson: React.FC<CustomAutocompleteProps> = ({control,name,label,getOptions,icon,labelOption,valueOption,placeholder,disabled = false,handleChange,}) => {
+const CustomAutocompletePerson: React.FC<CustomAutocompleteProps> = ({control,name,label,getOptions,icon,labelOption,valueOption,placeholder,disabled = false,handleChange,uppercase=false}) => {
   const errorMessage = control._formState?.errors[name]?.message as string | undefined;
   const [inputValue, setInputValue] = useState('');
   const [setstatFocus, setSetstatFocus] = useState(false);
@@ -50,8 +51,9 @@ const CustomAutocompletePerson: React.FC<CustomAutocompleteProps> = ({control,na
               openOnFocus={false}
               inputValue={inputValue}
               onInputChange={(_, newInput) => {
-                setInputValue(newInput);
-                field.onChange(newInput); 
+                const value = uppercase ? newInput.toUpperCase() : newInput;
+                setInputValue(value);
+                field.onChange(value); 
                 //onChange?.(newInput);
               }}
               onChange={(_, newValue) => {
