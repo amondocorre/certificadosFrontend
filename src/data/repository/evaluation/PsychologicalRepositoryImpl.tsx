@@ -23,4 +23,7 @@ export class PsychologicalRepositoryImpl implements PsychologicalRepository{
   async search(q:string): Promise<PsychologicalResponse | ErrorResponse> {
     return await this.psychologicalService.search(q);
   }
+  async findIdentity(id:number): Promise<PsychologicalResponse | ErrorResponse> {
+    return await this.psychologicalService.findIdentity(id);
+  }
 }

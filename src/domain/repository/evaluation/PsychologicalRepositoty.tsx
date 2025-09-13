@@ -5,4 +5,5 @@ export interface PsychologicalRepository{
   create(data:EvaluationPsychological):Promise<PsychologicalResponse|ErrorResponse>;
   update(data:EvaluationPsychological):Promise<PsychologicalResponse|ErrorResponse>;
   search(q:string):Promise<PsychologicalResponse|ErrorResponse>;
+  findIdentity(id:number):Promise<PsychologicalResponse|ErrorResponse>;
 }

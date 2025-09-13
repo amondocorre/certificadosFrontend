@@ -23,4 +23,7 @@ export class MedicalRepositoryImpl implements MedicalRepository{
   async search(q:string): Promise<MedicalResponse | ErrorResponse> {
     return await this.medicalService.search(q);
   }
+  async findIdentity(id:number): Promise<MedicalResponse | ErrorResponse> {
+    return await this.medicalService.findIdentity(id);
+  }
 }

@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useEffect, useState } from 'react';
 import { NavigationItem } from '../../../../domain/models/AccesModel';
-import { useOutletContext } from 'react-router-dom';
+import { useLocation, useNavigate, useOutletContext } from 'react-router-dom';
 import HeaderPage from '../../../components/containers/HeaderPage';
 import { userContainer } from '../../../../di/userContainer';
 import * as MUIcons from '@mui/icons-material';
@@ -20,6 +20,10 @@ interface LayoutContext {
 }
 const PsychologicalView: React.FC = memo(() => {
   const { currentMenuItem } = useOutletContext<LayoutContext>();
+  const location = useLocation();
+   const navigate = useNavigate();
+  const searchParams = new URLSearchParams(location.search);
+  const id = Number(searchParams.get('id'));
   const UserViewModel = userContainer.resolve('UserViewModel');
   const PsychologicalViewModel = PsychologicalContainer.resolve('psychologicalViewModel');
   const PrintViewModel = printContainer.resolve('printViewModel');
@@ -32,6 +36,9 @@ const PsychologicalView: React.FC = memo(() => {
       getButtuns(currentMenuItem?.id_menu_acceso);
     }
   },[currentMenuItem])
+  useEffect(()=>{
+    if(id) findIdentity(id)
+  },[id])
   const handleCreate = useCallback(async(client:any)=>{
     const result = await AlertConfirm({title:'Estas seguro de crear un nuevo cliente?',confirmButtonText:'Crear'});
     if (!result.isConfirmed) return;
@@ -90,6 +97,18 @@ const PsychologicalView: React.FC = memo(() => {
       } catch (error) {}
       return []
   },[]);
+  const findIdentity = useCallback(async (id:number) => {
+    setLoading(true)
+      try {
+        const response = await PsychologicalViewModel.findIdentity(id);
+        setLoading(false)
+        if ('status' in response && response.status === 'success') {
+          setSelectClient(response.data);
+        } else 
+          setSelectClient(null)
+      } catch (error) {setSelectClient(null)}
+      setLoading(false)
+  },[]);
   const printEvaluation = async (id:number) => {
     setLoading(true)
     try {
@@ -101,6 +120,11 @@ const PsychologicalView: React.FC = memo(() => {
     setSelectClient(data);
   }
   const resetData=()=>{
+    if(id){
+      const queryParams = new URLSearchParams(location.search);
+      queryParams.delete('id');
+      navigate(`${location.pathname}?${queryParams.toString()}`, { replace: true });
+    }
     setValue('id_evaluacion_medica','');
     setSelectClient(null);
   }

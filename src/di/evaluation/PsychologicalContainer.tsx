@@ -6,6 +6,7 @@ import { PsychologicalUseCases } from "../../domain/useCases/evaluation/psycholo
 import { CreateUseCase } from "../../domain/useCases/evaluation/psychological/CreateUseCase";
 import { UpdateUseCase } from "../../domain/useCases/evaluation/psychological/UpdateUseCase";
 import { SearchUseCase } from "../../domain/useCases/evaluation/psychological/SearchUseCase";
+import { findIdentityUseCase } from "../../domain/useCases/evaluation/psychological/findIdentityUseCase";
 
 const PsychologicalContainer = createContainer();
 PsychologicalContainer.register({
@@ -18,6 +19,7 @@ PsychologicalContainer.register({
   create:asClass(CreateUseCase).singleton(),
   update:asClass(UpdateUseCase).singleton(),
   search:asClass(SearchUseCase).singleton(),
+  findIdentity:asClass(findIdentityUseCase).singleton(),
   // VIEW NOMDEL
   psychologicalViewModel:asClass(PsychologicalViewModel).singleton(),
   

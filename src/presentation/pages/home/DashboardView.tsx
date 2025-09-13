@@ -9,6 +9,7 @@ import { useAuth } from '../../hooks/useAuth';
 import ModalRentDetail from './components/ModalDetaleContrato';
 import TableMedical from './components/TableMedical';
 import TablePsychological from './components/TablePsychological';
+import { useNavigate } from 'react-router-dom';
 
 interface ClientesSexoData {
   total: number;
@@ -24,10 +25,14 @@ const DashboardView: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [idContrato, setIdContrato] = useState(0)
   const [openModal, setOpenModal] = useState(false);
-  const handleOpenModal =(id:number)=>{
+  const navigate = useNavigate();
+  const handleOpenPsychological =(id:number)=>{
     setIdContrato(id);
-    console.log('handleOpenModal',id)
-    //setOpenModal(true);
+    navigate('/evaluation-psychological?id='+id);
+  }
+  const handleOpenMedical =(id:number)=>{
+    setIdContrato(id);
+    navigate('/evaluation-medical?id='+id);
   }
   const handleCloseModal =()=>{
     setIdContrato(0);
@@ -88,10 +93,10 @@ const DashboardView: React.FC = () => {
             {ingresosDiarios && <TotalIngresosDiarios data={ingresosDiarios} />}
         </Grid>
         <Grid sx={{ }}size={{xs: 12,md: 6}}>
-            <TableMedical handleOpen={handleOpenModal} listEvaMedical={listEvaMedical} id_sucursal={sucursal}/>
+            <TableMedical handleOpen={handleOpenMedical} listEvaMedical={listEvaMedical} id_sucursal={sucursal}/>
         </Grid>
         <Grid sx={{ }}size={{xs: 12,md: 6}}>
-            <TablePsychological handleOpen={handleOpenModal} listEvaPsychological={listEvaPsychological} id_sucursal={sucursal}/>
+            <TablePsychological handleOpen={handleOpenPsychological} listEvaPsychological={listEvaPsychological} id_sucursal={sucursal}/>
         </Grid>
       </Grid>
       <ModalRentDetail

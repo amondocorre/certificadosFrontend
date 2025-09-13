@@ -119,7 +119,7 @@ const DataClient: React.FC<DataClientFormProps> = ({ createClient,updateClient,p
             defaultExpanded={false}
             childrenTitle={
               <StyledHeaderSecondary sx={{ mb: 0,fontSize:{xs:'1.0em', sm:'1.1em',md:'1.3em',color:'white'}}}>
-              {'A) DATOS PERSONALES'}
+              {'A) DATOS PERSONALES'} {client? String(client?.nombre_completo):''}
             </StyledHeaderSecondary>
             }
           >

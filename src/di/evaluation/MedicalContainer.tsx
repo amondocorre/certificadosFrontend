@@ -6,6 +6,7 @@ import { MedicalUseCases } from "../../domain/useCases/evaluation/medical/Medica
 import { CreateUseCase } from "../../domain/useCases/evaluation/medical/CreateUseCase";
 import { UpdateUseCase } from "../../domain/useCases/evaluation/medical/UpdateUseCase";
 import { SearchUseCase } from "../../domain/useCases/evaluation/medical/SearchUseCase";
+import { FindIdentityUseCase } from "../../domain/useCases/evaluation/medical/FindIdentityUseCase";
 
 const MedicalContainer = createContainer();
 MedicalContainer.register({
@@ -18,6 +19,7 @@ MedicalContainer.register({
   create:asClass(CreateUseCase).singleton(),
   update:asClass(UpdateUseCase).singleton(),
   search:asClass(SearchUseCase).singleton(),
+  findIdentity:asClass(FindIdentityUseCase).singleton(),
   // VIEW NOMDEL
   medicalViewModel:asClass(MedicalViewModel).singleton(),
   

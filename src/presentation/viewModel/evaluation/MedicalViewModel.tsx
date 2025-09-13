@@ -16,4 +16,7 @@ export class MedicalViewModel {
   async search(q:string):Promise<MedicalResponse|ErrorResponse>{
     return await this.medicalUseCases.search.execute(q)
   }
+  async findIdentity(id:number):Promise<MedicalResponse|ErrorResponse>{
+    return await this.medicalUseCases.findIdentity.execute(id)
+  }
 }

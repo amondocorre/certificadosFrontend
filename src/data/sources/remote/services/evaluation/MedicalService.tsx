@@ -75,4 +75,19 @@ export class MedicalService{
         return defaultErrerResponse;
       }
     }
+  async findIdentity(id:number):Promise<MedicalResponse|ErrorResponse>{
+      try {
+        const response = await apiRequestHandler.get<MedicalResponse>('/evaluation/medical/findIdentity/'+id)
+        return response.data
+      } catch (error:any) {
+        if(error.response){
+          const errorData:ErrorResponse = error.response.data;
+          if(Array.isArray(errorData.message)){
+            errorData.message = errorData.message.join(',');
+          }
+          return errorData;
+        }
+        return defaultErrerResponse;
+      }
+  }
 }

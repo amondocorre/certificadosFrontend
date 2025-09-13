@@ -16,4 +16,7 @@ export class PsychologicalViewModel {
   async search(q:string):Promise<PsychologicalResponse|ErrorResponse>{
     return await this.psychologicalUseCases.search.execute(q)
   }
+  async findIdentity(id:number):Promise<PsychologicalResponse|ErrorResponse>{
+    return await this.psychologicalUseCases.findIdentity.execute(id)
+  }
 }
