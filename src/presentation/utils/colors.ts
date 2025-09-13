@@ -20,7 +20,7 @@ export const COLORS = {
     contrastText: '#E0F2FE' // Claro sobre fondo oscuro
   },
   background: {
-    default: '#dc3545',     // Muy oscuro (más que #0F172A)
+    default: '#fdfdfdff',     // Muy oscuro (más que #0F172A)
     paper: '#121826',       // Fondo de tarjetas
     dark: '#010409',        // Casi negro para headers o footer
     gradient: 'linear-gradient(90deg, #121826 0%, #1E3A8A 50%, #3B82F6 100%)'

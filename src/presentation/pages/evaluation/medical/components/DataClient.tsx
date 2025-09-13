@@ -23,6 +23,7 @@ import { Exploration } from '../../../../../domain/models/Evaluation';
 import { EvaluationMedical } from '../../../../../domain/models/EvaluationMedical';
 import { validationMedical, validationMedicalBasic } from '../../formConfig/validationSchema';
 import { defaultValuesMedical } from '../../formConfig/defaultValues';
+import {  Table,  TableBody,  TableCell,  TableRow,} from '@mui/material';
 interface UserFormProps {
   createMedical: (data:EvaluationMedical) => void;
   updateMedical: (data:EvaluationMedical) => void;
@@ -150,6 +151,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                     placeholder="Ingrese el Apellido Paterno"
                     disabled={!(stateUpdate || !client)}
                     icon={<MUIcons.AccountCircle/>}
+                    uppercase={true} // 🔹 fuerza mayúsculas
                   />
                 </Grid>
                 <Grid size={{xs: 4,sm: 4}}>
@@ -160,6 +162,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                     placeholder="Ingrese el Apellido Materno"
                     disabled={!(stateUpdate || !client)}
                     icon={<MUIcons.AccountCircle/>}
+                    uppercase={true} // 🔹 fuerza mayúsculas
                   />
                 </Grid>
                 <Grid size={{xs: 4,sm: 4}}>
@@ -170,6 +173,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                     placeholder="Ingrese el/los nombres"
                     disabled={!(stateUpdate || !client)}
                     icon={<MUIcons.AccountCircle/>}
+                    uppercase={true} // 🔹 fuerza mayúsculas
                   />
                 </Grid>
                 <Grid size={{xs: 3,sm: 3}}>
@@ -332,7 +336,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                   />
                 </Grid>
                 <Grid size={{xs: 3,sm: 3}}></Grid>
-                <Grid size={{xs: 8,sm: 8}} sx={{pb:1,border:'4px solid #bee4eeff'}}>
+                <Grid size={{xs: 6,sm: 6}} sx={{pb:1,border:'4px solid #bee4eeff'}}>
                   <StyledTitle sx={{ color: 'black'}}>SIGNOS VITALES:</StyledTitle>
                   <Box display="flex" flexDirection="row" gap={2} mt={0} px={1}>
                     <Box sx={{width:'50%'}}>
@@ -383,7 +387,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                     </Box>
                   </Box>
                 </Grid> 
-                <Grid size={{xs: 4,sm: 4}} sx={{pb:1,border:'4px solid #bee4eeff'}}>
+                <Grid size={{xs: 6,sm: 6}} sx={{pb:1,border:'4px solid #bee4eeff'}}>
                   <StyledTitle sx={{ color: 'black'}}>SOMATOMETRIA:</StyledTitle>
                   <Box display="flex" flexDirection="column" gap={0.9} mt={0} px={1}>
                     <Box sx={{width:'100%'}}>
@@ -395,6 +399,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                         type='number'
                         disabled={!(stateUpdate || !client)}
                         icon={<MUIcons.AccountCircle/>}
+                        
                       />
                     </Box>
                     <Box sx={{width:'100%'}}>
@@ -495,6 +500,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                       placeholder="Ingrese el detalle"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.AccountCircle/>}
+                      uppercase={true} // 🔹 fuerza mayúsculas
                     />
                   </Grid>
                   <Grid size={{xs: 4,sm: 4}}>
@@ -505,6 +511,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                       placeholder="Ingrese el detalle"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.AccountCircle/>}
+                      uppercase={true} // 🔹 fuerza mayúsculas
                     />
                   </Grid>
                   <Grid size={{xs: 4,sm: 4}}>
@@ -515,53 +522,76 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                       placeholder="Ingrese el detalle"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.AccountCircle/>}
+                      uppercase={true} // 🔹 fuerza mayúsculas
                     />
                   </Grid>
-                  <Grid size={{xs: 4,sm: 8}}>
-                    <CustomSwitchPerson
-                      name="estrabismo"
-                      control={control}
-                      label="Estrabitismo"
-                      disabled={!(stateUpdate || !client)}
-                      icon={<MUIcons.Vaccines />}
-                      flexDirection='row'
-                    />
-                  </Grid>
-                  <Grid size={{xs: 4,sm: 4}}></Grid>
-                  <Grid size={{xs: 4,sm: 2}}>
-                    <CustomSwitchPerson
-                      name="usa_lentes"
-                      control={control}
-                      label="Usa lentes"
-                      disabled={!(stateUpdate || !client)}
-                      icon={<MUIcons.Vaccines />}
-                      flexDirection='row'
-                      onChange={handleChangeSwitchPerson}
-                    />
-                  </Grid>
-                  <Grid size={{xs: 4,sm: 1}}></Grid>
-                  <Grid size={{xs: 4,sm: 4}}>
-                    <CustomSelect
-                      name="tipo_lentes"
-                      control={control}
-                      label="Tipo lentes"
-                      options={tipoLentes}
-                      disabled={!(stateUpdate || !client)}
-                      icon={<MUIcons.Vaccines />}
-                    />
-                  </Grid>
-                  
-                  <Grid size={{xs: 4,sm: 8}}>
-                    <CustomSwitchPerson
-                      name="cirugia"
-                      control={control}
-                      label="Cirugia"
-                      disabled={!(stateUpdate || !client)}
-                      icon={<MUIcons.Vaccines />}
-                      flexDirection='row'
-                    />
-                  </Grid>
-                  
+                  <Table>
+                    <TableBody>
+                      {/* Estrabismo */}
+                      <TableRow>
+                        <TableCell colSpan={1}>
+                          <CustomSwitchPerson
+                            name="estrabismo"
+                            control={control}
+                            label="Estrabismo"
+                            disabled={!(stateUpdate || !client)}
+                            icon={<MUIcons.Vaccines />}
+                            flexDirection="row"
+                            sx={{ width: '50%' }} // ancho fijo de 200px
+                          />
+                        </TableCell>
+                        <TableCell colSpan={1}></TableCell>
+                      </TableRow>
+
+                      {/* Usa lentes + Tipo lentes */}
+                      <TableRow>
+                        <TableCell>
+                          
+                          <CustomSwitchPerson
+                            name="usa_lentes"
+                            control={control}
+                            label="Usa lentes"
+                            disabled={!(stateUpdate || !client)}
+                            icon={<MUIcons.Vaccines />}
+                            flexDirection="row"
+                            onChange={handleChangeSwitchPerson}
+                            sx={{ width: '50%' }} // ancho fijo de 200px
+                          />
+                          
+                        </TableCell>
+                        <TableCell>
+                          <CustomSelect
+                            name="tipo_lentes"
+                            control={control}
+                            label="Tipo lentes"
+                            options={tipoLentes}
+                            disabled={!(stateUpdate || !client)}
+                            icon={<MUIcons.Vaccines />}
+                           sx={{ width: '10%' }} // ancho fijo de 200px
+                          />
+                        </TableCell>
+                      </TableRow>
+                      
+                      {/* Cirugía */}
+                      <TableRow>
+                        <TableCell colSpan={1} align='left'>
+                          <CustomSwitchPerson
+                            name="cirugia"
+                            control={control}
+                            label="Cirugía"
+                            disabled={!(stateUpdate || !client)}
+                            icon={<MUIcons.Vaccines />}
+                            flexDirection="row"
+                            sx={{ width: 200 }} // ancho fijo de 200px
+                          />
+                        </TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                  {/*
+                      <Grid size={{xs: 4,sm: 8}}> <CustomSwitchPerson name="estrabismo" control={control} label="Estrabitismo" disabled={!(stateUpdate || !client)} icon={<MUIcons.Vaccines />} flexDirection='row' /> </Grid> <Grid size={{xs: 4,sm: 2}}></Grid> <Grid size={{xs: 4,sm: 4}}> <CustomSwitchPerson name="usa_lentes" control={control} label="Usa lentes" disabled={!(stateUpdate || !client)} icon={<MUIcons.Vaccines />} flexDirection='row' onChange={handleChangeSwitchPerson} /> </Grid> <Grid size={{xs: 4,sm: 1}}></Grid> <Grid size={{xs: 4,sm: 4}}> <CustomSelect name="tipo_lentes" control={control} label="Tipo lentes" options={tipoLentes} disabled={!(stateUpdate || !client)} icon={<MUIcons.Vaccines />} /> </Grid> <Grid size={{xs: 4,sm: 8}}> <CustomSwitchPerson name="cirugia" control={control} label="Cirugia" disabled={!(stateUpdate || !client)} icon={<MUIcons.Vaccines />} flexDirection='row' /> </Grid>
+                      */}
+                      
                   <Grid size={{xs: 12,sm: 12}}>
                     <StyledTitle sx={{color:'black'}}>AGUDEZA VISUAL </StyledTitle>
                   </Grid>
