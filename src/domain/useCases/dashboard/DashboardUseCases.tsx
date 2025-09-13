@@ -1,33 +1,23 @@
-import { GetDetailRentUseCase } from "./GetDetailRentUseCase";
 import { GetIngresosDiariosUseCase } from "./GetIngresosDiariosUseCase";
-import { GetTotalesInventarioUseCase } from "./GetTotalesInventarioUseCase";
-import { ListRentEntregaUseCase } from "./listRentEntregaUseCase";
-import { listRentUseCase } from "./listRentUseCase";
+import { ListEvaMedicalUseCase } from "./ListEvaMedicalUseCase";
+import { ListEvaPsychologicalUseCase } from "./listEvaPsychologicalUseCase";
 
 export class DashboardUseCases{
-getTotalesInventario:GetTotalesInventarioUseCase;
 getIngresosDiarios:GetIngresosDiariosUseCase;
-listRent:listRentUseCase;
-listRentEntrega:ListRentEntregaUseCase;
-getDetailRent:GetDetailRentUseCase;
+listEvaMedical:ListEvaMedicalUseCase;
+listEvaPsychological:ListEvaPsychologicalUseCase
   constructor({
-    getTotalesInventario, 
     getIngresosDiarios,
-    listRent,
-    listRentEntrega,
-    getDetailRent,
+    listEvaMedical,
+    listEvaPsychological,
   }:{
-    getTotalesInventario:GetTotalesInventarioUseCase,
     getIngresosDiarios:GetIngresosDiariosUseCase,
-    listRent:listRentUseCase,
-    listRentEntrega:ListRentEntregaUseCase,
-    getDetailRent:GetDetailRentUseCase,
+    listEvaMedical:ListEvaMedicalUseCase,
+    listEvaPsychological:ListEvaPsychologicalUseCase,
 
   }){
-  this.getTotalesInventario = getTotalesInventario;
   this.getIngresosDiarios = getIngresosDiarios;
-  this.listRent = listRent;
-  this.listRentEntrega = listRentEntrega;
-  this.getDetailRent = getDetailRent;
+  this.listEvaMedical = listEvaMedical;
+  this.listEvaPsychological = listEvaPsychological;
   }
 }

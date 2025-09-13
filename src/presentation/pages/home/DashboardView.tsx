@@ -6,8 +6,9 @@ import { dashboardContainer } from '../../../di/dashboardContainer';
 import { IngresosDiarios } from '../../../domain/models/DashboardModel';
 import { Loading } from '../../components/Loading';
 import { useAuth } from '../../hooks/useAuth';
-import TableRent from './components/TableRent';
 import ModalRentDetail from './components/ModalDetaleContrato';
+import TableMedical from './components/TableMedical';
+import TablePsychological from './components/TablePsychological';
 
 interface ClientesSexoData {
   total: number;
@@ -25,7 +26,8 @@ const DashboardView: React.FC = () => {
   const [openModal, setOpenModal] = useState(false);
   const handleOpenModal =(id:number)=>{
     setIdContrato(id);
-    setOpenModal(true);
+    console.log('handleOpenModal',id)
+    //setOpenModal(true);
   }
   const handleCloseModal =()=>{
     setIdContrato(0);
@@ -45,10 +47,10 @@ const DashboardView: React.FC = () => {
     } catch (error) {setIngresosDiarios([])}
     setLoading(false)
   };
-  const listRent = async (limit:number,page:number) => {
+  const listEvaMedical = async (limit:number,page:number) => {
     //setLoading(true)
     try {
-      const response = await DashboardViewModel.listRent(Number(sucursal),limit,page);
+      const response = await DashboardViewModel.listEvaMedical(Number(sucursal),limit,page);
       ///setLoading(false)
       return response;
     } catch (error) {
@@ -56,24 +58,17 @@ const DashboardView: React.FC = () => {
       return {'data':[],pagination:{'total':0}}
     }
   }; 
-  const listRentEntrega = async (limit:number,page:number) => {
+  const listEvaPsychological = async (limit:number,page:number) => {
     try {
-      const response = await DashboardViewModel.listRentEntrega(Number(sucursal),limit,page);
+      const response = await DashboardViewModel.listEvaPsychological(Number(sucursal),limit,page);
       return response;
     } catch (error) {
       return {'data':[],pagination:{'total':0}}
     }
   }; 
   const getDetailRent = async (idContrato:number) => {
-    setLoading(true)
-    try {
-      const response = await DashboardViewModel.getDetailRent(idContrato);
-      setLoading(false)
-      return response;
-    } catch (error) {
-      setLoading(false)
-      return {'data':[],'productos':[]}
-    }
+   
+    return {'data':[],'productos':[]}
   }; 
   return (
     <div>
@@ -93,11 +88,10 @@ const DashboardView: React.FC = () => {
             {ingresosDiarios && <TotalIngresosDiarios data={ingresosDiarios} />}
         </Grid>
         <Grid sx={{ }}size={{xs: 12,md: 6}}>
-            <TableRent handleOpenModal={handleOpenModal} listRent={listRentEntrega} id_sucursal={sucursal} tipo='1'/>
+            <TableMedical handleOpen={handleOpenModal} listEvaMedical={listEvaMedical} id_sucursal={sucursal}/>
         </Grid>
         <Grid sx={{ }}size={{xs: 12,md: 6}}>
-            <TableRent handleOpenModal={handleOpenModal} listRent={listRent} id_sucursal={sucursal} tipo='2'/>
-            
+            <TablePsychological handleOpen={handleOpenModal} listEvaPsychological={listEvaPsychological} id_sucursal={sucursal}/>
         </Grid>
       </Grid>
       <ModalRentDetail

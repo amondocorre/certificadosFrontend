@@ -3,11 +3,9 @@ import { DashboardService } from "../data/sources/remote/services/DashboardServi
 import { DashboardRepositoryImpl } from "../data/repository/DashboardRepositoryImpl";
 import { DashboardUseCases } from "../domain/useCases/dashboard/DashboardUseCases";
 import { DashboardViewModel } from "../presentation/viewModel/DashboardViewModel";
-import { GetTotalesInventarioUseCase } from "../domain/useCases/dashboard/GetTotalesInventarioUseCase";
 import { GetIngresosDiariosUseCase } from "../domain/useCases/dashboard/GetIngresosDiariosUseCase";
-import { listRentUseCase } from "../domain/useCases/dashboard/listRentUseCase";
-import { ListRentEntregaUseCase } from "../domain/useCases/dashboard/listRentEntregaUseCase";
-import { GetDetailRentUseCase } from "../domain/useCases/dashboard/GetDetailRentUseCase";
+import { ListEvaPsychologicalUseCase } from "../domain/useCases/dashboard/listEvaPsychologicalUseCase";
+import { ListEvaMedicalUseCase } from "../domain/useCases/dashboard/ListEvaMedicalUseCase";
 const dashboardContainer = createContainer();
 dashboardContainer.register({
   // SERVICES
@@ -16,11 +14,9 @@ dashboardContainer.register({
   dashboardRepository:asClass(DashboardRepositoryImpl).singleton(),
   //USE CASE
   dashboardUseCases:asClass(DashboardUseCases).singleton(),
-  getTotalesInventario:asClass(GetTotalesInventarioUseCase).singleton(),
   getIngresosDiarios:asClass(GetIngresosDiariosUseCase).singleton(),
-  listRent:asClass(listRentUseCase).singleton(),
-  listRentEntrega:asClass(ListRentEntregaUseCase).singleton(),
-  getDetailRent:asClass(GetDetailRentUseCase).singleton(),
+  listEvaMedical:asClass(ListEvaMedicalUseCase).singleton(),
+  listEvaPsychological:asClass(ListEvaPsychologicalUseCase).singleton(),
   // VIEW NOMDEL
   dashboardViewModel:asClass(DashboardViewModel).singleton(),
   

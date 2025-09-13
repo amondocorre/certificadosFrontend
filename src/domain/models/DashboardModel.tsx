@@ -4,17 +4,22 @@ export interface IngresosDiarios {
   egresos: number;
   
 }
-export interface TotalInventario extends Record<string, any> {}
-interface Data extends Record<string, any> {}
-export interface Rent {
-  id_alquiler_documento: number;
-  fecha_devolucion?: string;
-  fecha_entrega?: string;
-  cliente: string;
-  total_pagar: number;
-  a_cuenta: number;
-}
 
+interface Data extends Record<string, any> {}
+export interface EvaluantionMedical {
+  id_evaluacion_medica: number;
+  fecha_evaluacion: string;
+  nombre_completo: string;
+  ci:     string;
+  id_estado_evaluacion: number;
+}
+export interface EvaluantionPsychological {
+  id_evaluacion_psicologica: number;
+  fecha_evaluacion: string;
+  nombre_completo: string;
+  ci:     string;
+  id_estado_evaluacion: number;
+}
 interface Pagination {
   total: number;
   page: number;
@@ -23,10 +28,6 @@ interface Pagination {
 }
 
 export interface ApiResponseRent {
-  data: Rent[];
+  data: EvaluantionMedical[] | EvaluantionPsychological[];
   pagination: Pagination;
-}
-export interface ResponseRentDetail {
-  data: Data;
-  productos: Data;
 }

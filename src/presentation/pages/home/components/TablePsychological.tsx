@@ -1,16 +1,14 @@
 import { useEffect, useMemo, useState } from 'react';
 import {MaterialReactTable,useMaterialReactTable,type MRT_ColumnDef,type MRT_PaginationState,} from 'material-react-table'
-import { Rent } from '../../../../domain/models/DashboardModel';
 import { Box} from '@mui/material';
-import dayjs from 'dayjs';
-import { formatDate, formatDateDMY } from '../../../utils/dateUtils';
+import { formatDateDMY } from '../../../utils/dateUtils';
 import { MRT_Localization_ES } from 'material-react-table/locales/es';
 import { StyledTitle } from '../../../components/text/StyledTitle';
+import { EvaluantionPsychological } from '../../../../domain/models/DashboardModel';
 const colors:string[] = ['#8cf892ff','#f5f77fff','#e67364ff']
-const TableRent = (Props: any) => {
-  const { handleOpenModal,listRent,id_sucursal,tipo} = Props;
-  const fechaActual = String(formatDate(String(dayjs())));
-  const [data, setData] = useState<Rent[]>([]);
+const TablePsychological = (Props: any) => {
+  const { handleOpen,listEvaPsychological,id_sucursal} = Props;
+  const [data, setData] = useState<EvaluantionPsychological[]>([]);
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isRefetching, setIsRefetching] = useState(false);
@@ -27,7 +25,7 @@ const TableRent = (Props: any) => {
       setIsRefetching(true);
     }
     try {
-      const json =await listRent(pagination.pageSize,pagination.pageIndex+1);
+      const json =await listEvaPsychological(pagination.pageSize,pagination.pageIndex+1);
       setData(json.data);
       setRowCount(json.pagination.total);
     } catch (error) {
@@ -44,24 +42,17 @@ const TableRent = (Props: any) => {
       fetchData();
     }
   }, [id_sucursal,pagination.pageIndex,pagination.pageSize,]);
-  const columns = useMemo<MRT_ColumnDef<Rent>[]>(
+  const columns = useMemo<MRT_ColumnDef<EvaluantionPsychological>[]>(
     () => [
-      { accessorKey: 'id_alquiler_documento', header: 'N°',size:10},
-      { accessorKey: 'cliente', header: 'Cliente',size:100},
-      { accessorKey: tipo==='1'?'fecha_entrega':'fecha_devolucion', header: tipo==='1'?'Fecha Entrega':'Fecha Devolución',size:20,
+      { accessorKey: 'id_evaluacion_psicologica', header: 'N°',size:10},
+      { accessorKey: 'nombre_completo', header: 'Nombre Completo',size:100},
+      { accessorKey: 'fecha_evaluacion',header:'Fecha Evaluacion', size:20,
         Cell: ({ row }) => (
           <Box>
-            {String(formatDateDMY(tipo==='1'?row?.original.fecha_entrega:row?.original.fecha_devolucion))}
+            {String(formatDateDMY(row?.original.fecha_evaluacion))}
           </Box>
         ),},
-      { accessorKey: 'total_pagar', header: 'Total',size:20},
-      { accessorKey: 'a_cuenta', header: 'A Cuenta',size:20},
-      { accessorKey: 'saldo', header: 'Saldo',size:20,
-        Cell: ({ row }) => (
-          <Box>
-            {(Number(row?.original.total_pagar)-Number(row?.original.a_cuenta)).toFixed(2)}
-          </Box>
-        ),},
+      { accessorKey: 'ci', header: 'Ci',size:20},
     ],
     [],
   );
@@ -138,7 +129,7 @@ const TableRent = (Props: any) => {
     },
     renderTopToolbarCustomActions: () => (
       <Box sx={{width:'100%'}}>
-        <StyledTitle sx={{fontSize: '25px',}}>{tipo==='1'?'Contratos a Entregar':'Contratos en Proceso'}</StyledTitle>
+        <StyledTitle sx={{fontSize: '25px',}}>{'Evaluaciones Psicologicas'}</StyledTitle>
       </Box>
     ),
     muiTableContainerProps: {
@@ -149,20 +140,14 @@ const TableRent = (Props: any) => {
     },
     muiTableBodyRowProps: ({ row }) => {
       let bgColor = colors[0];
-      if(tipo ==='2' && String(row.original?.fecha_devolucion)){
-        const fechaInicio: Date = new Date(String(row.original?.fecha_devolucion));
-        const fechaFin: Date = new Date(fechaActual);
-        const diferenciaMs: number = (fechaFin.getTime() - fechaInicio.getTime());
-        const diferenciaDias: number = diferenciaMs / (1000 * 60 * 60 * 24);
-        if(diferenciaDias>0)bgColor=colors[2]
-        if(diferenciaDias<=0 && diferenciaDias>=-7)bgColor=colors[1]
-      }
+      if(row.original.id_estado_evaluacion == 1)bgColor=colors[1]
+      //if(row.original.id_estado_evaluacion == 1)bgColor=colors[1]
       return {
         onClick: () => {
-          handleOpenModal(Number(row.original.id_alquiler_documento));
+          handleOpen(Number(row.original.id_evaluacion_psicologica));
         },
         sx: {
-          backgroundColor:tipo ==='2'?bgColor:undefined,
+          backgroundColor:bgColor,
           cursor: 'pointer',
         },
       };
@@ -171,4 +156,4 @@ const TableRent = (Props: any) => {
   return <MaterialReactTable table={table} />;
 };
 
-export default TableRent;
+export default TablePsychological;

@@ -1,14 +1,14 @@
 
-import { ResponseRentDetail } from "../../models/DashboardModel";
+import { ApiResponseRent, } from "../../models/DashboardModel";
 import { ErrorResponse } from "../../models/ErrorResponse";
 import { DashboardRepository } from "../../repository/DashboardRepositoty";
 
-export class GetDetailRentUseCase {
+export class ListEvaPsychologicalUseCase {
   private dashboardRepository: DashboardRepository;
   constructor({dashboardRepository}:{dashboardRepository:DashboardRepository}){
     this.dashboardRepository = dashboardRepository; 
   }
-  async execute(idContrato:number):Promise<ResponseRentDetail|ErrorResponse>{
-    return await this.dashboardRepository.getDetailRent(idContrato);
+  async execute(id_sucursal:number,limit:number,page:number):Promise<ApiResponseRent|ErrorResponse>{
+    return await this.dashboardRepository.listEvaPsychological(id_sucursal,limit,page);
   }
 }
