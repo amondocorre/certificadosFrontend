@@ -1,4 +1,5 @@
 import { EvaluationMedical } from "../../../../domain/models/EvaluationMedical";
+import { EvaluationPsychological } from "../../../../domain/models/EvaluationPsychological";
 
 export const defaultValuesMedical: EvaluationMedical = {
   foto: '',
@@ -68,3 +69,29 @@ export const defaultValuesMedical: EvaluationMedical = {
   resultado_evaluacion: '',
   motivo_resultado: '',
 };
+
+export const defaultValuesPsychological: EvaluationPsychological = {
+  ap_paterno:'',
+  ap_materno:'',
+  nombre:'',
+  edad:0,
+  ci:'',
+  lugar_nacimiento:'',
+  fecha_nacimiento:'',
+  profecion:'',
+  fecha_evaluacion:'',
+  domicilio:'',
+  numero_domicilio:'',
+  zona:'',
+  telefono:'',
+  // B) HISTORIA FAMILIAR
+  historia_familiar:'',
+  // E) EXAMEN PSICOLOGICO
+  coordinacion_visomotora:'',
+  personalidad:'',
+  atencion_cognitiva:'',
+  reaccion_estres_riego:'',
+  //resultado_recomendacion:'',
+  // OBSERVACIONES 
+  observacion:'',
+}

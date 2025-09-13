@@ -76,3 +76,26 @@ export const accordionFieldMedical :Record<string, string> = {
   resultado_evaluacion:'examen-fisico-5',
   motivo_resultado:'examen-fisico-5',
 };
+
+export const accordionFieldPsychological :Record<string, string> = {
+  foto:'dotos-personales',
+  ap_paterno:'dotos-personales',
+  ap_materno:'dotos-personales',
+  nombre:'dotos-personales',
+  edad:'dotos-personales',
+  ci:'dotos-personales',
+  lugar_nacimiento:'dotos-personales',
+  fecha_nacimiento:'dotos-personales',
+  profecion:'dotos-personales',
+  fecha_evaluacion:'dotos-personales',
+  domicilio:'dotos-personales',
+  numero_domicilio:'dotos-personales',
+  zona:'dotos-personales',
+  telefono:'dotos-personales',
+  historia_familiar:'historia-familiar',
+  coordinacion_visomotora:'examen-psicologico',
+  personalidad:'examen-psicologico',
+  atencion_cognitiva:'examen-psicologico',
+  reaccion_estres_riego:'examen-psicologico',
+  observacion:'observacion',
+}

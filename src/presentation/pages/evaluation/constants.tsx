@@ -1,8 +1,8 @@
 
 export const habitos = [
-                  {label:'Nunca',value:'nunca'},
-                  {label:'Ocacionalmente',value:'ocacional'},
-                  {label:'Una o más a la semana',value:'uno-o-mas'}
+                  {label:'Nunca',value:'Nunca'},
+                  {label:'Ocasionalmente',value:'Ocasionalmente'},
+                  {label:'Una o más a la semana',value:'Una o más a la semana'}
                 ]
 export const sexos = [
                   {label:'Masculino',value:'M'},
@@ -76,13 +76,12 @@ export const resultados =[
 export const escalasPsicologicav2 =[
                 {label:' 	Adecuado  ',value:'adecuado'},
                 {label:' 	Inadecuado  ',value:'inadecuado'},
-                {label:' 	Observación  ',value:'observación'},
+                {label:' 	Observación  ',value:'observacion'},
 ]
 export const escalasPsicologica =[
-                {label:' 	Adecuado  ',value:'adecuado'},
+                {label:' 	Optimo  ',value:'optio'},
                 {label:' 	Medio  ',value:'medio'},
                 {label:' 	Inadecuado  ',value:'inadecuado'},
-                {label:' 	Observación  ',value:'observación'},
 ]
 
 //VALORES DE LA VISTA

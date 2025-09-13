@@ -84,3 +84,44 @@ export const validationMedical = yup.object().shape({
   resultado_evaluacion: yup.string().required('requerido'),
   //motivo_resultado: yup.string().required('requerido'),
 });
+
+
+export const validationPsychologicalBasic = yup.object().shape({
+  ap_paterno: yup.string().required('El apellido paterno es obligatorio').min(3, 'El nombre no puede tener menos de 3 caracteres'),
+  ap_materno: yup.string().required('El apellido materno es obligatorio').min(3, 'El apellido paterno no puede tener menos de 3 caracteres'),
+  nombre: yup.string().required('El nombre es obligatorio'),
+  ci: yup.string().required('El CI es obligatorio'),
+  edad: yup.number().typeError('La edad debe ser un número').min(18, 'Edad inválida').required('La edad es obligatoria'),
+  fecha_evaluacion: yup.string().required('La fecha es obligatoria'),
+  lugar_nacimiento:yup.string().required('La lugar de nacimiento es obligatoria'),
+  fecha_nacimiento: yup.string().required('La fecha es obligatoria'),
+  profecion:yup.string().required('La profeción es obligatoria'),
+  domicilio:yup.string().required('La Domicilio es obligatoria'),
+  numero_domicilio:yup.string().required('La numero domicilio es obligatoria'),
+  zona:yup.string().required('El zona es obligatoria'),
+  telefono:yup.string().required('La telefono es obligatoria'),
+});
+
+export const validationPsychological = yup.object().shape({
+  foto: yup.string().required('La foto es obligatoria'),
+  ap_paterno: yup.string().required('El apellido paterno es obligatorio').min(3, 'El nombre no puede tener menos de 3 caracteres'),
+  ap_materno: yup.string().required('El apellido materno es obligatorio').min(3, 'El apellido paterno no puede tener menos de 3 caracteres'),
+  nombre: yup.string().required('El nombre es obligatorio'),
+  ci: yup.string().required('El CI es obligatorio'),
+  edad: yup.number().typeError('La edad debe ser un número').min(18, 'Edad inválida').required('La edad es obligatoria'),
+  fecha_evaluacion: yup.string().required('La fecha es obligatoria'),
+  lugar_nacimiento:yup.string().required('La lugar de nacimiento es obligatoria'),
+  fecha_nacimiento: yup.string().required('La fecha es obligatoria'),
+  profecion:yup.string().required('La profeción es obligatoria'),
+  domicilio:yup.string().required('La Domicilio es obligatoria'),
+  numero_domicilio:yup.string().required('El numero domicilio es obligatoria'),
+  zona:yup.string().required('La zona es obligatoria'),
+  telefono:yup.string().required('La telefono es obligatoria'),
+
+  historia_familiar:yup.string().required('requerido'),
+  coordinacion_visomotora:yup.string().required('requerido'),
+  personalidad:yup.string().required('requerido'),
+  atencion_cognitiva: yup.string().required('requerido'),
+  reaccion_estres_riego:yup.string().required('requerido'),
+  observacion:yup.string().required('requerido'),
+});

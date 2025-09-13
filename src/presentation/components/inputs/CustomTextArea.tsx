@@ -23,9 +23,10 @@ interface CustomTextAreaProps {
   rows?: number;
   minRows?: number;
   maxRows?: number;
+  uppercase?:boolean
 }
 
-const CustomTextArea: React.FC<CustomTextAreaProps> = ({name,control,label,icon,sx,sxInputLabel,placeholder = '',disabled = false,onChange,height = '',rows = 4,minRows=1,maxRows=4}) => {
+const CustomTextArea: React.FC<CustomTextAreaProps> = ({name,control,label,icon,sx,sxInputLabel,placeholder = '',disabled = false,onChange,height = '',rows = 4,minRows=1,maxRows=4,uppercase=false}) => {
   const errorMessage = control._formState.errors[name]?.message as string | undefined;
 
   return (
@@ -46,8 +47,9 @@ const CustomTextArea: React.FC<CustomTextAreaProps> = ({name,control,label,icon,
             placeholder={placeholder}
             value={field.value || ''}
             onChange={(event) => {
-              field.onChange(event);
-              onChange?.(event.target.value, field.name);
+              const value = uppercase ? event.target.value.toUpperCase() : event.target.value;
+              field.onChange(value);
+              onChange?.(value, field.name);
             }}
             InputProps={{
               startAdornment: icon && (

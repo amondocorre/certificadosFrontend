@@ -15,4 +15,10 @@ export class PrintRepositoryImpl implements PrintRepository{
   async printCierreTurno(id:number): Promise<void> {
     return await this.printService.printCierreTurno(id);
   }
+  async printEvaMedical(id:number): Promise<void> {
+    return await this.printService.printEvaMedical(id);
+  }
+  async printEvaPsychological(id:number): Promise<void> {
+    return await this.printService.printEvaPsychological(id);
+  }
 }

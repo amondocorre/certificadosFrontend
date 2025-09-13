@@ -6,6 +6,8 @@ import { PrintMovimientoCajaUseCase } from "../../domain/useCases/prints/PrintMo
 import { PrintViewModel } from "../../presentation/viewModel/prints/PrintViewModel";
 import { PrintCierreTurnoUseCase } from "../../domain/useCases/prints/PrintCierreTurno";
 import { PrintAperturaTurnoUseCase } from "../../domain/useCases/prints/PrintAperturaTurno";
+import { PrintEvaMedicalUseCase } from "../../domain/useCases/prints/printEvaMedical";
+import { PrintEvaPsychologicalUseCase } from "../../domain/useCases/prints/printEvaPsychological";
 
  const printContainer = createContainer();
  printContainer.register({
@@ -18,6 +20,8 @@ import { PrintAperturaTurnoUseCase } from "../../domain/useCases/prints/PrintApe
    printMovimientoCaja:asClass(PrintMovimientoCajaUseCase).singleton(),
    printAperturaTurno:asClass(PrintAperturaTurnoUseCase).singleton(),
    printCierreTurno:asClass(PrintCierreTurnoUseCase).singleton(),
+   printEvaMedical:asClass(PrintEvaMedicalUseCase).singleton(),
+   printEvaPsychological:asClass(PrintEvaPsychologicalUseCase).singleton(),
    // VIEW NOMDEL
    printViewModel:asClass(PrintViewModel).singleton(),
    

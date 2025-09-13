@@ -29,10 +29,11 @@ interface UserFormProps {
   updateMedical: (data:EvaluationMedical) => void;
   getExploration:(exploration:Exploration)=>Promise<Exploration[]>
   createExploration:(exploration:Exploration)=>void;
+  printEvaluation:(id:number)=> void;
   client?: any;
   buttons:Button[];
 }
-const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getExploration,createExploration,buttons,client}) => {
+const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getExploration,createExploration,printEvaluation,buttons,client}) => {
   const stateUpdate = useMemo(()=>{
     return!(buttons.filter((button: Button) => button.nombre === 'update' && button.tipo === 'table')?.length===0) && client?.id_estado_evaluacion==1
   },[buttons,client])
@@ -1205,6 +1206,16 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
               />
             </>
             }
+          {client && client?.id_estado_evaluacion==2 && 
+            <ActionButton
+              key={`button-cancel`}
+              type={'cancel'}
+              label='descargar PDG.'
+              icon={<MUIcons.PictureAsPdf/>}
+              onClick={() => {printEvaluation(Number(client?.id_evaluacion_medica))}}
+              disabled={false} 
+            />
+          }
           </ContainerButtons>
         </form>
       </Box>

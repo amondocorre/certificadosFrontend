@@ -32,9 +32,7 @@ const CustomImageUpload: React.FC<CustomImageUploadProps> = ({ name, control, la
   const [openModal, setOpenModal] = useState(false);
   const errorMessage = control._formState.errors[name]?.message as string | undefined;
   useEffect(() => {
-    if (defaultValue) {
-      setPreviewImage(defaultValue);
-    }
+    setPreviewImage(defaultValue)??'';
   }, [defaultValue]);
 
   const handleImageChange = useCallback((event: React.ChangeEvent<HTMLInputElement>, field: any) => {

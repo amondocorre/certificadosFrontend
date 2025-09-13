@@ -14,4 +14,10 @@ export class PrintViewModel {
   async printCierreTurno(id:number):Promise<void>{
     return await this.printUseCases.printCierreTurno.execute(id);
   }
+  async printEvaMedical(id:number):Promise<void>{
+    return await this.printUseCases.printEvaMedical.execute(id);
+  }
+  async printEvaPsychological(id:number):Promise<void>{
+    return await this.printUseCases.printEvaPsychological.execute(id);
+  }
 }

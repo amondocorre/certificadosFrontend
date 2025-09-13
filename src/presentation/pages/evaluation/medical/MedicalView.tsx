@@ -17,6 +17,7 @@ import ContainerFilter from '../../../components/containers/ContainerFilter';
 import CustomAutocompletePerson from '../../../components/inputs/CustomAutocompletePerson'; 
 
 import { useForm } from 'react-hook-form';
+import { printContainer } from '../../../../di/prints/printContainer';
 interface LayoutContext {
   currentMenuItem: NavigationItem | null;
 }
@@ -25,6 +26,7 @@ const MedicalView: React.FC = memo(() => {
   const UserViewModel = userContainer.resolve('UserViewModel');
   const ExplorationViewModel = ExplorationContainer.resolve('explorationViewModel');
   const MedicalViewModel = MedicalContainer.resolve('medicalViewModel');
+  const PrintViewModel = printContainer.resolve('printViewModel');
   const [loading, setLoading] = useState(false)
   const [buttons , setButtons] = useState<Button[]>([])
   const [selectClient, setSelectClient] = useState<any>(null)
@@ -120,7 +122,13 @@ const MedicalView: React.FC = memo(() => {
     }
     setLoading(false)
   },[])
-
+  const printEvaluation = async (id:number) => {
+    setLoading(true)
+    try {
+      await PrintViewModel.printEvaMedical(id);
+    } catch (error) {}
+    setLoading(false)
+  };
   const handleMedical = (data:any)=>{
     setSelectClient(data);
   }
@@ -188,6 +196,7 @@ const MedicalView: React.FC = memo(() => {
           updateMedical={handleUpdate}
           getExploration={getExploration}
           createExploration={handleCreateExploration}
+          printEvaluation={printEvaluation}
           client={selectClient}
           buttons={buttons}
           />
