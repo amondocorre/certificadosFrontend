@@ -77,9 +77,9 @@ export const validationMedical = yup.object().shape({
   motoras_sensetivas_diagnosticadas: yup.string().required('requerido'),
 
   requiere_evaluacion_especialidad: yup.string().required('requerido'),
-  motivo_referencia_especialidad: yup.string().required('requerido'),
-  evaluacion_especialidad: yup.string().required('requerido'),
-  requiere_evaluacion_psicosensometria: yup.string().required('requerido'),
+  //motivo_referencia_especialidad: yup.string().required('requerido'),
+  //evaluacion_especialidad: yup.string().required('requerido'),
+  //requiere_evaluacion_psicosensometria: yup.string().required('requerido'),
 
   resultado_evaluacion: yup.string().required('requerido'),
   //motivo_resultado: yup.string().required('requerido'),

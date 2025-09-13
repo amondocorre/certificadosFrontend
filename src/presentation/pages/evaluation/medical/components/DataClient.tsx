@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect} from 'react';
+import React, { useCallback, useEffect, useMemo} from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import {Grid,Box,} from '@mui/material';
@@ -23,6 +23,7 @@ import { Exploration } from '../../../../../domain/models/Evaluation';
 import { EvaluationMedical } from '../../../../../domain/models/EvaluationMedical';
 import { validationMedical, validationMedicalBasic } from '../../formConfig/validationSchema';
 import { defaultValuesMedical } from '../../formConfig/defaultValues';
+import { accordionFieldMedical } from '../../accordionFieldMap';
 interface UserFormProps {
   createMedical: (data:EvaluationMedical) => void;
   updateMedical: (data:EvaluationMedical) => void;
@@ -32,8 +33,10 @@ interface UserFormProps {
   buttons:Button[];
 }
 const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getExploration,createExploration,buttons,client}) => {
-  const btnUpdate = buttons.filter((button: Button) => button.nombre === 'update' && button.tipo === 'table');
-  const stateUpdate = !(btnUpdate?.length===0)
+  const stateUpdate = useMemo(()=>{
+    return!(buttons.filter((button: Button) => button.nombre === 'update' && button.tipo === 'table')?.length===0) && client?.id_estado_evaluacion==1
+  },[buttons,client])
+
   const btnCreate = buttons.filter((button: Button) => button.nombre === 'create' && button.tipo === 'header');
   const stateCreate =  !(btnCreate?.length===0)
   const { control, formState: { errors },setError,clearErrors, reset, setValue, getValues } = useForm<any>({
@@ -55,12 +58,28 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
       tipo === 'create' ? handleCreate(validated, caso) : handleUpdate(validated, caso);
     } catch (err: any) {
       if (err.inner) {
+        console.log('err.inner',err.inner)
         err.inner.forEach((validationError: any) => {
           setError(validationError.path, {
             type: 'manual',
             message: validationError.message,
           });
         });
+        const firstErrorField = err.inner[0].path;
+        const accordionKey = accordionFieldMedical[firstErrorField]??'';
+        const accordionElement = document.querySelector(`#${accordionKey}`);
+        const isExpanded = accordionElement?.classList.contains('Mui-expanded');
+        if(!isExpanded){
+          const header:any = accordionElement?.querySelector('.MuiAccordionSummary-root'); // Ajusta según tu clase real
+          header?.click();
+        }
+        setTimeout(() => {
+        const errorElement:any = document.querySelector(`[name="${firstErrorField}"]`);
+        if (errorElement) {
+          errorElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          errorElement.focus();
+        }
+      }, 300);
       }
     }
   };
@@ -123,6 +142,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
           <ScrollableBox sx={{paddingTop:0,px:0.5,maxHeight: 'calc(80vh - 60px)'}}>
             <DynamicAccordion
               key={'dotos-personales'}
+              id={'dotos-personales'}
               sx={{background:' #74b3e7ff',mb:1}}
               defaultExpanded={false}
               childrenTitle={
@@ -217,6 +237,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
             </DynamicAccordion>
             <DynamicAccordion
               key={'amtecedentes'}
+              id={'amtecedentes'}
               sx={{background:' #1b629b',mb:1}}
               defaultExpanded={false}
               childrenTitle={
@@ -310,6 +331,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
             </DynamicAccordion>
             <DynamicAccordion
               key={'examen-clinico'}
+              id={'examen-clinico'}
               sx={{background:' #217ac1',mb:1}}
               defaultExpanded={false}
               childrenTitle={
@@ -414,6 +436,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
             </DynamicAccordion>
             <DynamicAccordion
               key={'examen-fisico'}
+              id={'examen-fisico'}
               sx={{background:' #2ba1ff'}}
               defaultExpanded={false}
               childrenTitle={
@@ -424,6 +447,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
             >
               <DynamicAccordion
                 key={'examen-fisico-1'}
+                id={'examen-fisico-1'}
                 sx={{background:' #2aa0ff',my:1}}
                 defaultExpanded={false}
                 childrenTitle={
@@ -517,7 +541,9 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                       icon={<MUIcons.AccountCircle/>}
                     />
                   </Grid>
-                  <Grid size={{xs: 4,sm: 8}}>
+
+                  <Grid size={{xs: 2,sm: 2}}></Grid>
+                  <Grid size={{xs: 6,sm: 6}}>
                     <CustomSwitchPerson
                       name="estrabismo"
                       control={control}
@@ -528,7 +554,8 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                     />
                   </Grid>
                   <Grid size={{xs: 4,sm: 4}}></Grid>
-                  <Grid size={{xs: 4,sm: 2}}>
+                  <Grid size={{xs: 2,sm: 2}}></Grid>
+                  <Grid size={{xs: 6,sm: 6}}>
                     <CustomSwitchPerson
                       name="usa_lentes"
                       control={control}
@@ -539,7 +566,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                       onChange={handleChangeSwitchPerson}
                     />
                   </Grid>
-                  <Grid size={{xs: 4,sm: 1}}></Grid>
+                  {/*<Grid size={{xs: 4,sm: 1}}></Grid>*/}
                   <Grid size={{xs: 4,sm: 4}}>
                     <CustomSelect
                       name="tipo_lentes"
@@ -550,8 +577,8 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                       icon={<MUIcons.Vaccines />}
                     />
                   </Grid>
-                  
-                  <Grid size={{xs: 4,sm: 8}}>
+                  <Grid size={{xs: 2,sm: 2}}></Grid>
+                  <Grid size={{xs: 6,sm: 6}}>
                     <CustomSwitchPerson
                       name="cirugia"
                       control={control}
@@ -627,46 +654,22 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                         <StyledTitle sx={{color:'black',mt:1}}>O.D.</StyledTitle>
                       </div>
                       <div>
-                        <Box sx={{width:'100%'}}>
-                          <CustomSelect
-                            name=""
-                            control={control}
-                            label=""
-                            options={medicionOcular}
-                            placeholder="Seleccione una medida"
-                            disabled={!(stateUpdate || !client)}
-                            icon={<MUIcons.AccountCircle/>}
-                          />
-                        </Box>
-                      </div>
-                      <div>
-                        <Box sx={{width:'100%'}}>
-                          <CustomSelect
-                            name=""
-                            control={control}
-                            label=""
-                            options={medicionOcular}
-                            placeholder="Seleccione una medida"
-                            disabled={!(stateUpdate || !client)}
-                            icon={<MUIcons.AccountCircle/>}
-                          />
-                        </Box>
-                      </div>
-                      <div>
-                        <CustomTextField
+                        <CustomSelect
                           name="od_con_lentes"
                           control={control}
                           label=""
+                          options={medicionOcular}
                           placeholder="Ingrese el detalle"
                           disabled={!(stateUpdate || !client)}
                           icon={<MUIcons.AccountCircle/>}
                         />
                       </div>
                       <div>
-                        <CustomTextField
+                        <CustomSelect
                           name="od_sin_lentes"
                           control={control}
                           label=""
+                          options={medicionOcular}
                           placeholder="Ingrese el detalle"
                           disabled={!(stateUpdate || !client)}
                           icon={<MUIcons.AccountCircle/>}
@@ -686,20 +689,22 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                         <StyledTitle sx={{color:'black'}}>OI</StyledTitle>
                       </div>
                       <div>
-                        <CustomTextField
+                        <CustomSelect
                           name="oi_con_lentes"
                           control={control}
                           label=""
+                          options={medicionOcular}
                           placeholder="Ingrese el detalle"
                           disabled={!(stateUpdate || !client)}
                           icon={<MUIcons.AccountCircle/>}
                         />
                       </div>
                       <div>
-                        <CustomTextField
+                        <CustomSelect
                           name="oi_sin_lentes"
                           control={control}
-                          label="Visión Profunda"
+                          label=""
+                          options={medicionOcular}
                           placeholder="Ingrese el detalle"
                           disabled={!(stateUpdate || !client)}
                           icon={<MUIcons.AccountCircle/>}
@@ -730,7 +735,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                   </Grid>
                   <Grid size={{xs: 6,sm: 6}}>
                     <CustomTextField
-                      name="vision_profunda"
+                      name="dx_lampara_hendidura"
                       control={control}
                       label="Dx Lampara Hendiduras"
                       placeholder="Ingrese el detalle"
@@ -793,6 +798,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
               </DynamicAccordion>
               <DynamicAccordion
                 key={'examen-fisico-2'}
+                id={'examen-fisico-2'}
                 sx={{background:' #2aa0ff',mb:1}}
                 defaultExpanded={false}
                 childrenTitle={
@@ -840,6 +846,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
               </DynamicAccordion>
               <DynamicAccordion
                 key={'examen-fisico-3'}
+                id={'examen-fisico-3'}
                 sx={{background:' #2aa0ff',mb:1}}
                 defaultExpanded={false}
                 childrenTitle={
@@ -870,6 +877,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
               </DynamicAccordion>
               <DynamicAccordion
                 key={'examen-fisico-4'}
+                id={'examen-fisico-4'}
                 sx={{background:' #2aa0ff',mb:1}}
                 defaultExpanded={false}
                 childrenTitle={
@@ -949,6 +957,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
               </DynamicAccordion>
               <DynamicAccordion
                 key={'examen-fisico-5'}
+                id={'examen-fisico-5'}
                 sx={{background:' #2aa0ff'}}
                 defaultExpanded={false}
                 childrenTitle={

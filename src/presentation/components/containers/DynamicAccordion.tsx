@@ -15,16 +15,18 @@ interface DynamicAccordionProps {
   defaultExpanded?: boolean;
    sx?: SxProps<Theme>;
    sxBody?: SxProps<Theme>;
+   id?: string;
 }
 
 const DynamicAccordion: React.FC<DynamicAccordionProps> = ({
   childrenTitle,
   children,
   defaultExpanded = false,
+  id,
   sx,sxBody
 }) => {
   return (
-    <Accordion defaultExpanded={defaultExpanded} sx={{'&.Mui-expanded': {marginTop:0.3,}}}>
+    <Accordion id={id} defaultExpanded={defaultExpanded} sx={{'&.Mui-expanded': {marginTop:0.3,}}}>
       <AccordionSummary  sx={{
       padding:0,minHeight: '25px',height:{xs:'20px', md:'30px', sm:'45px'},
       '&.Mui-expanded': {minHeight: '20px',height: {xs:'25px', md:'30px', sm:'45px'},},

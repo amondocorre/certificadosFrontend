@@ -14,10 +14,10 @@ export const grupoSanguineos = [
                   {label:'A RH NEGATIVO(-)',value:'A RH NEGATIVO'},
                   {label:'B RH POSITIVO(+)',value:'B RH POSITIVO'},
                   {label:'B RH NEGATIVO(-)',value:'B RH NEGATIVO'},
+                  {label:'AB RH POSITIVO(+)',value:'AB RH POSITIVO'},
                   {label:'AB RH NEGATIVO(-)',value:'AB RH NEGATIVO'},
-                  {label:'AB RH NEGATIVO(-)',value:'AB RH NEGATIVO'},
-                  {label:'O RH NEGATIVO(-)',value:'B RH NEGATIVO'},
-                  {label:'0 RH NEGATIVO(-)',value:'B RH NEGATIVO'}
+                  {label:'O RH POSITIVO(+)',value:'0 RH POSITIVO'},
+                  {label:'O RH NEGATIVO(-)',value:'O RH NEGATIVO'}
                 ]
 export const temperaturas =[
                   {label:'  36,2   ',value:'36,2'},
