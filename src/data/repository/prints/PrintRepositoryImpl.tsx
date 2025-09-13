@@ -15,16 +15,4 @@ export class PrintRepositoryImpl implements PrintRepository{
   async printCierreTurno(id:number): Promise<void> {
     return await this.printService.printCierreTurno(id);
   }
-  async printNotaVenta(id:number): Promise<void> {
-    return await this.printService.printNotaVenta(id);
-  }
-  async printReciboPago(id:number): Promise<void> {
-    return await this.printService.printReciboPago(id);
-  }
-  async printRecibosPagos(ids:number[]): Promise<void> {
-    return await this.printService.printRecibosPagos(ids);
-  }
-  async printReciboPagosRent(id:number): Promise<void> {
-    return await this.printService.printReciboPagosRent(id);
-  }
 }
