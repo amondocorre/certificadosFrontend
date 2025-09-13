@@ -58,7 +58,6 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
       tipo === 'create' ? handleCreate(validated, caso) : handleUpdate(validated, caso);
     } catch (err: any) {
       if (err.inner) {
-        console.log('err.inner',err.inner)
         err.inner.forEach((validationError: any) => {
           setError(validationError.path, {
             type: 'manual',
@@ -166,6 +165,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                   <CustomTextField
                     name="ap_paterno"
                     control={control}
+                    uppercase={true}
                     label="Apellido Paterno"
                     placeholder="Ingrese el Apellido Paterno"
                     disabled={!(stateUpdate || !client)}
@@ -176,6 +176,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                   <CustomTextField
                     name="ap_materno"
                     control={control}
+                    uppercase={true}
                     label="Apellido Materno"
                     placeholder="Ingrese el Apellido Materno"
                     disabled={!(stateUpdate || !client)}
@@ -186,6 +187,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                   <CustomTextField
                     name="nombre"
                     control={control}
+                    uppercase={true}
                     label="Nombres"
                     placeholder="Ingrese el/los nombres"
                     disabled={!(stateUpdate || !client)}
@@ -196,6 +198,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                   <CustomTextField
                     name="ci"
                     control={control}
+                    uppercase={true}
                     label="Nro. C.I."
                     placeholder="Ingrese el Nro. de C.I."
                     disabled={!(stateUpdate || !client)}
@@ -206,6 +209,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                   <CustomTextField
                     name="edad"
                     control={control}
+                    uppercase={true}
                     label="Edad"
                     type='number'
                     placeholder="Ingrese la edad"
@@ -251,6 +255,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                   <CustomTextField
                     name="antecendentes_rc"
                     control={control}
+                    uppercase={true}
                     label="Antecedentes relacionados con la conducción:"
                     placeholder="Antecedentes relacionados con la conducción"
                     disabled={!(stateUpdate || !client)}
@@ -261,6 +266,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                   <CustomTextField
                     name="antecendentes_pp"
                     control={control}
+                    uppercase={true}
                     label="Antecedentes personales patológicos:"
                     placeholder="Antecendentes personales patológicos"
                     disabled={!(stateUpdate || !client)}
@@ -354,7 +360,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                   />
                 </Grid>
                 <Grid size={{xs: 3,sm: 3}}></Grid>
-                <Grid size={{xs: 8,sm: 8}} sx={{pb:1,border:'4px solid #bee4eeff'}}>
+                <Grid size={{xs: 6,sm: 6}} sx={{pb:1,border:'4px solid #bee4eeff'}}>
                   <StyledTitle sx={{ color: 'black'}}>SIGNOS VITALES:</StyledTitle>
                   <Box display="flex" flexDirection="row" gap={2} mt={0} px={1}>
                     <Box sx={{width:'50%'}}>
@@ -405,24 +411,27 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                     </Box>
                   </Box>
                 </Grid> 
-                <Grid size={{xs: 4,sm: 4}} sx={{pb:1,border:'4px solid #bee4eeff'}}>
+                <Grid size={{xs: 6,sm: 6}} sx={{pb:1,border:'4px solid #bee4eeff'}}>
                   <StyledTitle sx={{ color: 'black'}}>SOMATOMETRIA:</StyledTitle>
                   <Box display="flex" flexDirection="column" gap={0.9} mt={0} px={1}>
                     <Box sx={{width:'100%'}}>
                       <CustomTextField
                         name="talla"
                         control={control}
+                        uppercase={true}
                         label="Talla"
                         placeholder="Ingrese la talla en mts."
                         type='number'
                         disabled={!(stateUpdate || !client)}
                         icon={<MUIcons.AccountCircle/>}
+                        
                       />
                     </Box>
                     <Box sx={{width:'100%'}}>
                       <CustomTextField
                         name="peso"
                         control={control}
+                        uppercase={true}
                         label="Peso"
                         placeholder="Ingrese el peso en Kg."
                         type='number'
@@ -465,6 +474,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                         valueOption='descripcion'
                         name="cabeza"
                         control={control}
+                        uppercase={true}
                         label="Cabeza"
                         placeholder="Ingrese un detalle"
                         handleChange={()=>{}}
@@ -482,6 +492,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                         valueOption='descripcion'
                         name="cara"
                         control={control}
+                        uppercase={true}
                         label="Cara"
                         placeholder="Ingrese un detalle"
                         handleChange={()=>{}}
@@ -499,6 +510,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                         valueOption='descripcion'
                         name="cuello"
                         control={control}
+                        uppercase={true}
                         label="Cuello"
                         placeholder="Ingrese un detalle"
                         handleChange={()=>{}}
@@ -515,30 +527,36 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                     <CustomTextField
                       name="ex_general_ojos"
                       control={control}
+                      uppercase={true}
                       label="Examen general de ojos"
                       placeholder="Ingrese el detalle"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.AccountCircle/>}
+
                     />
                   </Grid>
                   <Grid size={{xs: 4,sm: 4}}>
                     <CustomTextField
                       name="movimiento_oculares"
                       control={control}
+                      uppercase={true}
                       label="Movimientos Oculares"
                       placeholder="Ingrese el detalle"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.AccountCircle/>}
+
                     />
                   </Grid>
                   <Grid size={{xs: 4,sm: 4}}>
                     <CustomTextField
                       name="reflejo_luminoso_corneal"
                       control={control}
+                      uppercase={true}
                       label="Reflejo Luminoso corneal"
                       placeholder="Ingrese el detalle"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.AccountCircle/>}
+
                     />
                   </Grid>
 
@@ -592,12 +610,12 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                   <Grid size={{xs: 12,sm: 12}}>
                     <StyledTitle sx={{color:'black'}}>AGUDEZA VISUAL </StyledTitle>
                   </Grid>
-                  
-                  
+                                    
                   <Grid size={{xs: 6,sm: 6}}>
                     <CustomTextField
                       name="campimetria"
                       control={control}
+                      uppercase={true}
                       label="Campimetría"
                       placeholder="Ingrese el detalle"
                       disabled={!(stateUpdate || !client)}
@@ -608,6 +626,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                     <CustomTextField
                       name="colorimetria"
                       control={control}
+                      uppercase={true}
                       label="Colometría"
                       placeholder="Ingrese el detalle"
                       disabled={!(stateUpdate || !client)}
@@ -679,6 +698,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                         <CustomTextField
                           name="od_correccion"
                           control={control}
+                          uppercase={true}
                           label=""
                           placeholder="Ingrese el detalle"
                           disabled={!(stateUpdate || !client)}
@@ -714,6 +734,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                         <CustomTextField
                           name="oi_correccion"
                           control={control}
+                          uppercase={true}
                           label=""
                           placeholder="Ingrese el detalle"
                           disabled={!(stateUpdate || !client)}
@@ -727,6 +748,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                     <CustomTextField
                       name="vision_profunda"
                       control={control}
+                      uppercase={true}
                       label="Visión Profunda"
                       placeholder="Ingrese el detalle"
                       disabled={!(stateUpdate || !client)}
@@ -737,6 +759,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                     <CustomTextField
                       name="dx_lampara_hendidura"
                       control={control}
+                      uppercase={true}
                       label="Dx Lampara Hendiduras"
                       placeholder="Ingrese el detalle"
                       disabled={!(stateUpdate || !client)}
@@ -755,6 +778,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                         valueOption='descripcion'
                         name="oido_externo"
                         control={control}
+                        uppercase={true}
                         label="Examen de oído externo"
                         placeholder="Ingrese un detalle"
                         handleChange={()=>{}}
@@ -768,6 +792,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                     <CustomTextField
                       name="oroscopia"
                       control={control}
+                      uppercase={true}
                       label="Otoscopia"
                       placeholder="Ingrese el detalle"
                       disabled={!(stateUpdate || !client)}
@@ -778,6 +803,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                     <CustomTextField
                       name="t_weber"
                       control={control}
+                      uppercase={true}
                       label="T. Weber"
                       placeholder="Ingrese el detalle"
                       disabled={!(stateUpdate || !client)}
@@ -788,6 +814,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                     <CustomTextField
                       name="t_rinne"
                       control={control}
+                      uppercase={true}
                       label="T. Rinne"
                       placeholder="Ingrese el detalle"
                       disabled={!(stateUpdate || !client)}
@@ -816,6 +843,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                         valueOption='descripcion'
                         name="torax"
                         control={control}
+                        uppercase={true}
                         label="Exoloración de tórax"
                         placeholder="Ingrese un detalle"
                         handleChange={()=>{}}
@@ -833,6 +861,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                         valueOption='descripcion'
                         name="cardiopolmunar"
                         control={control}
+                        uppercase={true}
                         label="Exploración del área cardiopulmonar"
                         placeholder="Ingrese un detalle"
                         handleChange={()=>{}}
@@ -864,6 +893,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                         valueOption='descripcion'
                         name="abdomen"
                         control={control}
+                        uppercase={true}
                         label="Exploración de abdomen"
                         placeholder="Ingrese un detalle"
                         handleChange={()=>{}}
@@ -894,6 +924,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                     <CustomTextField
                       name="s_trofismo"
                       control={control}
+                      uppercase={true}
                       label="Trofismo"
                       placeholder="Ingrese el detalle"
                       disabled={!(stateUpdate || !client)}
@@ -904,6 +935,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                     <CustomTextField
                       name="s_tono_muscular"
                       control={control}
+                      uppercase={true}
                       label="Tono Muscular"
                       placeholder="Ingrese el detalle"
                       disabled={!(stateUpdate || !client)}
@@ -914,6 +946,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                     <CustomTextField
                       name="s_fuerza_muscular"
                       control={control}
+                      uppercase={true}
                       label="Fuerza Muscular"
                       placeholder="Ingrese el detalle"
                       disabled={!(stateUpdate || !client)}
@@ -927,6 +960,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                     <CustomTextField
                       name="i_trofismo"
                       control={control}
+                      uppercase={true}
                       label="Trofismo"
                       placeholder="Ingrese el detalle"
                       disabled={!(stateUpdate || !client)}
@@ -937,6 +971,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                     <CustomTextField
                       name="i_tono_muscular"
                       control={control}
+                      uppercase={true}
                       label="Tono muscular"
                       placeholder="Ingrese el detalle"
                       disabled={!(stateUpdate || !client)}
@@ -947,6 +982,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                     <CustomTextField
                       name="i_fuerza_muscular"
                       control={control}
+                      uppercase={true}
                       label="Fuerza Muscular"
                       placeholder="Ingrese el detalle"
                       disabled={!(stateUpdate || !client)}
@@ -971,6 +1007,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                     <CustomTextField
                       name="cordinacion_marcha"
                       control={control}
+                      uppercase={true}
                       label="Cordinación y Marcha"
                       placeholder="Ingrese el detalle"
                       disabled={!(stateUpdate || !client)}
@@ -981,6 +1018,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                     <CustomTextField
                       name="reflejos_osteotendinosos"
                       control={control}
+                      uppercase={true}
                       label="Reflejos Osteotendinosos"
                       placeholder="Ingrese el detalle"
                       disabled={!(stateUpdate || !client)}
@@ -994,6 +1032,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                     <CustomTextField
                       name="talon_rodilla"
                       control={control}
+                      uppercase={true}
                       label="Prueba Talón-Rodilla"
                       placeholder="Ingrese el detalle"
                       disabled={!(stateUpdate || !client)}
@@ -1004,6 +1043,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                     <CustomTextField
                       name="dedo_nariz"
                       control={control}
+                      uppercase={true}
                       label="Prueba Dedo-Nariz"
                       placeholder="Ingrese el detalle"
                       disabled={!(stateUpdate || !client)}
@@ -1018,6 +1058,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                     <CustomTextField
                       name="romberg"
                       control={control}
+                      uppercase={true}
                       label="Prueba Romberg"
                       placeholder="Ingrese el detalle"
                       disabled={!(stateUpdate || !client)}
@@ -1028,6 +1069,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                     <CustomTextField
                       name="motoras_sensetivas_diagnosticadas"
                       control={control}
+                      uppercase={true}
                       label="Fallas motoras sensitivas diagnosticadas"
                       placeholder="Ingrese el detalle"
                       disabled={!(stateUpdate || !client)}
@@ -1054,6 +1096,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                     <CustomTextField
                       name="motivo_referencia_especialidad"
                       control={control}
+                      uppercase={true}
                       label="Motivo de referencia a especialidad"
                       placeholder="Ingrese el detalle"
                       disabled={!(stateUpdate || !client)}
@@ -1065,6 +1108,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                     <CustomTextField
                       name="evaluacion_especialidad"
                       control={control}
+                      uppercase={true}
                       label="Resultado de la evaluación de especialidad"
                       placeholder="Ingrese el detalle"
                       disabled={!(stateUpdate || !client)}
@@ -1106,6 +1150,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                         <CustomTextField
                           name="motivo_resultado"
                           control={control}
+                          uppercase={true}
                           label="Motivos"
                           placeholder="Ingrese el detalle"
                           disabled={!(stateUpdate || !client)}

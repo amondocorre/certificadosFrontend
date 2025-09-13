@@ -1,7 +1,7 @@
 import React from 'react';
 import { TextField, FormControl, FormHelperText, InputAdornment, Theme } from '@mui/material';
 import { Controller } from 'react-hook-form';
-import { height, SxProps } from '@mui/system';
+import { SxProps } from '@mui/system';
 
 interface CustomTextFieldProps {
   name: string;
@@ -11,17 +11,32 @@ interface CustomTextFieldProps {
   type?: 'text' | 'number' | 'password' | 'email' | 'date' | 'datetime-local';
   placeholder?: string;
   disabled?: boolean;
-  onChange?: (data: any,name:string) => void;
-  height?: string|{};
-  sx?:{},
+  onChange?: (data: any, name: string) => void;
+  height?: string | {};
+  sx?: {};
   sxInputLabel?: SxProps<Theme>;
+  uppercase?: boolean; // 🔹 nueva opción
 }
 
-const CustomTextField: React.FC<CustomTextFieldProps> = ({name,control,label,icon,sx,sxInputLabel,type = 'text',placeholder = '',disabled = false,onChange,height=''}) => {
+const CustomTextField: React.FC<CustomTextFieldProps> = ({
+  name,
+  control,
+  label,
+  icon,
+  sx,
+  sxInputLabel,
+  type = 'text',
+  placeholder = '',
+  disabled = false,
+  onChange,
+  height = '',
+  uppercase = false, // 🔹 valor por defecto
+}) => {
   const inputProps = type === 'number' ? { min: '0' } : {};
   const errorMessage = control._formState.errors[name]?.message as string | undefined;
+
   return (
-    <FormControl fullWidth error={!!control._formState.errors[name]} disabled={disabled} >
+    <FormControl fullWidth error={!!control._formState.errors[name]} disabled={disabled}>
       <Controller
         name={name}
         control={control}
@@ -31,12 +46,14 @@ const CustomTextField: React.FC<CustomTextFieldProps> = ({name,control,label,ico
             label={label}
             variant="outlined"
             type={type}
-            size={'small'}
+            size="small"
             placeholder={placeholder}
             value={field.value || ''}
             error={!!control._formState.errors[name]}
             onChange={(event) => {
-              field.onChange(event); onChange?.(event.target.value, field.name);
+              const value = uppercase ? event.target.value.toUpperCase() : event.target.value;
+              field.onChange(value);
+              onChange?.(value, field.name);
             }}
             InputProps={{
               startAdornment: (
@@ -44,20 +61,22 @@ const CustomTextField: React.FC<CustomTextFieldProps> = ({name,control,label,ico
                   {icon || null}
                 </InputAdornment>
               ),
-              sx: {...sx, height: height?height:undefined},
+              sx: { ...sx, height: height ? height : undefined },
               inputProps: inputProps,
             }}
             InputLabelProps={{
               shrink: type === 'date' || type === 'datetime-local' ? true : undefined,
-              sx: { 
+              sx: {
                 fontSize: '0.98rem',
-                ...sxInputLabel},
+                ...sxInputLabel,
+              },
             }}
             disabled={disabled}
-            sx={{...(disabled && { 
-                '& .MuiInputBase-input.Mui-disabled': { 
+            sx={{
+              ...(disabled && {
+                '& .MuiInputBase-input.Mui-disabled': {
                   WebkitTextFillColor: 'rgba(0, 0, 0, 0.65)',
-                  opacity: 1, 
+                  opacity: 1,
                 },
               }),
             }}
