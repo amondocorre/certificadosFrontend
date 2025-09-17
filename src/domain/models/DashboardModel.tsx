@@ -5,7 +5,6 @@ export interface IngresosDiarios {
   
 }
 
-interface Data extends Record<string, any> {}
 export interface EvaluantionMedical {
   id_evaluacion_medica: number;
   fecha_evaluacion: string;
@@ -27,12 +26,16 @@ interface Pagination {
   totalPages: number;
 }
 
-export interface ApiResponseRent {
+export interface ApiResponse {
   data: EvaluantionMedical[] | EvaluantionPsychological[];
   pagination: Pagination;
 }
-export interface ClientesSexo {
+export interface EvaluationData {
   total: number;
-  masculino: number;
+  masculino: number; 
   femenino: number;
+}
+export interface ResponseEvaluations{
+  medical :EvaluationData;
+  psychological:EvaluationData
 }
