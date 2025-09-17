@@ -396,7 +396,7 @@ const DataClient: React.FC<DataClientFormProps> = ({ createClient,updateClient,p
             <ActionButton
               key={`button-update-1`}
               type={'update'}
-              label='Guardar 1.'
+              label='Guardar.'
               icon={<MUIcons.Save/>}
               onClick={() => validateWithSchema(validationPsychologicalBasic, '1','update')}
               disabled={false} 
@@ -404,7 +404,7 @@ const DataClient: React.FC<DataClientFormProps> = ({ createClient,updateClient,p
             <ActionButton
               key={`button-update-2`}
               type={'update'}
-              label='Guardar 2.'
+              label='Registrar.'
               icon={<MUIcons.Save/>}
               onClick={() => validateWithSchema(validationPsychological, '2','update')}
               disabled={false} 
@@ -416,7 +416,7 @@ const DataClient: React.FC<DataClientFormProps> = ({ createClient,updateClient,p
             <ActionButton
               key={`button-create-1`}
               type={'create'}
-              label='Guardar 1'
+              label='Guardar'
               icon={<MUIcons.Save/>}
               onClick={() => validateWithSchema(validationPsychologicalBasic, '1','create')}
               disabled={false} 
@@ -424,7 +424,7 @@ const DataClient: React.FC<DataClientFormProps> = ({ createClient,updateClient,p
             <ActionButton
               key={`button-create-2`}
               type={'create'}
-              label='Guardar 2'
+              label='Registrar'
               icon={<MUIcons.Save/>}
               onClick={() => validateWithSchema(validationPsychological, '1','create')}
               disabled={false} 
@@ -436,7 +436,7 @@ const DataClient: React.FC<DataClientFormProps> = ({ createClient,updateClient,p
             <ActionButton
               key={`button-cancel`}
               type={'cancel'}
-              label='descargar PDG.'
+              label='descargar PDF.'
               icon={<MUIcons.PictureAsPdf/>}
               onClick={() => {printEvaluation(Number(client?.id_evaluacion_psicologica))}}
               disabled={false} 

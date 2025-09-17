@@ -52,6 +52,7 @@ const DashboardView: React.FC = () => {
     } catch (error) {setIngresosDiarios([])}
     setLoading(false)
   };
+  
   const listEvaMedical = async (limit:number,page:number) => {
     //setLoading(true)
     try {

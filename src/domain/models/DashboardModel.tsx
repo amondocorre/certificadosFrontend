@@ -31,3 +31,8 @@ export interface ApiResponseRent {
   data: EvaluantionMedical[] | EvaluantionPsychological[];
   pagination: Pagination;
 }
+export interface ClientesSexo {
+  total: number;
+  masculino: number;
+  femenino: number;
+}

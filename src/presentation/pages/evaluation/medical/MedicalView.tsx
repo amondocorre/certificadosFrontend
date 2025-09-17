@@ -181,7 +181,7 @@ const MedicalView: React.FC = memo(() => {
                     sx: {
                       fontSize:'16px',
                       color:'#f03434ff',
-                      backgroundColor: '#f8d226ff',
+                      backgroundColor: '#f1f1f1',
                     },
                   },
                 }}>

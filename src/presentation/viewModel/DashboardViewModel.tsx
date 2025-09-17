@@ -16,4 +16,5 @@ export class DashboardViewModel {
   async listEvaPsychological(id_sucursal:number,limit:number,page:number):Promise<ApiResponseRent|ErrorResponse>{
     return await this.dashboardUseCases.listEvaPsychological.execute(id_sucursal,limit,page)
   }
+  
 }
