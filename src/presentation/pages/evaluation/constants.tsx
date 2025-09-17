@@ -7,7 +7,7 @@ export const habitos = [
 export const sexos = [
                   {label:'Masculino',value:'M'},
                   {label:'Femenino',value:'F'},
-                  {label:'Otro',value:'o'}
+                  //{label:'Otro',value:'O'}
                 ]
 export const grupoSanguineos = [
                   {label:'A RH POSITIVO(+)',value:'A RH POSITIVO'},
