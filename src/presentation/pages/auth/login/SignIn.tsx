@@ -7,7 +7,7 @@ import { useAuth } from '../../../hooks/useAuth';
 import { container } from '../../../../di/container';
 import { Loading } from '../../../components/Loading';
 import ModalSelectSucursal from '../../../components/modal/ModalSelectSucursal';
-import logoEmpresa from '../../../../assets/1_empresa.png'
+import logoEmpresa from '../../../../assets/1_empresaCM.png'
  const customTheme = createTheme({
     palette: {
       primary: {

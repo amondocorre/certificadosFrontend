@@ -21,7 +21,7 @@ const TotalClientesCard: React.FC<TotalClientesCardProps> = ({ total,masculino,f
               {tipo==='1' && <MedicalInformation fontSize="large" color='info'/>}
               {tipo==='2' && <Psychology fontSize="large" color='secondary'/>}
               <Typography variant="h6" color="textSecondary" gutterBottom align='center'>
-              {tipo==='1'?'Evaluacion Medica':'Evaluacion Psicologica'}
+              {tipo==='1'?'Evaluación Médica':'Evaluación Psicológica'}
             </Typography>
             </Box>
             <Typography variant="h2" align='center'>
