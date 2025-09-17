@@ -13,7 +13,7 @@ import { formatDate } from '../../../../utils/dateUtils';
 import { Button } from '../../../../../domain/models/ButtonModel';
 import CustomImageUpload from '../../../../components/inputs/CustomImageUpload';
 import CustomSelect from '../../../../components/inputs/CustomSelect';
-import { grupoSanguineos, habitos, presionActerial, presionCardiaca, presionRespiratoria, resultados, sexos, temperaturas, tipoLentes, medicionOcular } from '../../constants';
+import { grupoSanguineos, habitos, presionActerial, presionCardiaca, presionRespiratoria, resultados, sexos, temperaturas, tipoLentes, medicionOcular,colorimetria } from '../../constants';
 import DynamicAccordion from '../../../../components/containers/DynamicAccordion';
 import { StyledHeaderSecondary } from '../../../../components/text/StyledHeader';
 import CustomSwitchPerson from '../../../../components/inputs/CustomSwitchPeson';
@@ -370,7 +370,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                         control={control}
                         label="Temperatura"
                         options={temperaturas}
-                        placeholder="Ingrese un valor"
+                        placeholder="Seleccione un valor"
                         disabled={!(stateUpdate || !client)}
                         icon={<MUIcons.AccountCircle/>}
                       />
@@ -381,7 +381,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                         control={control}
                         label="Presión Arterial"
                         options={presionActerial}
-                        placeholder="Ingrese un valor"
+                        placeholder="Seleccione un valor"
                         disabled={!(stateUpdate || !client)}
                         icon={<MUIcons.AccountCircle/>}
                       />
@@ -393,7 +393,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                         name="frecuencia_cardiaca"
                         control={control}
                         label="Frecuencia Cardiaca"
-                        placeholder="Ingrese un valor"
+                        placeholder="Seleccione un valor"
                         options={presionCardiaca}
                         disabled={!(stateUpdate || !client)}
                         icon={<MUIcons.AccountCircle/>}
@@ -404,7 +404,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                         name="frecuencia_respiratoria"
                         control={control}
                         label="Frecuencia Respiratoria"
-                        placeholder="Ingrese un valor"
+                        placeholder="Seleccione un valor"
                         options={presionRespiratoria}
                         disabled={!(stateUpdate || !client)}
                         icon={<MUIcons.AccountCircle/>}
@@ -623,13 +623,14 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                       icon={<MUIcons.AccountCircle/>}
                     />
                   </Grid>
+                  
                   <Grid size={{xs: 6,sm: 6}}>
-                    <CustomTextField
+                    <CustomSelect
                       name="colorimetria"
                       control={control}
-                      uppercase={true}
-                      label="Colometría"
-                      placeholder="Ingrese el detalle"
+                      label="Colorimetria"
+                      options={colorimetria}
+                      placeholder="Seleccione una opción"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.AccountCircle/>}
                     />
