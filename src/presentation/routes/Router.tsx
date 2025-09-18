@@ -40,8 +40,8 @@ export const router = createBrowserRouter([
         children: [
           { path: '', element: <DashboardView /> },
           { path: 'calendar', element: <CalendarView/> },
-          { path: 'evaluation-medical', element: <MedicalView/> },
-          { path: 'evaluation-psychological', element: <PsychologicalView/> },
+          { path: 'evaluation/medical', element: <MedicalView/> },
+          { path: 'evaluation/psychological', element: <PsychologicalView/> },
           { path: 'reports/cierre-turno', element: <ReporteCiereTurnoView /> },
           { path: 'configurations/users', element: <UsersView /> },
           { path: 'configurations/acces', element: <MenuAccesView /> },
@@ -51,6 +51,7 @@ export const router = createBrowserRouter([
           { path: 'configurations/combo', element: <ComboView /> },
           { path: 'configurations/employees', element: <EmployeesView /> },
           { path: 'configurations/sucursales', element: <SucursalView /> },
+          { path: 'configurations/profiles', element: <ProfilesView /> },
           { path: 'configurations/initial-config/company-data', element: <CompanyDataView /> },
           { path: 'configurations/initial-config/payments-methods', element: <PaymentsMethodsView /> },
           { path: 'cash-mgmt/cajas', element: <CajaView /> },
