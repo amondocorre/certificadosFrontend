@@ -220,6 +220,13 @@ export default function SignIn() {
               Ingresar
             </Button>
           </Box>
+          <Typography 
+            variant="body2" 
+            color="text.secondary" 
+            align="center"
+          >
+            Versión 1.0.1
+          </Typography>
         </Paper>
       </Box>
       {loading &&<Loading></Loading>}
