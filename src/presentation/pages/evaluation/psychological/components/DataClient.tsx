@@ -123,7 +123,9 @@ const DataClient: React.FC<DataClientFormProps> = ({ createClient,updateClient,p
             </StyledHeaderSecondary>
             }
           >
+           
             <Grid container columnSpacing={1} rowSpacing={2} sx={{px:1,pb:1}}>
+              {/*
               <Grid size={{xs: 12,sm: 12}}>
                 <CustomUploadOrCamera
                   defaultValue={client?.foto?client?.foto:''}
@@ -133,6 +135,7 @@ const DataClient: React.FC<DataClientFormProps> = ({ createClient,updateClient,p
                   label="Subir foto"
                 />
               </Grid>
+                */}
               <Grid size={{xs: 3,sm: 3}}>
                 <CustomTextField
                   name="ap_paterno"
@@ -216,8 +219,8 @@ const DataClient: React.FC<DataClientFormProps> = ({ createClient,updateClient,p
                   name="profecion"
                   control={control}
                   uppercase={true}
-                  label="Profecion"
-                  placeholder="Ingrese la Ocupación"
+                  label="Profesión"
+                  placeholder="Ingrese la Profesión"
                   disabled={!(stateUpdate || !client)}
                   icon={<MUIcons.Work/>}
                 />
@@ -379,8 +382,9 @@ const DataClient: React.FC<DataClientFormProps> = ({ createClient,updateClient,p
                   name="observacion"
                   control={control}
                   label="Observaciónes:"
-                  placeholder="Ingrese las Observaciónes"
-                  disabled={!(stateUpdate || !client)}
+                  placeholder="DEL PRESENTE APTO DE EVALUACION PSICOLOGICA DE ACUERDO A LOS RESULTADOS  OBTENIDOS DE LAS PRUEBAS APLICADAS CONCLUYO QUE EL INTERESADO, NO PRESENTA ALTERACIONES FUNCIONALES SIGNIFICATIVOS O DISMINUIDAS. EL PRESENTE OSTENTA CAPACIDADES ADECUADAS EN LO QUE CONCLUYO ES APTO PARA CONDUCIR VEHICULOS "
+                  //disabled={!(stateUpdate || !client)}
+                  disabled={true}
                   icon={<MUIcons.AccountCircle/>}
                   rows={0}
                   minRows={1}
