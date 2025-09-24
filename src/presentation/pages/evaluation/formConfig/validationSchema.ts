@@ -124,5 +124,5 @@ export const validationPsychological = yup.object().shape({
   personalidad:yup.string().required('requerido'),
   atencion_cognitiva: yup.string().required('requerido'),
   reaccion_estres_riego:yup.string().required('requerido'),
-  observacion:yup.string().required('requerido'),
+  //observacion:yup.string().required('requerido'),
 });
