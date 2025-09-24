@@ -143,7 +143,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
             <DynamicAccordion
               key={'dotos-personales'}
               id={'dotos-personales'}
-              sx={{background:' #74b3e7ff',mb:1}}
+              sx={{background:' #000E1A',mb:1}}
               defaultExpanded={false}
               childrenTitle={
                 <StyledHeaderSecondary sx={{ mb: 0,fontSize:{xs:'1.0em', sm:'1.1em',md:'1.3em',color:'white'}}}>
@@ -243,7 +243,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
             <DynamicAccordion
               key={'amtecedentes'}
               id={'amtecedentes'}
-              sx={{background:' #1b629b',mb:1}}
+              sx={{background:' #004175',mb:1}}
               defaultExpanded={false}
               childrenTitle={
                 <StyledHeaderSecondary sx={{ mb: 0,fontSize:{xs:'1.0em', sm:'1.1em',md:'1.3em',color:'white'}}}>
@@ -339,7 +339,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
             <DynamicAccordion
               key={'examen-clinico'}
               id={'examen-clinico'}
-              sx={{background:' #217ac1',mb:1}}
+              sx={{background:' #005AA3',mb:1}}
               defaultExpanded={false}
               childrenTitle={
                 <StyledHeaderSecondary sx={{ mb: 0,fontSize:{xs:'1.0em', sm:'1.1em',md:'1.3em',color:'white'}}}>
@@ -447,7 +447,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
             <DynamicAccordion
               key={'examen-fisico'}
               id={'examen-fisico'}
-              sx={{background:' #2ba1ff'}}
+              sx={{background:' #0073D1'}}
               defaultExpanded={false}
               childrenTitle={
                 <StyledHeaderSecondary sx={{ mb: 0,fontSize:{xs:'1.0em', sm:'1.1em',md:'1.3em',color:'white'}}}>
@@ -458,7 +458,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
               <DynamicAccordion
                 key={'examen-fisico-1'}
                 id={'examen-fisico-1'}
-                sx={{background:' #2aa0ff',my:1}}
+                sx={{background:' #5CB6FF',my:1}}
                 defaultExpanded={false}
                 childrenTitle={
                   <StyledHeaderSecondary sx={{ mb: 0,fontSize:{xs:'1.0em', sm:'1.1em',md:'1.3em',color:'white'}}}>
@@ -828,7 +828,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
               <DynamicAccordion
                 key={'examen-fisico-2'}
                 id={'examen-fisico-2'}
-                sx={{background:' #2aa0ff',mb:1}}
+                sx={{background:' #5CB6FF',mb:1}}
                 defaultExpanded={false}
                 childrenTitle={
                   <StyledHeaderSecondary sx={{ mb: 0,fontSize:{xs:'1.0em', sm:'1.1em',md:'1.3em',color:'white'}}}>
@@ -878,7 +878,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
               <DynamicAccordion
                 key={'examen-fisico-3'}
                 id={'examen-fisico-3'}
-                sx={{background:' #2aa0ff',mb:1}}
+                sx={{background:' #5CB6FF',mb:1}}
                 defaultExpanded={false}
                 childrenTitle={
                   <StyledHeaderSecondary sx={{ mb: 0,fontSize:{xs:'1.0em', sm:'1.1em',md:'1.3em',color:'white'}}}>
@@ -910,7 +910,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
               <DynamicAccordion
                 key={'examen-fisico-4'}
                 id={'examen-fisico-4'}
-                sx={{background:' #2aa0ff',mb:1}}
+                sx={{background:' #5CB6FF',mb:1}}
                 defaultExpanded={false}
                 childrenTitle={
                   <StyledHeaderSecondary sx={{ mb: 0,fontSize:{xs:'1.0em', sm:'1.1em',md:'1.3em',color:'white'}}}>
@@ -996,7 +996,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
               <DynamicAccordion
                 key={'examen-fisico-5'}
                 id={'examen-fisico-5'}
-                sx={{background:' #2aa0ff'}}
+                sx={{background:' #5CB6FF'}}
                 defaultExpanded={false}
                 childrenTitle={
                   <StyledHeaderSecondary sx={{ mb: 0,fontSize:{xs:'1.0em', sm:'1.1em',md:'1.3em',color:'white'}}}>
