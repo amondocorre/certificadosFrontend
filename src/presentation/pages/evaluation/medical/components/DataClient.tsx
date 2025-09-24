@@ -13,7 +13,7 @@ import { formatDate } from '../../../../utils/dateUtils';
 import { Button } from '../../../../../domain/models/ButtonModel';
 import CustomImageUpload from '../../../../components/inputs/CustomImageUpload';
 import CustomSelect from '../../../../components/inputs/CustomSelect';
-import { grupoSanguineos, habitos, presionActerial, presionCardiaca, presionRespiratoria, resultados, sexos, temperaturas, tipoLentes, medicionOcular,colorimetria } from '../../constants';
+import { grupoSanguineos, habitos, presionActerial, presionCardiaca, presionRespiratoria, resultados, sexos, temperaturas, tipoLentes, medicionOcular,colorimetria,campimetria,weber,rinne,trofismo,tono_muscular,fuerza_muscular } from '../../constants';
 import DynamicAccordion from '../../../../components/containers/DynamicAccordion';
 import { StyledHeaderSecondary } from '../../../../components/text/StyledHeader';
 import CustomSwitchPerson from '../../../../components/inputs/CustomSwitchPeson';
@@ -613,12 +613,12 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                   </Grid>
                                     
                   <Grid size={{xs: 6,sm: 6}}>
-                    <CustomTextField
+                    <CustomSelect
                       name="campimetria"
                       control={control}
-                      uppercase={true}
                       label="Campimetría"
-                      placeholder="Ingrese el detalle"
+                      options={campimetria}
+                      placeholder="Ingrese una opción"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.AccountCircle/>}
                     />
@@ -802,23 +802,23 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                     />
                   </Grid>
                   <Grid size={{xs: 4,sm: 4}}>
-                    <CustomTextField
+                    <CustomSelect
                       name="t_weber"
                       control={control}
-                      uppercase={true}
                       label="T. Weber"
-                      placeholder="Ingrese el detalle"
+                      options={weber}
+                      placeholder="Seleccione una opción"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.AccountCircle/>}
                     />
                   </Grid>
                   <Grid size={{xs: 4,sm: 4}}>
-                    <CustomTextField
+                    <CustomSelect
                       name="t_rinne"
                       control={control}
-                      uppercase={true}
                       label="T. Rinne"
-                      placeholder="Ingrese el detalle"
+                      options={rinne}
+                      placeholder="Seleccione una opción"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.AccountCircle/>}
                     />
@@ -923,34 +923,34 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                     <StyledTitle sx={{color:'black'}}>MIEMBROS SUPERIORES</StyledTitle>
                   </Grid>
                   <Grid size={{xs: 4,sm: 4}}>
-                    <CustomTextField
+                    <CustomSelect
                       name="s_trofismo"
                       control={control}
-                      uppercase={true}
                       label="Trofismo"
-                      placeholder="Ingrese el detalle"
+                      options={trofismo}
+                      placeholder="Seleccione una opción"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.AccountCircle/>}
                     />
                   </Grid>
                   <Grid size={{xs: 4,sm: 4}}>
-                    <CustomTextField
+                    <CustomSelect
                       name="s_tono_muscular"
                       control={control}
-                      uppercase={true}
                       label="Tono Muscular"
-                      placeholder="Ingrese el detalle"
+                      options={tono_muscular}
+                      placeholder="Seleccione una opción"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.AccountCircle/>}
                     />
                   </Grid>
                   <Grid size={{xs: 4,sm: 4}}>
-                    <CustomTextField
+                    <CustomSelect
                       name="s_fuerza_muscular"
                       control={control}
-                      uppercase={true}
                       label="Fuerza Muscular"
-                      placeholder="Ingrese el detalle"
+                      options={fuerza_muscular}
+                      placeholder="Seleccione una opción"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.AccountCircle/>}
                     />
@@ -959,34 +959,34 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                     <StyledTitle sx={{color:'black'}}>MIEMBROS INFERIORIES </StyledTitle>
                   </Grid>
                   <Grid size={{xs: 4,sm: 4}}>
-                    <CustomTextField
+                    <CustomSelect
                       name="i_trofismo"
                       control={control}
-                      uppercase={true}
                       label="Trofismo"
-                      placeholder="Ingrese el detalle"
+                      options={trofismo}
+                      placeholder="Seleccione una opción"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.AccountCircle/>}
                     />
                   </Grid>
                   <Grid size={{xs: 4,sm: 4}}>
-                    <CustomTextField
+                    <CustomSelect
                       name="i_tono_muscular"
                       control={control}
-                      uppercase={true}
                       label="Tono muscular"
-                      placeholder="Ingrese el detalle"
+                      options={tono_muscular}
+                      placeholder="Seleccione una opción"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.AccountCircle/>}
                     />
                   </Grid>
                   <Grid size={{xs: 4,sm: 4}}>
-                    <CustomTextField
+                    <CustomSelect
                       name="i_fuerza_muscular"
                       control={control}
-                      uppercase={true}
                       label="Fuerza Muscular"
-                      placeholder="Ingrese el detalle"
+                      options={fuerza_muscular}
+                      placeholder="Seleccione una opción"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.AccountCircle/>}
                     />

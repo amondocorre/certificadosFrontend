@@ -25,11 +25,11 @@ const DashboardView: React.FC = () => {
   const navigate = useNavigate();
   const handleOpenPsychological =(id:number)=>{
     setIdContrato(id);
-    navigate('/evaluation-psychological?id='+id);
+    navigate('/evaluation/psychological?id='+id);
   }
   const handleOpenMedical =(id:number)=>{
     setIdContrato(id);
-    navigate('/evaluation-medical?id='+id);
+    navigate('/evaluation/medical?id='+id);
   }
   const handleCloseModal =()=>{
     setIdContrato(0);

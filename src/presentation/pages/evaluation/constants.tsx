@@ -92,29 +92,56 @@ export const medicionOcular = [
   { label: '20/160', value: '20/160' },
   { label: '20/125', value: '20/125' },
   { label: '20/100', value: '20/100' },
-  { label: '20/80', value: '20/80' },
+  { label: '20/70', value: '20/70' },
   { label: '20/63', value: '20/63' },
   { label: '20/50', value: '20/50' },
   { label: '20/40', value: '20/40' },
-  { label: '20/32', value: '20/32' },
+  { label: '20/30', value: '20/30' },
+  { label: '20/30 P-1', value: '20/30 P-1' },
   { label: '20/25', value: '20/25' },
+  { label: '20/25 P-1', value: '20/25 P-1' },
   { label: '20/20', value: '20/20' },
-  { label: '20/16', value: '20/16' },
-  
+  { label: '20/20 P-1', value: '20/20 P-1' },
+  { label: '20/15', value: '20/15' },
+  { label: '20/13', value: '20/13' },
+  { label: '20/10', value: '20/10' },
 ];
 
 export const colorimetria = [
-  { label: '20/200', value: '20/200' },
-  { label: '20/160', value: '20/160' },
-  { label: '20/125', value: '20/125' },
-  { label: '20/100', value: '20/100' },
-  { label: '20/80', value: '20/80' },
-  { label: '20/63', value: '20/63' },
-  { label: '20/50', value: '20/50' },
-  { label: '20/40', value: '20/40' },
-  { label: '20/32', value: '20/32' },
-  { label: '20/25', value: '20/25' },
-  { label: '20/20', value: '20/20' },
-  { label: '20/16', value: '20/16' },
-  
+  { label: 'CONSERVADO', value: 'CONSERVADO' },
+  { label: 'DISMINUIDO', value: 'DISMINUIDO' },
+    
+];
+export const campimetria = [
+  { label: 'CONSERVADO', value: 'CONSERVADO' },
+  { label: 'DISMINUIDO', value: 'DISMINUIDO' },
+    
+];
+export const weber = [
+  { label: 'NORMAL', value: 'NORMAL' },
+  { label: 'HIPOACUSIA DER.', value: 'HIPOACUSIA DER.' },
+  { label: 'HIPOACUSIA IZQ.', value: 'HIPOACUSIA IZQ.' },
+  { label: 'HIPOACUSIA BILATERAL', value: 'HIPOACUSIA BILATERAL' },
+    
+];
+
+export const rinne = [
+  { label: 'POSITIVO', value: 'POSITIVO' },
+  { label: 'NEGATIVO', value: 'NEGATIVO' },
+    
+];
+
+export const trofismo = [
+   { label: 'CONSERVADO', value: 'CONSERVADO' },
+  { label: 'DISMINUIDO', value: 'DISMINUIDO' },
+];
+
+export const tono_muscular = [
+   { label: 'CONSERVADO', value: 'CONSERVADO' },
+  { label: 'DISMINUIDO', value: 'DISMINUIDO' },
+];
+
+export const fuerza_muscular = [
+   { label: 'CONSERVADO', value: 'CONSERVADO' },
+  { label: 'DISMINUIDO', value: 'DISMINUIDO' },
 ];
