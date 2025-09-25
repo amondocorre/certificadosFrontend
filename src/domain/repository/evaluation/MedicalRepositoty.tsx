@@ -4,6 +4,7 @@ import { EvaluationMedical, MedicalResponse } from "../../models/EvaluationMedic
 export interface MedicalRepository{ 
   create(data:EvaluationMedical):Promise<MedicalResponse|ErrorResponse>;
   update(data:EvaluationMedical):Promise<MedicalResponse|ErrorResponse>;
+  activate(id:number):Promise<MedicalResponse|ErrorResponse>;
   search(q:string):Promise<MedicalResponse|ErrorResponse>;
   findIdentity(id:number):Promise<MedicalResponse|ErrorResponse>;
 }

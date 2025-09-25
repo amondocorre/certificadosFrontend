@@ -75,6 +75,24 @@ const PsychologicalView: React.FC = memo(() => {
     }
     setLoading(false)
   },[])
+  const handleActivate = useCallback(async(id:number)=>{
+    const result = await AlertConfirm({title:'Estas seguro de habilitar la opción deitar?.'});
+    if (!result.isConfirmed) return;
+    setLoading(true)
+    try {
+      const response:any = await PsychologicalViewModel.activate(id);
+      setLoading(false)
+      if ('status' in response && response.status==='success') {
+        AlertSave({ title: '', message: response.message });
+        setSelectClient(response?.data)
+      } else {
+        AlertError({ title: '', message: response.message })
+      }
+    } catch (error) {
+      AlertError({ title: '', message: 'Ocurrió un error al guardar la información. Por favor, intenta nuevamente o contacta al encargado.' })
+    }
+    setLoading(false)
+  },[])
   const getButtuns = async (idAcces:number) => {
     setLoading(true)
     try {
@@ -186,6 +204,7 @@ const PsychologicalView: React.FC = memo(() => {
       <DataClient
         createClient={handleCreate}
         updateClient={handleUpdate}
+        activateClient={handleActivate}
         printEvaluation={printEvaluation}
         client={selectClient}
         buttons={buttons}

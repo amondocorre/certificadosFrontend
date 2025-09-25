@@ -13,6 +13,9 @@ export class MedicalViewModel {
   async update(data:EvaluationMedical):Promise<MedicalResponse|ErrorResponse>{
     return await this.medicalUseCases.update.execute(data)
   }
+  async activate(id:number):Promise<MedicalResponse|ErrorResponse>{
+    return await this.medicalUseCases.activate.execute(id)
+  }
   async search(q:string):Promise<MedicalResponse|ErrorResponse>{
     return await this.medicalUseCases.search.execute(q)
   }
