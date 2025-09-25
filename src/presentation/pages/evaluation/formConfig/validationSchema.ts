@@ -96,10 +96,10 @@ export const validationPsychologicalBasic = yup.object().shape({
   lugar_nacimiento:yup.string().required('La lugar de nacimiento es obligatoria'),
   fecha_nacimiento: yup.string().required('La fecha es obligatoria'),
   profecion:yup.string().required('La profeción es obligatoria'),
-  domicilio:yup.string().required('La Domicilio es obligatoria'),
-  numero_domicilio:yup.string().required('La numero domicilio es obligatoria'),
-  zona:yup.string().required('El zona es obligatoria'),
-  telefono:yup.string().required('La telefono es obligatoria'),
+  //domicilio:yup.string().required('La Domicilio es obligatoria'),
+  //numero_domicilio:yup.string().required('La numero domicilio es obligatoria'),
+  //zona:yup.string().required('El zona es obligatoria'),
+  //telefono:yup.string().required('La telefono es obligatoria'),
 });
 
 export const validationPsychological = yup.object().shape({
@@ -114,10 +114,10 @@ export const validationPsychological = yup.object().shape({
   lugar_nacimiento:yup.string().required('La lugar de nacimiento es obligatoria'),
   fecha_nacimiento: yup.string().required('La fecha es obligatoria'),
   profecion:yup.string().required('La profeción es obligatoria'),
-  domicilio:yup.string().required('La Domicilio es obligatoria'),
-  numero_domicilio:yup.string().required('El numero domicilio es obligatoria'),
-  zona:yup.string().required('La zona es obligatoria'),
-  telefono:yup.string().required('La telefono es obligatoria'),
+  //domicilio:yup.string().required('La Domicilio es obligatoria'),
+  //numero_domicilio:yup.string().required('El numero domicilio es obligatoria'),
+  //zona:yup.string().required('La zona es obligatoria'),
+  //telefono:yup.string().required('La telefono es obligatoria'),
 
   historia_familiar:yup.string().required('requerido'),
   coordinacion_visomotora:yup.string().required('requerido'),

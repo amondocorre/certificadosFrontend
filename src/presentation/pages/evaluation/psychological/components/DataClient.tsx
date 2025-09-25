@@ -86,18 +86,14 @@ const DataClient: React.FC<DataClientFormProps> = ({ createClient,updateClient,p
     }
   }, [client]);
   const handleCreate = useCallback(async (data:any,caso:string) => {
-    const foto = document.getElementById('image-upload-foto') as HTMLInputElement;
-    let file = foto.files?.[0];
-    data.file = file;
+    
     data.fecha_evaluacion = formatDate(data.fecha_evaluacion);
     data.fecha_nacimiento = formatDate(data.fecha_nacimiento);
     data.id_estado_evaluacion = caso==='1'?1:2;
     createClient(data)
   }, []);
   const handleUpdate = useCallback(async (data:any,caso:string) => {
-    const foto = document.getElementById('image-upload-foto') as HTMLInputElement;
-    let file = foto?.files?.[0] ?? null;
-    data.file = file;
+    
     data.fecha_evaluacion = formatDate(data.fecha_evaluacion);
     data.fecha_nacimiento = formatDate(data.fecha_nacimiento);
     data.id_estado_evaluacion = caso==='1'?1:2;
