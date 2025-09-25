@@ -20,6 +20,9 @@ export class PsychologicalRepositoryImpl implements PsychologicalRepository{
   async update(data:EvaluationPsychological): Promise<PsychologicalResponse | ErrorResponse> {
     return await this.psychologicalService.update(data);
   }
+  async activate(id:number): Promise<PsychologicalResponse | ErrorResponse> {
+    return await this.psychologicalService.activate(id);
+  }
   async search(q:string): Promise<PsychologicalResponse | ErrorResponse> {
     return await this.psychologicalService.search(q);
   }

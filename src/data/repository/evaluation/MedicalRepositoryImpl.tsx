@@ -20,6 +20,9 @@ export class MedicalRepositoryImpl implements MedicalRepository{
   async update(data:EvaluationMedical): Promise<MedicalResponse | ErrorResponse> {
     return await this.medicalService.update(data);
   }
+  async activate(id:number): Promise<MedicalResponse | ErrorResponse> {
+    return await this.medicalService.activate(id);
+  }
   async search(q:string): Promise<MedicalResponse | ErrorResponse> {
     return await this.medicalService.search(q);
   }

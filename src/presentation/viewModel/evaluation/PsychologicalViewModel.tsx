@@ -13,6 +13,10 @@ export class PsychologicalViewModel {
   async update(data:EvaluationPsychological):Promise<PsychologicalResponse|ErrorResponse>{
     return await this.psychologicalUseCases.update.execute(data)
   }
+  
+  async activate(id:number):Promise<PsychologicalResponse|ErrorResponse>{
+    return await this.psychologicalUseCases.activate.execute(id)
+  }
   async search(q:string):Promise<PsychologicalResponse|ErrorResponse>{
     return await this.psychologicalUseCases.search.execute(q)
   }

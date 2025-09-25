@@ -30,16 +30,18 @@ interface UserFormProps {
   getExploration:(exploration:Exploration)=>Promise<Exploration[]>
   createExploration:(exploration:Exploration)=>void;
   printEvaluation:(id:number)=> void;
+  activateMedical:(id:number)=>void;
   client?: any;
   buttons:Button[];
 }
-const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getExploration,createExploration,printEvaluation,buttons,client}) => {
+const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getExploration,createExploration,activateMedical,printEvaluation,buttons,client}) => {
   const stateUpdate = useMemo(()=>{
     return!(buttons.filter((button: Button) => button.nombre === 'update' && button.tipo === 'table')?.length===0) && client?.id_estado_evaluacion==1
   },[buttons,client])
 
   const btnCreate = buttons.filter((button: Button) => button.nombre === 'create' && button.tipo === 'header');
   const stateCreate =  !(btnCreate?.length===0)
+  const btnActivate = (buttons.filter((button: Button) => button.nombre === 'activate' && button.tipo === 'table').length>0);
   const { control, formState: { errors },setError,clearErrors, reset, setValue, getValues } = useForm<any>({
     resolver: yupResolver(validationMedical),
     defaultValues:defaultValuesMedical,mode: 'onChange',
@@ -1207,6 +1209,17 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
               />
             </>
             }
+          {
+            btnActivate && client && client?.id_estado_evaluacion==2 && 
+            <ActionButton
+              key={`button-activate`}
+              type='activate'
+              label='Habilitar Editar'
+              icon={<MUIcons.Edit/>}
+              onClick={() => {activateMedical(Number(client?.id_evaluacion_medica))}}
+              disabled={false} 
+            />
+          }
           {client && client?.id_estado_evaluacion==2 && 
             <ActionButton
               key={`button-cancel`}

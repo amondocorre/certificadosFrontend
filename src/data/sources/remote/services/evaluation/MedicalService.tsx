@@ -31,7 +31,8 @@ export class MedicalService{
       }
       return defaultErrerResponse;
     }
-  }async update(data:EvaluationMedical):Promise<MedicalResponse|ErrorResponse>{
+  }
+  async update(data:EvaluationMedical):Promise<MedicalResponse|ErrorResponse>{
     try {
       const id = data.id_evaluacion_medica;
       const formData = new FormData();
@@ -48,6 +49,21 @@ export class MedicalService{
         }
       }
       const response = await apiRequestHandler.post<MedicalResponse>('/evaluation/medical/update/'+id,formData, {headers: {'Content-Type': 'multipart/form-data', },});
+      return response.data
+    } catch (error:any) {
+      if(error.response){
+        const errorData:ErrorResponse = error.response.data;
+        if(Array.isArray(errorData.message)){
+          errorData.message = errorData.message.join(',');
+        }
+        return errorData;
+      }
+      return defaultErrerResponse;
+    }
+  }
+  async activate(id:number):Promise<MedicalResponse|ErrorResponse>{
+    try {
+      const response = await apiRequestHandler.put<MedicalResponse>('/evaluation/medical/activate/'+id);
       return response.data
     } catch (error:any) {
       if(error.response){

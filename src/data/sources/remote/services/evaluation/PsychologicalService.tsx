@@ -61,6 +61,21 @@ export class PsychologicalService{
       return defaultErrerResponse;
     }
   }
+  async activate(id:number):Promise<PsychologicalResponse|ErrorResponse>{
+    try {
+      const response = await apiRequestHandler.put<PsychologicalResponse>('/evaluation/psychological/activate/'+id);
+      return response.data
+    } catch (error:any) {
+      if(error.response){
+        const errorData:ErrorResponse = error.response.data;
+        if(Array.isArray(errorData.message)){
+          errorData.message = errorData.message.join(',');
+        }
+        return errorData;
+      }
+      return defaultErrerResponse;
+    }
+  }
   async search(q:string):Promise<PsychologicalResponse|ErrorResponse>{
       try {
         const response = await apiRequestHandler.get<PsychologicalResponse>('/evaluation/psychological/search',{params: {q: q}})
