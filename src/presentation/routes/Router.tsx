@@ -28,6 +28,7 @@ import ChangePasswordView from '../pages/security/Security/ChangePasswordView';
 import ErrorPage from '../components/ErrorPage';
 import MedicalView from '../pages/evaluation/medical/MedicalView';
 import PsychologicalView from '../pages/evaluation/psychological/PsychologicalView';
+import ReportPsychologicalView from '../pages/evaluation/report-psychological/ReportPsychologicalView';
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -42,6 +43,7 @@ export const router = createBrowserRouter([
           { path: 'calendar', element: <CalendarView/> },
           { path: 'evaluation/medical', element: <MedicalView/> },
           { path: 'evaluation/psychological', element: <PsychologicalView/> },
+          { path: 'evaluation/report-psychological', element: <ReportPsychologicalView/> },
           { path: 'reports/cierre-turno', element: <ReporteCiereTurnoView /> },
           { path: 'configurations/users', element: <UsersView /> },
           { path: 'configurations/acces', element: <MenuAccesView /> },

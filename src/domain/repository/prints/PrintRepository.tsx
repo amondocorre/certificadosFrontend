@@ -5,4 +5,5 @@ export interface PrintRepository{
   printCierreTurno(id:number):Promise<void>
   printEvaMedical(id:number):Promise<void>
   printEvaPsychological(id:number):Promise<void>
+  printInfEvaPsychological(id:number):Promise<void>
 }

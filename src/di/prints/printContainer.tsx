@@ -8,6 +8,7 @@ import { PrintCierreTurnoUseCase } from "../../domain/useCases/prints/PrintCierr
 import { PrintAperturaTurnoUseCase } from "../../domain/useCases/prints/PrintAperturaTurno";
 import { PrintEvaMedicalUseCase } from "../../domain/useCases/prints/printEvaMedical";
 import { PrintEvaPsychologicalUseCase } from "../../domain/useCases/prints/printEvaPsychological";
+import { PrintInfEvaPsychologicalUseCase } from "../../domain/useCases/prints/printInfEvaPsychological";
 
  const printContainer = createContainer();
  printContainer.register({
@@ -22,6 +23,7 @@ import { PrintEvaPsychologicalUseCase } from "../../domain/useCases/prints/print
    printCierreTurno:asClass(PrintCierreTurnoUseCase).singleton(),
    printEvaMedical:asClass(PrintEvaMedicalUseCase).singleton(),
    printEvaPsychological:asClass(PrintEvaPsychologicalUseCase).singleton(),
+   printInfEvaPsychological:asClass(PrintInfEvaPsychologicalUseCase).singleton(),
    // VIEW NOMDEL
    printViewModel:asClass(PrintViewModel).singleton(),
    
