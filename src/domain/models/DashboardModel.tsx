@@ -19,6 +19,13 @@ export interface EvaluantionPsychological {
   ci:     string;
   id_estado_evaluacion: number;
 }
+export interface InfEvaluantionPsychological {
+  id_inf_evaluacion_psicologica: number;
+  fecha_registro: string;
+  nombre_completo: string;
+  ci:     string;
+  id_estado_evaluacion: number;
+}
 interface Pagination {
   total: number;
   page: number;
@@ -27,7 +34,7 @@ interface Pagination {
 }
 
 export interface ApiResponse {
-  data: EvaluantionMedical[] | EvaluantionPsychological[];
+  data: EvaluantionMedical[] | EvaluantionPsychological[] | InfEvaluantionPsychological[];
   pagination: Pagination;
 }
 export interface EvaluationData {

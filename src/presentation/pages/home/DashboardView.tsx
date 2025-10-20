@@ -10,6 +10,7 @@ import ModalRentDetail from './components/ModalDetaleContrato';
 import TableMedical from './components/TableMedical';
 import TablePsychological from './components/TablePsychological';
 import { useNavigate } from 'react-router-dom';
+import TableInfPsychological from './components/TableInfPsychological';
 
 
 const DashboardView: React.FC = () => {
@@ -26,6 +27,10 @@ const DashboardView: React.FC = () => {
   const handleOpenPsychological =(id:number)=>{
     setIdContrato(id);
     navigate('/evaluation/psychological?id='+id);
+  }
+  const handleOpenInfPsychological =(id:number)=>{
+    setIdContrato(id);
+    navigate('/evaluation/report-psychological?id='+id);
   }
   const handleOpenMedical =(id:number)=>{
     setIdContrato(id);
@@ -62,6 +67,14 @@ const DashboardView: React.FC = () => {
   const listEvaPsychological = async (limit:number,page:number) => {
     try {
       const response = await DashboardViewModel.listEvaPsychological(Number(sucursal),limit,page);
+      return response;
+    } catch (error) {
+      return {'data':[],pagination:{'total':0}}
+    }
+  };
+  const listInfEvaPsychological = async (limit:number,page:number) => {
+    try {
+      const response = await DashboardViewModel.listInfEvaPsychological(Number(sucursal),limit,page);
       return response;
     } catch (error) {
       return {'data':[],pagination:{'total':0}}
@@ -113,6 +126,9 @@ const DashboardView: React.FC = () => {
         </Grid>
         <Grid sx={{ }}size={{xs: 12,md: 6}}>
             <TablePsychological handleOpen={handleOpenPsychological} listEvaPsychological={listEvaPsychological} id_sucursal={sucursal}/>
+        </Grid>
+        <Grid sx={{ }}size={{xs: 12,md: 6}}>
+            <TableInfPsychological handleOpen={handleOpenInfPsychological} listEvaPsychological={listInfEvaPsychological} id_sucursal={sucursal}/>
         </Grid>
       </Grid>
       <ModalRentDetail

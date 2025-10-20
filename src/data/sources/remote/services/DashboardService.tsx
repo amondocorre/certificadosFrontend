@@ -49,6 +49,21 @@ export class DashboardService{
       return defaultErrerResponse;
     }
   }
+  async listInfEvaPsychological(id_sucursal:number,limit:number,page:number):Promise<ApiResponse|ErrorResponse>{
+    try {
+      const response = await apiRequestHandler.post<ApiResponse>('/dashboard/listInfEvaPsychological/'+id_sucursal,{param:{limit:limit,page:page}})
+      return response.data
+    } catch (error:any) {
+      if(error.response){
+        const errorData:ErrorResponse = error.response.data;
+        if(Array.isArray(errorData.message)){
+          errorData.message = errorData.message.join(',');
+        }
+        return errorData;
+      }
+      return defaultErrerResponse;
+    }
+  }
   async getTotalEvaluations(id_sucursal:number):Promise<ResponseEvaluations|ErrorResponse>{
     try {
       const response = await apiRequestHandler.post<ResponseEvaluations>('/dashboard/getTotalEvaluations/'+id_sucursal)

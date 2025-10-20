@@ -16,6 +16,10 @@ export class DashboardViewModel {
   async listEvaPsychological(id_sucursal:number,limit:number,page:number):Promise<ApiResponse|ErrorResponse>{
     return await this.dashboardUseCases.listEvaPsychological.execute(id_sucursal,limit,page)
   }
+  
+  async listInfEvaPsychological(id_sucursal:number,limit:number,page:number):Promise<ApiResponse|ErrorResponse>{
+    return await this.dashboardUseCases.listInfEvaPsychological.execute(id_sucursal,limit,page)
+  }
   async getTotalEvaluations(id_sucursal:number):Promise<ResponseEvaluations|ErrorResponse>{
     return await this.dashboardUseCases.getTotalEvaluations.execute(id_sucursal)
   }

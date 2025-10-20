@@ -17,6 +17,9 @@ export class DashboardRepositoryImpl implements DashboardRepository{
   async listEvaPsychological(id_sucursal:number,limit:number,page:number): Promise<ApiResponse | ErrorResponse> {
     return await this.dashboardService.listEvaPsychological(id_sucursal,limit,page);
   }
+  async listInfEvaPsychological(id_sucursal:number,limit:number,page:number): Promise<ApiResponse | ErrorResponse> {
+    return await this.dashboardService.listInfEvaPsychological(id_sucursal,limit,page);
+  }
   async getTotalEvaluations(id_sucursal:number): Promise<ResponseEvaluations | ErrorResponse> {
     return await this.dashboardService.getTotalEvaluations(id_sucursal);
   }

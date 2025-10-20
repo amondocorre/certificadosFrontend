@@ -7,6 +7,7 @@ import { GetIngresosDiariosUseCase } from "../domain/useCases/dashboard/GetIngre
 import { ListEvaPsychologicalUseCase } from "../domain/useCases/dashboard/ListEvaPsychologicalUseCase";
 import { ListEvaMedicalUseCase } from "../domain/useCases/dashboard/ListEvaMedicalUseCase";
 import { GetTotalEvaluationsUseCase } from "../domain/useCases/dashboard/GetTotalEvaluationsUseCase";
+import { ListInfEvaPsychologicalUseCase } from "../domain/useCases/dashboard/ListInfEvaPsychologicalUseCase";
 const dashboardContainer = createContainer();
 dashboardContainer.register({
   // SERVICES
@@ -18,6 +19,7 @@ dashboardContainer.register({
   getIngresosDiarios:asClass(GetIngresosDiariosUseCase).singleton(),
   listEvaMedical:asClass(ListEvaMedicalUseCase).singleton(),
   listEvaPsychological:asClass(ListEvaPsychologicalUseCase).singleton(),
+  listInfEvaPsychological:asClass(ListInfEvaPsychologicalUseCase).singleton(),
   getTotalEvaluations:asClass(GetTotalEvaluationsUseCase).singleton(),
   // VIEW NOMDEL
   dashboardViewModel:asClass(DashboardViewModel).singleton(),
