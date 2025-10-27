@@ -1,7 +1,7 @@
 import * as yup from 'yup';
 export const validationMedicalBasic = yup.object().shape({
-  ap_paterno: yup.string().required('El apellido paterno es obligatorio').min(3, 'El nombre no puede tener menos de 3 caracteres'),
-  ap_materno: yup.string().required('El apellido materno es obligatorio').min(3, 'El apellido paterno no puede tener menos de 3 caracteres'),
+  //ap_paterno: yup.string().required('El apellido paterno es obligatorio').min(3, 'El nombre no puede tener menos de 3 caracteres'),
+  //ap_materno: yup.string().required('El apellido materno es obligatorio').min(3, 'El apellido paterno no puede tener menos de 3 caracteres'),
   nombre: yup.string().required('El nombre es obligatorio'),
   ci: yup.string().required('El CI es obligatorio'),
   edad: yup.number().typeError('La edad debe ser un número').min(18, 'Edad inválida').required('La edad es obligatoria'),
@@ -11,8 +11,8 @@ export const validationMedicalBasic = yup.object().shape({
 
 export const validationMedical = yup.object().shape({
   foto: yup.string().required('La foto es obligatoria'),
-  ap_paterno: yup.string().required('El apellido paterno es obligatorio').min(3, 'El nombre no puede tener menos de 3 caracteres'),
-  ap_materno: yup.string().required('El apellido materno es obligatorio').min(3, 'El apellido paterno no puede tener menos de 3 caracteres'),
+  //ap_paterno: yup.string().required('El apellido paterno es obligatorio').min(3, 'El nombre no puede tener menos de 3 caracteres'),
+  //ap_materno: yup.string().required('El apellido materno es obligatorio').min(3, 'El apellido paterno no puede tener menos de 3 caracteres'),
   nombre: yup.string().required('El nombre es obligatorio'),
   ci: yup.string().required('El CI es obligatorio'),
   edad: yup.number().typeError('La edad debe ser un número').min(16, 'Edad inválida').required('La edad es obligatoria'),
@@ -87,8 +87,8 @@ export const validationMedical = yup.object().shape({
 
 
 export const validationPsychologicalBasic = yup.object().shape({
-  ap_paterno: yup.string().required('El apellido paterno es obligatorio').min(3, 'El nombre no puede tener menos de 3 caracteres'),
-  ap_materno: yup.string().required('El apellido materno es obligatorio').min(3, 'El apellido paterno no puede tener menos de 3 caracteres'),
+  //ap_paterno: yup.string().required('El apellido paterno es obligatorio').min(3, 'El nombre no puede tener menos de 3 caracteres'),
+  //ap_materno: yup.string().required('El apellido materno es obligatorio').min(3, 'El apellido paterno no puede tener menos de 3 caracteres'),
   nombre: yup.string().required('El nombre es obligatorio'),
   ci: yup.string().required('El CI es obligatorio'),
   edad: yup.number().typeError('La edad debe ser un número').min(18, 'Edad inválida').required('La edad es obligatoria'),
@@ -105,8 +105,8 @@ export const validationPsychologicalBasic = yup.object().shape({
 export const validationPsychological = yup.object().shape({
   //foto: yup.string().required('La foto es obligatoria'),
   foto: yup.string().nullable().notRequired(),
-  ap_paterno: yup.string().required('El apellido paterno es obligatorio').min(3, 'El nombre no puede tener menos de 3 caracteres'),
-  ap_materno: yup.string().required('El apellido materno es obligatorio').min(3, 'El apellido paterno no puede tener menos de 3 caracteres'),
+  //ap_paterno: yup.string().required('El apellido paterno es obligatorio').min(3, 'El nombre no puede tener menos de 3 caracteres'),
+  //ap_materno: yup.string().required('El apellido materno es obligatorio').min(3, 'El apellido paterno no puede tener menos de 3 caracteres'),
   nombre: yup.string().required('El nombre es obligatorio'),
   ci: yup.string().required('El CI es obligatorio'),
   edad: yup.number().typeError('La edad debe ser un número').min(18, 'Edad inválida').required('La edad es obligatoria'),

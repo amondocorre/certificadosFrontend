@@ -18,6 +18,7 @@ export const grupoSanguineos = [
                   {label:'AB RH NEGATIVO(-)',value:'AB RH NEGATIVO'},
                   {label:'O RH POSITIVO(+)',value:'0 RH POSITIVO'},
                   {label:'O RH NEGATIVO(-)',value:'O RH NEGATIVO'}
+
                 ]
 export const temperaturas =[
                   {label:'  36,2   ',value:'36,2'},
@@ -66,6 +67,7 @@ export const tipoLentes =[
                 {label:' 	SIN LENTES  ',value:'SIN LENTES'},
                 {label:' 	MONOFOCAL  ',value:'MONOFOCAL'},
                 {label:' 	BIFOCAL  ',value:'BIFOCAL'},
+               
               ]
 export const resultados =[
                 {label:' 	- APTO PARA CONDUCIR VEHICULOS.  ',value:'APTO PARA CONDUCIR VEHICULOS'},
@@ -105,6 +107,10 @@ export const medicionOcular = [
   { label: '20/15', value: '20/15' },
   { label: '20/13', value: '20/13' },
   { label: '20/10', value: '20/10' },
+  { label: 'NPL', value: 'NPL' },
+  { label: 'PL', value: 'PL' },
+  { label: 'Ninguno', value: '' },
+
 ];
 
 export const colorimetria = [

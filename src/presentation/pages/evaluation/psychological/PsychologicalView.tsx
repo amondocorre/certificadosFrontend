@@ -76,7 +76,7 @@ const PsychologicalView: React.FC = memo(() => {
     setLoading(false)
   },[])
   const handleActivate = useCallback(async(id:number)=>{
-    const result = await AlertConfirm({title:'Estas seguro de habilitar la opción deitar?.'});
+    const result = await AlertConfirm({title:'Estas seguro de habilitar la opción de Editar?.'});
     if (!result.isConfirmed) return;
     setLoading(true)
     try {
