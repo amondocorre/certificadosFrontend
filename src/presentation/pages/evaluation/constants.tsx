@@ -151,3 +151,11 @@ export const fuerza_muscular = [
    { label: 'CONSERVADO', value: 'CONSERVADO' },
   { label: 'DISMINUIDO', value: 'DISMINUIDO' },
 ];
+
+
+export const escalasApreciacion =[
+                {label:' 	Adecuado  ',value:'adecuado'},
+                {label:' 	Medio  ',value:'medio'},
+                {label:' 	Inadecuado  ',value:'inadecuado'},
+                {label:' 	Observación  ',value:'observación'},
+]

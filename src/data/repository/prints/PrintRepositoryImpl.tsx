@@ -21,4 +21,7 @@ export class PrintRepositoryImpl implements PrintRepository{
   async printEvaPsychological(id:number): Promise<void> {
     return await this.printService.printEvaPsychological(id);
   }
+  async printInfEvaPsychological(id:number): Promise<void> {
+    return await this.printService.printInfEvaPsychological(id);
+  }
 }

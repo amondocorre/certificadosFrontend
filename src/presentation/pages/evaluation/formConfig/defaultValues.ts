@@ -1,5 +1,6 @@
 import { EvaluationMedical } from "../../../../domain/models/EvaluationMedical";
 import { EvaluationPsychological } from "../../../../domain/models/EvaluationPsychological";
+import { InfEvaluationPsychological } from "../../../../domain/models/InfEvaluationPsychological.tsx";
 
 export const defaultValuesMedical: EvaluationMedical = {
   foto: '',
@@ -93,5 +94,39 @@ export const defaultValuesPsychological: EvaluationPsychological = {
   reaccion_estres_riego:'',
   //resultado_recomendacion:'',
   // OBSERVACIONES 
+  observacion:'',
+}
+export const defaultValuesInfPsychological:InfEvaluationPsychological ={
+  //A) DATOS PERSONALES
+  foto:'',
+  ap_paterno:'',
+  ap_materno: '',
+  nombre:'',
+  ci: '',
+  lugar_nacimiento:'',
+  fecha_nacimiento:'',
+  profecion:'',
+  domicilio:'',
+  numero_domicilio:'',
+  zona:'',
+  telefono:'',
+  // B) HISTORIA MEDICA
+  historia_medica:'',
+  // C) HISTORIA FAMILIAR
+  historia_familiar:'',
+  // D) EXAMEN O EVALUACION PSICOLOGICA DE MADUREZ
+  // 1. ESCALAS DE APRECIACION DEL ESTRES - EAE
+  niveles_estres:'',
+  estrategias_afrontamiento:'',
+  vulnerabilidad_emocional:'',
+  //2. BATERIA DE CONDUCTORES - BC 
+  atencion_sostenida_selectiva:'',
+  capacidad_reaccion:'',
+  control_impulso:'',
+  actidud_norma_autoridad:'',
+  estabilidad_emocional:'',
+  //E) RESULTADOS Y RECOMENDACIONES 
+  resultado_recomendacion:'',
+  //F) OBSERVACIONES 
   observacion:'',
 }

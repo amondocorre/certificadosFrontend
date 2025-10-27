@@ -93,4 +93,21 @@ export class PrintService{
       console.error('Error al obtener la respuesta:', error);
     }
   }
+  async printInfEvaPsychological(id:number): Promise<void> {
+    try {
+      const response = await apiRequestHandler.get('/impresion/imprimirInfEvaluacionPsicologica/'+id, { responseType: 'blob', });
+      const contentType = response.headers['content-type'];
+      if (contentType.includes('application/json')) {
+        const jsonData = await response.data.text();
+        console.log('Respuesta JSON:', JSON.parse(jsonData));
+      } else if (contentType.includes('application/pdf')) {
+        const url = window.URL.createObjectURL(new Blob([response.data], { type: 'application/pdf' }));
+        window.open(url, '_blank');
+      } else {
+        console.warn('Formato desconocido:', contentType);
+      }
+    } catch (error) {
+      console.error('Error al obtener la respuesta:', error);
+    }
+  }
 }

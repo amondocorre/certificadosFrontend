@@ -20,4 +20,7 @@ export class PrintViewModel {
   async printEvaPsychological(id:number):Promise<void>{
     return await this.printUseCases.printEvaPsychological.execute(id);
   }
+  async printInfEvaPsychological(id:number):Promise<void>{
+    return await this.printUseCases.printInfEvaPsychological.execute(id);
+  }
 }

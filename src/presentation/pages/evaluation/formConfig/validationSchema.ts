@@ -126,3 +126,53 @@ export const validationPsychological = yup.object().shape({
   reaccion_estres_riego:yup.string().required('requerido'),
   //observacion:yup.string().required('requerido'),
 });
+
+// report evaluacion 
+export const validationInfPsychologicalBasic = yup.object().shape({
+  ap_paterno: yup.string().required('El apellido paterno es obligatorio').min(3, 'El nombre no puede tener menos de 3 caracteres'),
+  ap_materno: yup.string().required('El apellido materno es obligatorio').min(3, 'El apellido paterno no puede tener menos de 3 caracteres'),
+  nombre: yup.string().required('El nombre es obligatorio'),
+  ci: yup.string().required('El CI es obligatorio'),
+  lugar_nacimiento:yup.string().required('La lugar de nacimiento es obligatoria'),
+  fecha_nacimiento:yup.string().required('La fecha es obligatoria'),
+  profecion:yup.string().required('La profeción es obligatoria'),
+  domicilio:yup.string().required('La Domicilio es obligatoria'),
+  numero_domicilio:yup.string().required('El numero domicilio es obligatoria'),
+  zona:yup.string().required('La zona es obligatoria'),
+  telefono:yup.string().required('La telefono es obligatoria'),
+})
+export const validationInfPsychological = yup.object().shape({
+  foto:yup.string().required('La foto es obligatoria'),
+  //A) DATOS PERSONALES
+  //id_inf_evaluacion_psicologica:yup.string().required(''),
+  ap_paterno: yup.string().required('El apellido paterno es obligatorio').min(3, 'El nombre no puede tener menos de 3 caracteres'),
+  ap_materno: yup.string().required('El apellido materno es obligatorio').min(3, 'El apellido paterno no puede tener menos de 3 caracteres'),
+  nombre: yup.string().required('El nombre es obligatorio'),
+  ci: yup.string().required('El CI es obligatorio'),
+  lugar_nacimiento:yup.string().required('La lugar de nacimiento es obligatoria'),
+  fecha_nacimiento:yup.string().required('La fecha es obligatoria'),
+  profecion:yup.string().required('La profeción es obligatoria'),
+  domicilio:yup.string().required('La Domicilio es obligatoria'),
+  numero_domicilio:yup.string().required('El numero domicilio es obligatoria'),
+  zona:yup.string().required('La zona es obligatoria'),
+  telefono:yup.string().required('La telefono es obligatoria'),
+  // B) HISTORIA MEDICA
+  historia_medica:yup.string().required('requerido'),
+  // C) HISTORIA FAMILIAR
+  historia_familiar:yup.string().required('requerido'),
+  // D) EXAMEN O EVALUACION PSICOLOGICA DE MADUREZ
+  // 1. ESCALAS DE APRECIACION DEL ESTRES - EAE
+  niveles_estres:yup.string().required('requerido'),
+  estrategias_afrontamiento:yup.string().required('requerido'),
+  vulnerabilidad_emocional:yup.string().required('requerido'),
+  //2. BATERIA DE CONDUCTORES - BC 
+  atencion_sostenida_selectiva:yup.string().required('requerido'),
+  capacidad_reaccion:yup.string().required('requerido'),
+  control_impulso:yup.string().required('requerido'),
+  actidud_norma_autoridad:yup.string().required('requerido'),
+  estabilidad_emocional:yup.string().required('requerido'),
+  //E) RESULTADOS Y RECOMENDACIONES 
+  resultado_recomendacion:yup.string().required('requerido'),
+  //F) OBSERVACIONES 
+  observacion:yup.string().required('requerido'),
+})
