@@ -49,7 +49,6 @@ const DataInfoPsycological: React.FC<FormProps> = ({ createClient,updateClient,p
     }
     try {
       const values = getValues();
-      console.log('values',values)
       const validated = await schema.validate(values, { abortEarly: false });
       tipo === 'create' ? handleCreate(validated, caso) : handleUpdate(validated, caso);
     } catch (err: any) {

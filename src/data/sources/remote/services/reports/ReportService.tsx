@@ -1,6 +1,6 @@
 
 import { defaultErrerResponse, ErrorResponse } from "../../../../../domain/models/ErrorResponse";
-import { ReportCierreFilter, ReportContratoFilter, ReportResponse } from "../../../../../domain/models/ReportModel";
+import { ReportCierreFilter, ReportMedicalFilter, ReportResponse } from "../../../../../domain/models/ReportModel";
 import { apiRequestHandler } from "../../api/apiRequestHandler";
 
 export class ReportService{
@@ -19,9 +19,9 @@ export class ReportService{
       return defaultErrerResponse;
     }
   }
-  async reportContratos(reportContratoFilter:ReportContratoFilter): Promise<ReportResponse|ErrorResponse> {
+  async reportMedical(reportMedicalFilter:ReportMedicalFilter): Promise<ReportResponse|ErrorResponse> {
     try {
-      const response = await apiRequestHandler.post<ReportResponse>('/report/reportContratos',reportContratoFilter);
+      const response = await apiRequestHandler.get<ReportResponse>('/report/medical',{params:reportMedicalFilter});
        return response.data
     } catch (error:any) {
       if(error.response){
@@ -34,9 +34,9 @@ export class ReportService{
       return defaultErrerResponse;
     }
   }
-  async reportContratoDeudas(reportContratoFilter:ReportContratoFilter): Promise<ReportResponse|ErrorResponse> {
+  async reportContratoDeudas(ReportMedicalFilter:ReportMedicalFilter): Promise<ReportResponse|ErrorResponse> {
     try {
-      const response = await apiRequestHandler.post<ReportResponse>('/report/reportContratoDeudas',reportContratoFilter);
+      const response = await apiRequestHandler.post<ReportResponse>('/report/reportContratoDeudas',ReportMedicalFilter);
        return response.data
     } catch (error:any) {
       if(error.response){

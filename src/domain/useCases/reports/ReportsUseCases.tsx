@@ -1,23 +1,17 @@
 import { ReportCierreTurnoUseCase } from "./ReportCierreTurnoUseCase";
-import { ReportContratoDeudasUseCase } from "./ReportContratoDeudasUseCase";
-import { ReportContratosUseCase } from "./ReportContratosUseCase";
-
+import { ReportMedicalUseCase } from "./reportMedicalUseCase";
 export class ReportsUseCases{
 reportCierreTurno :ReportCierreTurnoUseCase;
-reportContratos:ReportContratosUseCase;
-reportContratoDeudas:ReportContratoDeudasUseCase;
+reportMedical:ReportMedicalUseCase;
   constructor({
     reportCierreTurno,
-    reportContratos,
-    reportContratoDeudas,
+    reportMedical,
   }:{
     reportCierreTurno:ReportCierreTurnoUseCase,
-    reportContratos:ReportContratosUseCase,
-    reportContratoDeudas:ReportContratoDeudasUseCase,
+    reportMedical:ReportMedicalUseCase,
   }){
 
   this.reportCierreTurno = reportCierreTurno;
-  this.reportContratos = reportContratos;
-  this.reportContratoDeudas = reportContratoDeudas;
+  this.reportMedical = reportMedical;
   }
 }

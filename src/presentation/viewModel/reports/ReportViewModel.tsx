@@ -1,6 +1,6 @@
 
 import { ErrorResponse } from "../../../domain/models/ErrorResponse";
-import { ReportCierreFilter, ReportContratoFilter, ReportResponse } from "../../../domain/models/ReportModel";
+import { ReportCierreFilter, ReportMedicalFilter, ReportResponse } from "../../../domain/models/ReportModel";
 import { ReportsUseCases } from "../../../domain/useCases/reports/ReportsUseCases";
 export class ReportViewModel {
   private reportsUseCases: ReportsUseCases;
@@ -10,10 +10,7 @@ export class ReportViewModel {
   async reportCierreTurno(reportCierreFilter:ReportCierreFilter):Promise<ReportResponse|ErrorResponse>{
     return await this.reportsUseCases.reportCierreTurno.execute(reportCierreFilter)
   }
-  async reportContratos(reportContratoFilter:ReportContratoFilter):Promise<ReportResponse|ErrorResponse>{
-    return await this.reportsUseCases.reportContratos.execute(reportContratoFilter)
-  }
-  async reportContratoDeudas(reportContratoFilter:ReportContratoFilter):Promise<ReportResponse|ErrorResponse>{
-    return await this.reportsUseCases.reportContratoDeudas.execute(reportContratoFilter)
+  async reportMedical(reportMedicalFilter:ReportMedicalFilter):Promise<ReportResponse|ErrorResponse>{
+    return await this.reportsUseCases.reportMedical.execute(reportMedicalFilter)
   }
 }

@@ -88,4 +88,5 @@ export interface EvaluationMedical{
   // RESULTADO FINAL DE CETIFICACION ME        
   resultado_evaluacion:                 string;
   motivo_resultado:                     string;
+  id_sucursal?:                         string;
 }

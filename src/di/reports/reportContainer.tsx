@@ -4,8 +4,7 @@ import { ReportRepositoryImpl } from "../../data/repository/reports/ReportReposi
 import { ReportsUseCases } from "../../domain/useCases/reports/ReportsUseCases";
 import { ReportViewModel } from "../../presentation/viewModel/reports/ReportViewModel";
 import { ReportCierreTurnoUseCase } from "../../domain/useCases/reports/ReportCierreTurnoUseCase";
-import { ReportContratosUseCase } from "../../domain/useCases/reports/ReportContratosUseCase";
-import { ReportContratoDeudasUseCase } from "../../domain/useCases/reports/ReportContratoDeudasUseCase";
+import { ReportMedicalUseCase } from "../../domain/useCases/reports/ReportMedicalUseCase";
 
 const reportContainer = createContainer();
 reportContainer.register({
@@ -16,8 +15,7 @@ reportContainer.register({
   //USE CASE
   reportsUseCases:asClass(ReportsUseCases).singleton(),
   reportCierreTurno:asClass(ReportCierreTurnoUseCase).singleton(),
-  reportContratos:asClass(ReportContratosUseCase).singleton(),
-  reportContratoDeudas:asClass(ReportContratoDeudasUseCase).singleton(),
+  reportMedical:asClass(ReportMedicalUseCase).singleton(),
   // VIEW NOMDEL
   reportViewModel:asClass(ReportViewModel).singleton(),
   

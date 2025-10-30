@@ -30,4 +30,5 @@ export interface EvaluationPsychological{
   //resultado_recomendacion:            string;
   // OBSERVACIONES 
   observacion:                        string;
+  id_sucursal?:                         string;
 }

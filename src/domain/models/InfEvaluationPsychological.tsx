@@ -38,4 +38,5 @@ export interface InfEvaluationPsychological{
   resultado_recomendacion:            string;
   //F) OBSERVACIONES 
   observacion:                        string;
+  id_sucursal?:                       string;
 }

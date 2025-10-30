@@ -15,10 +15,12 @@ import { useForm } from 'react-hook-form';
 import { EvaluationPsychological } from '../../../../domain/models/EvaluationPsychological';
 import { printContainer } from '../../../../di/prints/printContainer';
 import { InfPsychologicalContainer } from '../../../../di/evaluation/InfPsychologicalContainer';
+import { useAuth } from '../../../hooks/useAuth';
 interface LayoutContext {
   currentMenuItem: NavigationItem | null;
 }
 const ReportPsychologicalView: React.FC = memo(() => {
+  const { authResponse } = useAuth();
   const { currentMenuItem } = useOutletContext<LayoutContext>();
   const location = useLocation();
    const navigate = useNavigate();
@@ -44,6 +46,7 @@ const ReportPsychologicalView: React.FC = memo(() => {
     if (!result.isConfirmed) return;
     setLoading(true)
     try {
+      client.id_sucursal = authResponse?.id_sucursal!=0?authResponse?.id_sucursal:0;
       const response = await PsychologicalViewModel.create(client);
       setLoading(false)
       if ('status' in response && response.status==='success') {
@@ -56,12 +59,13 @@ const ReportPsychologicalView: React.FC = memo(() => {
       AlertError({ title: '', message: 'Ocurrió un error al guardar la información. Por favor, intenta nuevamente o contacta al encargado.' })
     }
     setLoading(false)
-  },[])
+  },[authResponse])
   const handleUpdate = useCallback(async(client:any)=>{
     const result = await AlertConfirm({});
     if (!result.isConfirmed) return;
     setLoading(true)
     try {
+      client.id_sucursal = client.id_sucursal?client.id_sucursal:authResponse?.id_sucursal!=0?authResponse?.id_sucursal:0;
       const response:any = await PsychologicalViewModel.update(client);
       setLoading(false)
       if ('status' in response && response.status==='success') {
@@ -74,7 +78,7 @@ const ReportPsychologicalView: React.FC = memo(() => {
       AlertError({ title: '', message: 'Ocurrió un error al guardar la información. Por favor, intenta nuevamente o contacta al encargado.' })
     }
     setLoading(false)
-  },[])
+  },[authResponse])
   const handleActivate = useCallback(async(id:number)=>{
     const result = await AlertConfirm({title:'Estas seguro de habilitar la opción deitar?.'});
     if (!result.isConfirmed) return;

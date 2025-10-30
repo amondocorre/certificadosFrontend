@@ -18,10 +18,13 @@ import CustomAutocompletePerson from '../../../components/inputs/CustomAutocompl
 
 import { useForm } from 'react-hook-form';
 import { printContainer } from '../../../../di/prints/printContainer';
+import { useAuth } from '../../../hooks/useAuth';
+import { string } from 'yup';
 interface LayoutContext {
   currentMenuItem: NavigationItem | null;
 }
 const MedicalView: React.FC = memo(() => {
+  const { authResponse } = useAuth();
   const { currentMenuItem } = useOutletContext<LayoutContext>();
   const location = useLocation();
    const navigate = useNavigate();
@@ -48,6 +51,7 @@ const MedicalView: React.FC = memo(() => {
     if (!result.isConfirmed) return;
     setLoading(true)
     try {
+      data.id_sucursal =String(authResponse?.id_sucursal!=0?authResponse?.id_sucursal:0);
       const response:any = await MedicalViewModel.create(data);
       setLoading(false)
       if ('status' in response && response.status==='success') {
@@ -60,12 +64,13 @@ const MedicalView: React.FC = memo(() => {
       AlertError({ title: '', message: 'Ocurrió un error al guardar la información. Por favor, intenta nuevamente o contacta al encargado.' })
     }
     setLoading(false)
-  },[])
+  },[authResponse])
   const handleUpdate = useCallback(async(data:EvaluationMedical)=>{
     const result = await AlertConfirm({});
     if (!result.isConfirmed) return;
     setLoading(true)
     try {
+      data.id_sucursal = String(data.id_sucursal?data.id_sucursal:authResponse?.id_sucursal!=0?authResponse?.id_sucursal:'0');
       const response:any = await MedicalViewModel.update(data);
       setLoading(false)
       if ('status' in response && response.status==='success') {
@@ -78,7 +83,7 @@ const MedicalView: React.FC = memo(() => {
       AlertError({ title: '', message: 'Ocurrió un error al guardar la información. Por favor, intenta nuevamente o contacta al encargado.' })
     }
     setLoading(false)
-  },[])
+  },[authResponse])
   const handleActivate = useCallback(async(id:number)=>{
     const result = await AlertConfirm({title:'Estas seguro de habilitar la opción de Editar?.'});
     if (!result.isConfirmed) return;

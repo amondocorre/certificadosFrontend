@@ -29,6 +29,7 @@ import ErrorPage from '../components/ErrorPage';
 import MedicalView from '../pages/evaluation/medical/MedicalView';
 import PsychologicalView from '../pages/evaluation/psychological/PsychologicalView';
 import ReportPsychologicalView from '../pages/evaluation/report-psychological/ReportPsychologicalView';
+import ReportMedicalView from '../pages/reports/reportMedical/ReportMedicalView';
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -58,6 +59,7 @@ export const router = createBrowserRouter([
           { path: 'configurations/initial-config/payments-methods', element: <PaymentsMethodsView /> },
           { path: 'cash-mgmt/cajas', element: <CajaView /> },
           { path: 'reports/report-mov', element: <ReportMoviCajaView /> },
+          { path: 'reports/report-medical', element: <ReportMedicalView /> },
           { path: 'cash-mgmt/ingreso-egreso', element: <MoviCajaView /> },
           { path: 'security/acces-user', element: <AccesUserView /> },
           { path: 'security/acces-profile', element: <AccesProfileView /> },

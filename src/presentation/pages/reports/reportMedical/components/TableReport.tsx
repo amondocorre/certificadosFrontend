@@ -2,45 +2,62 @@ import { useMemo } from 'react';
 import { MaterialReactTable, MRT_ColumnDef, useMaterialReactTable } from 'material-react-table';
 import { Box,createTheme, ThemeProvider } from '@mui/material';
 import { MRT_Localization_ES } from 'material-react-table/locales/es';
-import { formatDateDMY, formatTime12H } from '../../../../utils/dateUtils';
 
-const TableReportVenta = (Props: any) => {
+const TableReport = (Props: any) => {
   const { listReports, handleOpenModalReport } = Props;
   const columns = useMemo<MRT_ColumnDef<any>[]>(
     () => [
       {
-        accessorKey: 'numero', 
         header: 'N°:',
+        Cell: ({ row }) => row.index + 1,
       },
       {
-        accessorKey: 'nombre_completo', 
-        header: 'Cliente',
+        accessorKey: 'nombre', 
+        header: 'Nombre',
       },
       {
-        accessorKey: 'fecha_compra',
-        header: 'Fecha compra',
-        Cell: ({ row }) => (
-          <Box >
-            {String(formatDateDMY(row?.original.fecha_compra))+'  '+String(formatTime12H(row?.original.fecha_compra))}
-          </Box>
-        ),
+        accessorKey: 'ap_paterno',
+        header: 'Apellido paterno',
       },
       {
-        accessorKey: 'precio_servicio',
-        header: 'Precio Servicios(Bs)',
+        accessorKey: 'ap_materno',
+        header: 'Apellido materno',
       },
       {
-        accessorKey: 'descuento',
-        header: 'Total descuento(Bs)',
+        accessorKey: 'ci',
+        header: 'N° CI',
       },
       
       {
-        accessorKey: 'monto_pagado',
-        header: 'Ponto Pagado(Bs)',
+        accessorKey: 'categoria_postula',
+        header: 'Categoria a la que postula',
       },
       {
-        accessorKey: 'saldo_pagar',
-        header: 'Deuda pendiente(Bs)',
+        accessorKey: 'file',
+        header: 'Foto',
+        Cell: ({ cell }) => (
+          <img
+            src={String(cell.getValue())}
+            alt="Foto"
+            style={{ width: '50px', height: '50px', objectFit: 'cover', borderRadius: '4px' }}
+          />
+        ),
+      },
+      {
+        accessorKey: 'tramite',
+        header: 'Tramite que realiza',
+      },
+      {
+        accessorKey: 'resultado_evaluacion',
+        header: 'Apto/No apto',
+      },
+      {
+        accessorKey: 'sucursal',
+        header: 'Gabinete',
+      },
+      {
+        accessorKey: 'motivo_resultado',
+        header: 'Descripcion de impedimento en caso de que no sea apto',
       },
     ],
     [] 
@@ -57,23 +74,13 @@ const TableReportVenta = (Props: any) => {
     sx: {
     },
   }),
-    muiTableBodyCellProps: ({ column,row}) => {
-      return {
-        children: column.id === 'estado'? row.original.estado === '1'? 'Activo': 'Eliminado': undefined,
-        sx: {
-          fontSize:column.id === 'estado'?'16px':'auto',
-          color: column.id === 'estado' ? row.original.estado === '1' ? 'green' : 'red' : 'inherit',
-        },
-      };
-    },
     muiTableBodyRowProps: ({ row }) => {
       return {
         onClick: () => {
-          handleOpenModalReport(row.original);
+          //handleOpenModalReport(row.original);
         },
         sx: {
           cursor: 'pointer',
-          backgroundColor:row.original.estado == 0?'#f7d9d4': (row.index % 2 === 0 ? '#f9f9f9' : '#ffffff'),
           '&:hover': {
             backgroundColor: '#f0f0f0',
           },
@@ -102,4 +109,4 @@ const TableReportVenta = (Props: any) => {
   );
 };
 
-export default TableReportVenta;
+export default TableReport;

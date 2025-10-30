@@ -40,6 +40,27 @@ export function formatDateDMY2(fechaString: string | Date | null | undefined): s
     return null;
   }
 }
+export function formatDateEU(fechaString: string | Date | null | undefined): string | null {
+  try {
+    if (!fechaString) {
+      return null;
+    }
+    let fechaFinal: Date;
+    if (typeof fechaString === 'string') {
+      const tieneHora = /\d{2}:\d{2}(:\d{2})?/.test(fechaString);
+      const fechaConHora = tieneHora ? fechaString : `${fechaString} 12:00:00`;
+      fechaFinal = new Date(fechaConHora);
+    } else {
+      fechaFinal = new Date(fechaString);
+    }
+    const year = fechaFinal.getFullYear();
+    const month = (fechaFinal.getMonth() + 1).toString().padStart(2, '0');
+    const day = fechaFinal.getDate().toString().padStart(2, '0');
+    return `${day}-${month}-${year}`;
+  } catch (error) {
+    return null;
+  }
+}
 export function formatDateDMY(fechaString: string | Date | null | undefined): string | null {
   try {
     if (!fechaString) {

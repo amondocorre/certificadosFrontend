@@ -11,8 +11,7 @@ export interface ReportCierreFilter{
   i_fecha:string;
   f_fecha:string;
 } 
-export interface ReportContratoFilter{
+export interface ReportMedicalFilter{
   id_sucursal:string;
-  i_fecha:string;
-  f_fecha:string;
+  fecha:string;
 } 
