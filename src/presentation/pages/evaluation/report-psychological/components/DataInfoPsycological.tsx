@@ -53,7 +53,6 @@ const DataInfoPsycological: React.FC<FormProps> = ({ createClient,updateClient,p
       tipo === 'create' ? handleCreate(validated, caso) : handleUpdate(validated, caso);
     } catch (err: any) {
       if (err.inner) {
-        console.log('err',err)
         err.inner.forEach((validationError: any) => {
           setError(validationError.path, {
             type: 'manual',

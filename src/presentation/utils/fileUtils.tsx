@@ -14,9 +14,7 @@ export function base64ToFile(base64: string, filename: string): File {
 export const loadImageAsBase642 = async (url: string): Promise<string | null> => {
   try {
     const baseURL = import.meta.env.VITE_URL_API;
-    const encoded = btoa(url)
     const response = await fetch(`${baseURL}proxy-image/?path=${url}`);
-    console.log('response',response)
     const blob = await response.blob();
     return await new Promise((resolve, reject) => {
       const reader = new FileReader();
