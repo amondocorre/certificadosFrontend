@@ -14,7 +14,7 @@ export function base64ToFile(base64: string, filename: string): File {
 export const loadImageAsBase642 = async (url: string): Promise<string | null> => {
   try {
     const baseURL = import.meta.env.VITE_URL_API;
-    const response = await fetch(`${baseURL}proxy-image/?path=${url}`);
+    const response = await fetch(`${baseURL}/proxy-image/?path=${url}`);
     const blob = await response.blob();
     return await new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -29,7 +29,7 @@ export const loadImageAsBase642 = async (url: string): Promise<string | null> =>
 export const loadImageAsBase64 = async (url: string): Promise<string | null> => {
   try {
     const baseURL = import.meta.env.VITE_URL_API;
-    const response = await fetch(`${baseURL}proxy-image/?path=${url}`);
+    const response = await fetch(`${baseURL}/proxy-image/?path=${url}`);
     // Verificar que el tipo MIME sea imagen
     const contentType = response.headers.get('Content-Type');
     if (!contentType || !contentType.startsWith('image/')) {
@@ -58,7 +58,7 @@ export const loadImageAsBase64 = async (url: string): Promise<string | null> => 
 
 export const getBase64List = async(imagePaths:string[])=>{
   const baseURL = import.meta.env.VITE_URL_API;
-const response = await fetch(`${baseURL}image-batch`, {
+const response = await fetch(`${baseURL}/image-batch`, {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify({ paths: imagePaths })
