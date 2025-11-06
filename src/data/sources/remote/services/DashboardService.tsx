@@ -36,7 +36,7 @@ export class DashboardService{
   }
   async listEvaPsychological(id_sucursal:number,limit:number,page:number):Promise<ApiResponse|ErrorResponse>{
     try {
-      const response = await apiRequestHandler.post<ApiResponse>('/dashboard/listEvaPsychological/'+id_sucursal,{params:{limit:limit,page:page}})
+      const response = await apiRequestHandler.get<ApiResponse>('/dashboard/listEvaPsychological/'+id_sucursal,{params:{limit:limit,page:page}})
       return response.data
     } catch (error:any) {
       if(error.response){
@@ -51,7 +51,7 @@ export class DashboardService{
   }
   async listInfEvaPsychological(id_sucursal:number,limit:number,page:number):Promise<ApiResponse|ErrorResponse>{
     try {
-      const response = await apiRequestHandler.post<ApiResponse>('/dashboard/listInfEvaPsychological/'+id_sucursal,{params:{limit:limit,page:page}})
+      const response = await apiRequestHandler.get<ApiResponse>('/dashboard/listInfEvaPsychological/'+id_sucursal,{params:{limit:limit,page:page}})
       return response.data
     } catch (error:any) {
       if(error.response){
