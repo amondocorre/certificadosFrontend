@@ -225,7 +225,7 @@ export default function SignIn() {
             color="text.secondary" 
             align="center"
           >
-            Versión 1.0.1
+            Versión 1.0.2
           </Typography>
         </Paper>
       </Box>
