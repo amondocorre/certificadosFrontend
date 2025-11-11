@@ -126,7 +126,7 @@ export const defaultValuesInfPsychological:InfEvaluationPsychological ={
   actidud_norma_autoridad:'',
   estabilidad_emocional:'',
   //E) RESULTADOS Y RECOMENDACIONES 
-  resultado_recomendacion:'',
+  resultado_recomendacion:'El paciente que se encuentra en el medio de la madurez emocional, y eso es algo bastante habitual y un buen lugar para estar, uedes procesar sus problemas de la vida con facilidad  en situaciones de estrés.',
   //F) OBSERVACIONES 
-  observacion:'',
+  observacion:'DEL PRESENTA APTO DE EVALUACION PSICOLOGICA DE ACUERDO A LOS RESULTADOS OBTENIDOS EN LAS PRUEBAS APLICADAS CONCLUYO QUE EL  INTERESADO NO PRESENTA ALTERACIONES FUNCIONALES SIGNIFICATIVAS O DISMINUIDAS EL PRESENTE OSTENTA CAPACIDADES ADECUADAD POR LO QUE CONCLUYO  ES "APTO PARA CONDUCIR VEHICULOS.',
 }
