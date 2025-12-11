@@ -95,7 +95,34 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
       });
     }else{
       setValue('sexo','')
-    }
+      setValue('cabeza','NORMOCEFALO SIN PROTRUSIONES NI DEPRESIONES')
+      setValue('cara','FOSAS NASALES PERMEABLES, MUCOSAS HUMEDAS Y ROSADAS')
+      setValue('cuello','CILINDRO, SIMETRICO, SIN PRESENCIA DE SOPLO CAROTIDEO, NO SE PALPAN ADENOPATIAS')
+      setValue('vision_profunda','NORMAL')
+      setValue('dx_lampara_hendidura','SIN ALTERACIONES')
+      setValue('oido_externo','PABELLON AURICULAR NORMOIMPLANTADO DE CARACTERISTICASIGUALES')
+      setValue('oroscopia','CAE PERMEABLE')
+      setValue('t_weber','NORMAL')
+      setValue('t_rinne','POSITIVO')
+      setValue('torax','SIMETRICO, ELASTICIDAD Y EXPANSIBILIDAD CONSERVADA')
+      setValue('cardiopolmunar','RITMITO REGULAR NORMOFONETICO SIN RUIDOS SOBREAGREGADOS, MURMULLO VESICULAR ')
+      setValue('abdomen','RHA(+), BLANDO, DEPRESIBLE, NO DOLOROSO A LA PALPACION SUPERFICIAL NI PROFUNDA ')
+      setValue('cardiopolmunar','SIN ALTERACIONES')
+      setValue('s_trofismo','CONSERVADO')
+      setValue('s_tono_muscular','CONSERVADO')
+      setValue('s_fuerza_muscular','CONSERVADO')
+      setValue('i_trofismo','CONSERVADO')
+      setValue('i_tono_muscular','CONSERVADO')
+      setValue('i_fuerza_muscular','CONSERVADO')
+      
+      setValue('cordinacion_marcha','CONSERVADO')
+      setValue('reflejos_osteotendinosos','CONSERVADO')
+      setValue('talon_rodilla','NORMAL')
+      setValue('dedo_nariz','NORMAL')
+      setValue('romberg','NEGATIVO')
+      setValue('motoras_sensetivas_diagnosticadas','NINGUNA')
+      
+    } 
   }, [client]);
   const getOptions = useCallback(async (value:string,tipo: string) => {
     if (tipo ==="cara" || tipo==="cuello" || tipo==="cabeza" || tipo==='torax' || tipo==='cardiopolmunar' || tipo==='abdomen' || tipo==='oido_externo') {
@@ -848,7 +875,7 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                         name="torax"
                         control={control}
                         uppercase={true}
-                        label="Exoloración de tórax"
+                        label="Expoloración de tórax"
                         placeholder="Ingrese un detalle"
                         handleChange={()=>{}}
                         disabled={!(stateUpdate || !client)}

@@ -75,7 +75,7 @@ const PsychologicalView: React.FC = memo(() => {
         AlertError({ title: '', message: response.message })
       }
     } catch (error) {
-      AlertError({ title: '', message: 'Ocurrió un error al guardar la información. Por favor, intenta nuevamente o contacta al encargado.' })
+      AlertError({ title: '', message: 'Ocurrió un error al guardar la información. Por favor, intenta nuevamente o contacta al encargado..' })
     }
     setLoading(false)
   },[authResponse])
@@ -93,7 +93,7 @@ const PsychologicalView: React.FC = memo(() => {
         AlertError({ title: '', message: response.message })
       }
     } catch (error) {
-      AlertError({ title: '', message: 'Ocurrió un error al guardar la información. Por favor, intenta nuevamente o contacta al encargado.' })
+      AlertError({ title: '', message: 'Ocurrió un error al guardar la información. Por favor, intenta nuevamente o contacta al encargado...' })
     }
     setLoading(false)
   },[])

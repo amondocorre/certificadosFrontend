@@ -42,7 +42,7 @@ const ReportPsychologicalView: React.FC = memo(() => {
     if(id) findIdentity(id)
   },[id])
   const handleCreate = useCallback(async(client:any)=>{
-    const result = await AlertConfirm({title:'Estas seguro de crear un nuevo cliente?',confirmButtonText:'Crear'});
+    const result = await AlertConfirm({title:'Estas seguro de crear un nuevo Registro?',confirmButtonText:'Crear'});
     if (!result.isConfirmed) return;
     setLoading(true)
     try {
@@ -75,12 +75,12 @@ const ReportPsychologicalView: React.FC = memo(() => {
         AlertError({ title: '', message: response.message })
       }
     } catch (error) {
-      AlertError({ title: '', message: 'Ocurrió un error al guardar la información. Por favor, intenta nuevamente o contacta al encargado.' })
+      AlertError({ title: '', message: 'Ocurrió un error al guardar la información. Por favor, intenta nuevamente o contacta al encargado..' })
     }
     setLoading(false)
   },[authResponse])
   const handleActivate = useCallback(async(id:number)=>{
-    const result = await AlertConfirm({title:'Estas seguro de habilitar la opción deitar?.'});
+    const result = await AlertConfirm({title:'Estas seguro de habilitar la opción de Editar los datos Registrados?.'});
     if (!result.isConfirmed) return;
     setLoading(true)
     try {
@@ -93,7 +93,7 @@ const ReportPsychologicalView: React.FC = memo(() => {
         AlertError({ title: '', message: response.message })
       }
     } catch (error) {
-      AlertError({ title: '', message: 'Ocurrió un error al guardar la información. Por favor, intenta nuevamente o contacta al encargado.' })
+      AlertError({ title: '', message: 'Ocurrió un error al guardar la información. Por favor, intenta nuevamente o contacta al encargado...' })
     }
     setLoading(false)
   },[])

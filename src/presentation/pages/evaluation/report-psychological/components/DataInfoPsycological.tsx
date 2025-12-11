@@ -180,7 +180,7 @@ const DataInfoPsycological: React.FC<FormProps> = ({ createClient,updateClient,p
                     control={control}
                     uppercase={true}
                     label="Lugar de Nacimiento"
-                    placeholder="Ingrese lugar de nacimieno"
+                    placeholder="Ingrese lugar de nacimiento"
                     disabled={!(stateUpdate || !client)}
                     icon={<MUIcons.LocationOn/>}
                   />
@@ -199,8 +199,8 @@ const DataInfoPsycological: React.FC<FormProps> = ({ createClient,updateClient,p
                     name="profecion"
                     control={control}
                     uppercase={true}
-                    label="profecion"
-                    placeholder="Ingrese la profecion"
+                    label="Profesión"
+                    placeholder="Ingrese la profesión"
                     disabled={!(stateUpdate || !client)}
                     icon={<MUIcons.Work/>}
                   />
@@ -243,10 +243,10 @@ const DataInfoPsycological: React.FC<FormProps> = ({ createClient,updateClient,p
                     name="telefono"
                     control={control}
                     uppercase={true}
-                    label="Telefono"
+                    label="Teléfono"
                     type='number'
                     disabled={!(stateUpdate || !client)}
-                    placeholder='ingrese el N° de telefono'
+                    placeholder='ingrese el N° de Teléfono'
                     icon={<MUIcons.Phone/>}
                   />
                 </Grid>
@@ -334,9 +334,9 @@ const DataInfoPsycological: React.FC<FormProps> = ({ createClient,updateClient,p
                     <CustomSelect
                       name="niveles_estres"
                       control={control}
-                      label="Detectar niveles de estrés percibido ante diversas situalciones cotidianas y de riesgo."
+                      label="Detectar niveles de estrés percibido ante diversas situaciones cotidianas y de riesgo."
                       options={escalasApreciacion}
-                      placeholder="Seleccione una opcion"
+                      placeholder="Seleccione una opción"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.Timeline/>}
                     />
@@ -347,7 +347,7 @@ const DataInfoPsycological: React.FC<FormProps> = ({ createClient,updateClient,p
                       control={control}
                       label="Evaluar las estrategias de afrontamientoutilizadas."
                       options={escalasApreciacion}
-                      placeholder="Seleccione una opcion"
+                      placeholder="Seleccione una opción"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.Timeline/>}
                     />
@@ -358,7 +358,7 @@ const DataInfoPsycological: React.FC<FormProps> = ({ createClient,updateClient,p
                       control={control}
                       label="Identificar vulderabilidades emocionales que podrían comprometer la toma de decisiones al volante."
                       options={escalasApreciacion}
-                      placeholder="Seleccione una opcion"
+                      placeholder="Seleccione una opción"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.Timeline/>}
                     />
@@ -383,7 +383,7 @@ const DataInfoPsycological: React.FC<FormProps> = ({ createClient,updateClient,p
                       control={control}
                       label="Atencion sostenda y selectiva."
                       options={escalasApreciacion}
-                      placeholder="Seleccione una opcion"
+                      placeholder="Seleccione una opción"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.AccountCircle/>}
                     />
@@ -394,7 +394,7 @@ const DataInfoPsycological: React.FC<FormProps> = ({ createClient,updateClient,p
                       control={control}
                       label="Capacidad de reacción"
                       options={escalasApreciacion}
-                      placeholder="Seleccione una opsion"
+                      placeholder="Seleccione una opción"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.AccountCircle/>}
                     />
@@ -405,7 +405,7 @@ const DataInfoPsycological: React.FC<FormProps> = ({ createClient,updateClient,p
                       control={control}
                       label="Control de impulsos"
                       options={escalasApreciacion}
-                      placeholder="Seleccione una opsion"
+                      placeholder="Seleccione una opción"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.AccountCircle/>}
                     />
@@ -416,7 +416,7 @@ const DataInfoPsycological: React.FC<FormProps> = ({ createClient,updateClient,p
                       control={control}
                       label="Actitudes hacia la norma y la autoridad"
                       options={escalasApreciacion}
-                      placeholder="Seleccione una opsion"
+                      placeholder="Seleccione una opción"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.AccountCircle/>}
                     />
@@ -427,7 +427,7 @@ const DataInfoPsycological: React.FC<FormProps> = ({ createClient,updateClient,p
                       control={control}
                       label="Estabilidad Emocional"
                       options={escalasApreciacion}
-                      placeholder="Seleccione una opsion"
+                      placeholder="Seleccione una opción"
                       disabled={!(stateUpdate || !client)}
                       icon={<MUIcons.AccountCircle/>}
                     />
