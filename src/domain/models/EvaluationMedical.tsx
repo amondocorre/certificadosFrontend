@@ -16,6 +16,7 @@ export interface EvaluationMedical{
   edad:                                 number;
   sexo:                                 string
   fecha_evaluacion:                     string
+  telefono:                             string;
   //I. ANTECENDENTES
   antecendentes_rc:                     string;
   antecendentes_pp:                     string;

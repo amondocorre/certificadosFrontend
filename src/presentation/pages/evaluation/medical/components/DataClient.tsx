@@ -267,6 +267,16 @@ const DataClient: React.FC<UserFormProps> = ({ createMedical,updateMedical,getEx
                     icon={<MUIcons.CalendarMonth />} 
                   />
                 </Grid>
+                <Grid size={{xs: 4,sm: 4}}>
+                  <CustomTextField
+                    name="telefono"
+                    control={control}
+                    label="Teléfono"
+                    placeholder="Ingrese el número de teléfono"
+                    disabled={!(stateUpdate || !client)}
+                    icon={<MUIcons.Phone />}
+                  />
+                </Grid>
               </Grid>
             </DynamicAccordion>
             <DynamicAccordion

@@ -27,17 +27,20 @@ interface FormProps {
   client?: any;
   buttons:Button[];
 }
+
 const DataInfoPsycological: React.FC<FormProps> = ({ createClient,updateClient,printEvaluation,activateClient,buttons,client}) => {
   const stateUpdate = useMemo(()=>{
       return!(buttons.filter((button: Button) => button.nombre === 'update' && button.tipo === 'table')?.length===0) && client?.id_estado_evaluacion==1
-    },[buttons,client])
-    const btnCreate = buttons.filter((button: Button) => button.nombre === 'create' && button.tipo === 'header');
-    const stateCreate =  !(btnCreate?.length===0) 
-    const btnActivate = (buttons.filter((button: Button) => button.nombre === 'activate' && button.tipo === 'table').length>0);
-  const { control, formState: { errors },setError,clearErrors, reset, setValue, getValues } = useForm<any>({
+    },[buttons,client]);
+  const btnCreate = buttons.filter((button: Button) => button.nombre === 'create' && button.tipo === 'header');
+  const stateCreate =  !(btnCreate?.length===0); 
+  const btnActivate = (buttons.filter((button: Button) => button.nombre === 'activate' && button.tipo === 'table').length>0);
+  const { control, formState: { errors },setError,clearErrors, reset, setValue, getValues, watch } = useForm<any>({
     resolver: yupResolver(validationInfPsychological),
-    defaultValues:defaultValuesInfPsychological,mode: 'onChange',
+    defaultValues: defaultValuesInfPsychological,
+    mode: 'onChange',
   });
+
   const validateWithSchema = async (schema: any, caso: string, tipo: string) => {
     if (schema === validationInfPsychologicalBasic) {
       const basicFields = Object.keys(validationInfPsychologicalBasic.fields);
@@ -60,40 +63,61 @@ const DataInfoPsycological: React.FC<FormProps> = ({ createClient,updateClient,p
           });
         });
         const firstErrorField = err.inner[0].path;
-        const accordionKey = accordionFieldInfPsychological[firstErrorField]??'';
+        const accordionKey = accordionFieldInfPsychological[firstErrorField] ?? '';
         const accordionElement = document.querySelector(`#${accordionKey}`);
         const isExpanded = accordionElement?.classList.contains('Mui-expanded');
-        if(!isExpanded){
-          const header:any = accordionElement?.querySelector('.MuiAccordionSummary-root'); // Ajusta según tu clase real
+        if (!isExpanded) {
+          const header: any = accordionElement?.querySelector('.MuiAccordionSummary-root'); // Ajusta según tu clase real
           header?.click();
         }
         setTimeout(() => {
-        const errorElement:any = document.querySelector(`[name="${firstErrorField}"]`);
-        if (errorElement) {
-          errorElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          errorElement.focus();
-        }
-      }, 300);
+          const errorElement: any = document.querySelector(`[name="${firstErrorField}"]`);
+          if (errorElement) {
+            errorElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            errorElement.focus();
+          }
+        }, 300);
       }
     }
   };
 
+  const fechaNacimientoValue = watch('fecha_nacimiento');
+
   useEffect(() => {
     reset();
     if (client) {
-      Object.keys(client).forEach((key:any) => {
+      Object.keys(client).forEach((key: any) => {
         setValue(key, (client[key as keyof any] ?? null));
       });
-    }else{
-      
+
+    } else {
+      setValue('historia_medica', 'PACIENTE SIN ANTECEDENTES MEDICO Y PSIQUIATRICOS DE RELEVANCIA ACUDE A CONSULTA EXTERNA PARA AVALUACION');
+      setValue('historia_familiar', 'SE PRESENTA A CONSULTA PACIENTE DE   AÑOS DE EDAD SIN ANTECEDENTES PSICOLOGICOS, PERSONALES O FAMILIARES DE RELEVANCIA.');
     }
   }, [client]);
-  const handleCreate = useCallback(async (data:any,caso:string) => {
+
+  useEffect(() => {
+    if (!client && fechaNacimientoValue) {
+      const fecha = new Date(fechaNacimientoValue as any);
+      if (!isNaN(fecha.getTime())) {
+        const hoy = new Date();
+        let edad = hoy.getFullYear() - fecha.getFullYear();
+        const mes = hoy.getMonth() - fecha.getMonth();
+        if (mes < 0 || (mes === 0 && hoy.getDate() < fecha.getDate())) {
+          edad--;
+        }
+        const texto = `SE PRESENTA A CONSULTA PACIENTE DE ${edad} AÑOS DE EDAD SIN ANTECEDENTES PSICOLOGICOS, PERSONALES O FAMILIARES DE RELEVANCIA.`;
+        setValue('historia_familiar', texto);
+      }
+    }
+  }, [client, fechaNacimientoValue, setValue]);
+
+  const handleCreate = useCallback(async (data: any, caso: string) => {
     const foto = document.getElementById('image-upload-foto') as HTMLInputElement;
     let file = foto.files?.[0];
     data.file = file;
     data.fecha_nacimiento = formatDate(data.fecha_nacimiento);
-    data.id_estado_evaluacion = caso==='1'?1:2;
+    data.id_estado_evaluacion = caso === '1' ? 1 : 2;
     createClient(data)
   }, []);
   const handleUpdate = useCallback(async (data:any,caso:string) => {
@@ -168,8 +192,8 @@ const DataInfoPsycological: React.FC<FormProps> = ({ createClient,updateClient,p
                     name="ci"
                     control={control}
                     uppercase={true}
-                    label="CI"
-                    placeholder="Ingrese el ci"
+                    label="C.I."
+                    placeholder="Ingrese el Nro. de C.I."
                     disabled={!(stateUpdate || !client)}
                     icon={<MUIcons.AccountCircle/>}
                   />
@@ -221,9 +245,9 @@ const DataInfoPsycological: React.FC<FormProps> = ({ createClient,updateClient,p
                     name="numero_domicilio"
                     control={control}
                     uppercase={true}
-                    label="N°"
+                    label="N° de Domicilio"
                     disabled={!(stateUpdate || !client)}
-                    placeholder='ingrese el numero'
+                    placeholder='ingrese el número'
                     icon={<MUIcons.Numbers/>}
                   />
                 </Grid>
@@ -232,7 +256,7 @@ const DataInfoPsycological: React.FC<FormProps> = ({ createClient,updateClient,p
                     name="zona"
                     control={control}
                     uppercase={true}
-                    label="Zona"
+                    label="Zona del domicilio"
                     disabled={!(stateUpdate || !client)}
                     placeholder='ingrese la Zona'
                     icon={<MUIcons.PanoramaHorizontal/>}

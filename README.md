@@ -52,4 +52,5 @@ export default tseslint.config({
   },
 })
 ```
-# hotel
+Modificaciones en la version 1.03
+Se realizo la implementacion de certificados psicologicos con la impresion de certificados psicologicos
