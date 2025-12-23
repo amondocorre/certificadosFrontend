@@ -12,16 +12,16 @@ const TableReport = (Props: any) => {
         Cell: ({ row }) => row.index + 1,
       },
       {
-        accessorKey: 'nombre', 
-        header: 'Nombre',
-      },
-      {
         accessorKey: 'ap_paterno',
         header: 'Apellido paterno',
       },
       {
         accessorKey: 'ap_materno',
         header: 'Apellido materno',
+      },
+      {
+        accessorKey: 'nombre', 
+        header: 'Nombre',
       },
       {
         accessorKey: 'ci',

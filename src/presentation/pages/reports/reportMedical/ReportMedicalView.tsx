@@ -126,9 +126,11 @@ useEffect(()=>{
       return;
     }
     const pdfColumns =[      
-      {accessorKey: 'nombre', header: 'Nombres',},
+      {accessorKey: '__index', header: 'N°'},
       {accessorKey: 'ap_paterno',header: 'Apellido paterno',},
       {accessorKey: 'ap_materno',header: 'Apellido materno',},
+      {accessorKey: 'nombre', header: 'Nombres',},
+
       {accessorKey: 'ci',header: 'N° CI',},
       {accessorKey: 'categoria_postula',header: 'Categoria a la que postula',},
       {accessorKey: 'foto',header: 'Foto',isImage:true},
@@ -139,11 +141,15 @@ useEffect(()=>{
       
     ];
     const fecha=formatDateEU(getValues('fecha'));
-    
+    const dataWithIndex = listReport.map((item, index) => ({
+      ...item,
+      __index: index + 1,
+    }));
     setLoading(true);
     await exportToPDF({
-        data:listReport ,
+        data:dataWithIndex ,
         columns: pdfColumns,
+
         titleDoc: `reporte ${fecha}`,
         titlePdf: `Reporte evalucion medica ${fecha}`,
       })
@@ -155,9 +161,10 @@ useEffect(()=>{
     }
     const pdfColumns =[
       {accessorKey: '__index', header: 'N°' },
-      {accessorKey: 'nombre', header: 'NOMBRES',},
       {accessorKey: 'ap_paterno',header: 'APELLIDO PATERNO',},
       {accessorKey: 'ap_materno',header: 'APELLIDO MATERNO',},
+      {accessorKey: 'nombre', header: 'NOMBRES',},
+
       {accessorKey: 'ci',header: 'CARNET DE IDENTIDAD',},
       {accessorKey: 'categoria_postula',header: 'CATEGORIA A LA QUE POSTULA',},
       {accessorKey: 'foto',header: 'FOTO',isImage:true},
@@ -166,10 +173,14 @@ useEffect(()=>{
       {accessorKey: 'sucursal',header: 'GABINETE',},
       {accessorKey: 'motivo_resultado',header: 'DESCRIPCION DE IMPEDIMENTO EN CASO DE QUE NO SEA APTO',},
     ];
+    const dataWithIndex = listReport.map((item, index) => ({
+      ...item,
+      __index: index + 1,
+    }));
     const fecha=formatDateEU(String(dayjs()));
     setLoading(true);
     await exportToExcel({
-        data:listReport ,
+        data:dataWithIndex ,
         columns: pdfColumns,
         titleDoc: `reporte evaluacion medica ${fecha}`,
         titleExcel: `Reporte evaluacion medica ${fecha}`,

@@ -51,7 +51,11 @@ const MedicalView: React.FC = memo(() => {
     if (!result.isConfirmed) return;
     setLoading(true)
     try {
-      data.id_sucursal =String(authResponse?.id_sucursal!=0?authResponse?.id_sucursal:0);
+      const sucursalAutenticada = authResponse?.id_sucursal && authResponse.id_sucursal !== 0
+        ? authResponse.id_sucursal
+        : 1;
+      data.id_sucursal = String(sucursalAutenticada);
+
       const response:any = await MedicalViewModel.create(data);
       setLoading(false)
       if ('status' in response && response.status==='success') {
