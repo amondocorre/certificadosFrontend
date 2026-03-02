@@ -8,21 +8,23 @@ import { ListEvaPsychologicalUseCase } from "../domain/useCases/dashboard/ListEv
 import { ListEvaMedicalUseCase } from "../domain/useCases/dashboard/ListEvaMedicalUseCase";
 import { GetTotalEvaluationsUseCase } from "../domain/useCases/dashboard/GetTotalEvaluationsUseCase";
 import { ListInfEvaPsychologicalUseCase } from "../domain/useCases/dashboard/ListInfEvaPsychologicalUseCase";
+import { GetTotalEvaByDoctorUseCase } from "../domain/useCases/dashboard/GetTotalEvaByDoctorUseCase";
+
 const dashboardContainer = createContainer();
 dashboardContainer.register({
   // SERVICES
-  dashboardService:asClass(DashboardService).singleton(),
+  dashboardService: asClass(DashboardService).singleton(),
   //REPOSITORY
-  dashboardRepository:asClass(DashboardRepositoryImpl).singleton(),
+  dashboardRepository: asClass(DashboardRepositoryImpl).singleton(),
   //USE CASE
-  dashboardUseCases:asClass(DashboardUseCases).singleton(),
-  getIngresosDiarios:asClass(GetIngresosDiariosUseCase).singleton(),
-  listEvaMedical:asClass(ListEvaMedicalUseCase).singleton(),
-  listEvaPsychological:asClass(ListEvaPsychologicalUseCase).singleton(),
-  listInfEvaPsychological:asClass(ListInfEvaPsychologicalUseCase).singleton(),
-  getTotalEvaluations:asClass(GetTotalEvaluationsUseCase).singleton(),
+  dashboardUseCases: asClass(DashboardUseCases).singleton(),
+  getIngresosDiarios: asClass(GetIngresosDiariosUseCase).singleton(),
+  listEvaMedical: asClass(ListEvaMedicalUseCase).singleton(),
+  listEvaPsychological: asClass(ListEvaPsychologicalUseCase).singleton(),
+  listInfEvaPsychological: asClass(ListInfEvaPsychologicalUseCase).singleton(),
+  getTotalEvaluations: asClass(GetTotalEvaluationsUseCase).singleton(),
+  getTotalEvaByDoctor: asClass(GetTotalEvaByDoctorUseCase).singleton(),
   // VIEW NOMDEL
-  dashboardViewModel:asClass(DashboardViewModel).singleton(),
-  
+  dashboardViewModel: asClass(DashboardViewModel).singleton(),
 })
-export {dashboardContainer};
+export { dashboardContainer };

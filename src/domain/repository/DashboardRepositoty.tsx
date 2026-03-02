@@ -1,5 +1,4 @@
-
-import { ApiResponse, IngresosDiarios, ResponseEvaluations} from "../models/DashboardModel";
+import { ApiResponse, EvaluationsByDoctor, IngresosDiarios, ResponseEvaluations} from "../models/DashboardModel";
 import { ErrorResponse } from "../models/ErrorResponse";
 export interface DashboardRepository{ 
   getIngresosDiarios(id_sucursal:number):Promise<IngresosDiarios[]|ErrorResponse>;
@@ -7,4 +6,5 @@ export interface DashboardRepository{
   listEvaPsychological(id_sucursal:number,limit:number,page:number):Promise<ApiResponse|ErrorResponse>;
   listInfEvaPsychological(id_sucursal:number,limit:number,page:number):Promise<ApiResponse|ErrorResponse>;
   getTotalEvaluations(id_sucursal:number):Promise<ResponseEvaluations|ErrorResponse>;
+  getTotalEvaByDoctor(id_sucursal:number,fecha?:string):Promise<EvaluationsByDoctor[]|ErrorResponse>;
 }

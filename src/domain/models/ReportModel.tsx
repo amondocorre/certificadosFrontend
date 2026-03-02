@@ -14,4 +14,5 @@ export interface ReportCierreFilter{
 export interface ReportMedicalFilter{
   id_sucursal:string;
   fecha:string;
+  id_usuario?:string;
 } 

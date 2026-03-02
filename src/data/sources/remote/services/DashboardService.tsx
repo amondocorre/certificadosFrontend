@@ -1,7 +1,6 @@
-
 import { apiRequestHandler } from "../api/apiRequestHandler";
 import { defaultErrerResponse, ErrorResponse } from "../../../../domain/models/ErrorResponse";
-import { ApiResponse, IngresosDiarios, ResponseEvaluations} from "../../../../domain/models/DashboardModel";
+import { ApiResponse, EvaluationsByDoctor, IngresosDiarios, ResponseEvaluations} from "../../../../domain/models/DashboardModel";
 
 export class DashboardService{
   async getIngresosDiarios(id_sucursal:number):Promise<IngresosDiarios[]|ErrorResponse>{
@@ -67,6 +66,25 @@ export class DashboardService{
   async getTotalEvaluations(id_sucursal:number):Promise<ResponseEvaluations|ErrorResponse>{
     try {
       const response = await apiRequestHandler.post<ResponseEvaluations>('/dashboard/getTotalEvaluations/'+id_sucursal)
+      return response.data
+    } catch (error:any) {
+      if(error.response){
+        const errorData:ErrorResponse = error.response.data;
+        if(Array.isArray(errorData.message)){
+          errorData.message = errorData.message.join(',');
+        }
+        return errorData;
+      }
+      return defaultErrerResponse;
+    }
+  }
+  async getTotalEvaByDoctor(id_sucursal:number, fecha?:string):Promise<EvaluationsByDoctor[]|ErrorResponse>{
+    try {
+      const response = await apiRequestHandler.get<EvaluationsByDoctor[]>('/dashboard/getTotalEvaByDoctor/'+id_sucursal,{
+        params:{
+          fecha
+        }
+      })
       return response.data
     } catch (error:any) {
       if(error.response){

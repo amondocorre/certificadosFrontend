@@ -1,5 +1,5 @@
 
-import { ApiResponse, IngresosDiarios, ResponseEvaluations} from '../../domain/models/DashboardModel';
+import { ApiResponse, EvaluationsByDoctor, IngresosDiarios, ResponseEvaluations} from '../../domain/models/DashboardModel';
 import { ErrorResponse } from '../../domain/models/ErrorResponse';
 import { DashboardUseCases } from '../../domain/useCases/dashboard/DashboardUseCases';
 export class DashboardViewModel {
@@ -22,5 +22,8 @@ export class DashboardViewModel {
   }
   async getTotalEvaluations(id_sucursal:number):Promise<ResponseEvaluations|ErrorResponse>{
     return await this.dashboardUseCases.getTotalEvaluations.execute(id_sucursal)
+  }
+  async getTotalEvaByDoctor(id_sucursal:number,fecha?:string):Promise<EvaluationsByDoctor[]|ErrorResponse>{
+    return await this.dashboardUseCases.getTotalEvaByDoctor.execute(id_sucursal,fecha)
   }
 }

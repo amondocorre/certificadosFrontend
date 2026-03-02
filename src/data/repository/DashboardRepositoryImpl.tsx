@@ -1,4 +1,4 @@
-import { ApiResponse, IngresosDiarios, ResponseEvaluations} from "../../domain/models/DashboardModel";
+import { ApiResponse, EvaluationsByDoctor, IngresosDiarios, ResponseEvaluations} from "../../domain/models/DashboardModel";
 import { ErrorResponse } from "../../domain/models/ErrorResponse";
 import { DashboardRepository } from "../../domain/repository/DashboardRepositoty";
 import { DashboardService } from "../sources/remote/services/DashboardService";
@@ -22,5 +22,8 @@ export class DashboardRepositoryImpl implements DashboardRepository{
   }
   async getTotalEvaluations(id_sucursal:number): Promise<ResponseEvaluations | ErrorResponse> {
     return await this.dashboardService.getTotalEvaluations(id_sucursal);
+  }
+  async getTotalEvaByDoctor(id_sucursal: number, fecha?:string): Promise<EvaluationsByDoctor[] | ErrorResponse> {
+    return await this.dashboardService.getTotalEvaByDoctor(id_sucursal, fecha);
   }
 }

@@ -46,3 +46,9 @@ export interface ResponseEvaluations{
   medical :EvaluationData;
   psychological:EvaluationData
 }
+
+export interface EvaluationsByDoctor {
+  id_usuario: number;
+  nombre_doctor: string;
+  total: number;
+}

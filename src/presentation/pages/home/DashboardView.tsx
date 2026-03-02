@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import TotalClientesCard from './components/TotalClientesCard';
 import TotalIngresosDiarios from './components/IngresosDiarios';
 import Grid from '@mui/material/Grid';
 import { dashboardContainer } from '../../../di/dashboardContainer';
-import { EvaluationData, IngresosDiarios} from '../../../domain/models/DashboardModel';
+import { EvaluationData, EvaluationsByDoctor, IngresosDiarios} from '../../../domain/models/DashboardModel';
 import { Loading } from '../../components/Loading';
 import { useAuth } from '../../hooks/useAuth';
 import ModalRentDetail from './components/ModalDetaleContrato';
@@ -11,13 +11,17 @@ import TableMedical from './components/TableMedical';
 import TablePsychological from './components/TablePsychological';
 import { useNavigate } from 'react-router-dom';
 import TableInfPsychological from './components/TableInfPsychological';
-
+import PatientsByDoctorCard from './components/PatientsByDoctorCard';
+import dayjs, { Dayjs } from 'dayjs';
 
 const DashboardView: React.FC = () => {
   const { authResponse } = useAuth();
   const [medical, setMedical] = useState<EvaluationData>({total: 0,masculino: 0,femenino: 0});
   const [psychological, setPsychological] = useState<EvaluationData>({total: 0,masculino: 0,femenino: 0});
   const [ingresosDiarios, setIngresosDiarios] = useState<IngresosDiarios[]>([]);
+  const [totalsByDoctor, setTotalsByDoctor] = useState<EvaluationsByDoctor[]>([]);
+  const [patientsDate, setPatientsDate] = useState<Dayjs>(dayjs());
+
   const [sucursal, setSucursal] = useState('-1')
   const DashboardViewModel = dashboardContainer.resolve('dashboardViewModel');
   const [loading, setLoading] = useState(false);
@@ -27,7 +31,13 @@ const DashboardView: React.FC = () => {
   const handleOpenPsychological =(id:number)=>{
     setIdContrato(id);
     navigate('/evaluation/psychological?id='+id);
-  }
+  };
+
+  const handlePatientsDateChange = (date:Dayjs) => {
+    if(date && date.isValid()){
+      setPatientsDate(date);
+    }
+  };
   const handleOpenInfPsychological =(id:number)=>{
     setIdContrato(id);
     navigate('/evaluation/report-psychological?id='+id);
@@ -47,6 +57,13 @@ const DashboardView: React.FC = () => {
       getTotalEvaluations(Number(authResponse?.id_sucursal));
     }
   }, [authResponse]);
+
+  useEffect(() => {
+    if(authResponse){
+      getTotalEvaByDoctor(Number(authResponse?.id_sucursal), patientsDate);
+    }
+  }, [authResponse, patientsDate]);
+
   const getIngresosDiarios = async (id_sucursal:number) => {
     setLoading(true)
     try {
@@ -93,6 +110,27 @@ const DashboardView: React.FC = () => {
       return {'data':[],pagination:{'total':0}}
     }
   };
+  const getTotalEvaByDoctor = async (id_sucursal:number, dateValue?:Dayjs) => {
+    try {
+      const fecha = dateValue ? dateValue.format('YYYY-MM-DD') : undefined;
+      const response = await DashboardViewModel.getTotalEvaByDoctor(id_sucursal, fecha);
+      if(Array.isArray(response)){
+        const sanitized:EvaluationsByDoctor[] = response.map((item)=>({
+          ...item,
+          id_usuario: Number(item.id_usuario) || 0,
+          nombre_doctor: item.nombre_doctor || 'Sin registro',
+          total: Number(item.total) || 0
+        }));
+        setTotalsByDoctor(sanitized);
+      }else{
+        setTotalsByDoctor([]);
+      }
+      return response;
+    } catch (error) {
+      setTotalsByDoctor([]);
+      return [];
+    }
+  };
   const getDetailRent = async (idContrato:number) => {
    
     return {'data':[],'productos':[]}
@@ -120,6 +158,13 @@ const DashboardView: React.FC = () => {
           sx={{ }}
           size={{xs: 12,md: 6}}>
             {ingresosDiarios && <TotalIngresosDiarios data={ingresosDiarios} />}
+        </Grid>
+        <Grid size={{xs: 12,md: 6}}>
+          <PatientsByDoctorCard
+            data={totalsByDoctor}
+            selectedDate={patientsDate}
+            onChangeDate={handlePatientsDateChange}
+          />
         </Grid>
         <Grid sx={{ }}size={{xs: 12,md: 6}}>
             <TableMedical handleOpen={handleOpenMedical} listEvaMedical={listEvaMedical} id_sucursal={sucursal}/>
